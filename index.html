@@ -1,0 +1,603 @@
+--- START OF FILE test 7.html ---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thummala Joel Ruthvik | Executive Portfolio</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Plus+Jakarta+Sans:wght@300;400;700&family=Inter:wght@400;600;800&family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --matte-black: #05070a;
+            --deep-navy: #0a101f;
+            --electric-blue: #3b82f6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- GLOBAL PREMIUM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--matte-black); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--electric-blue), #8b5cf6); 
+            border-radius: 10px;
+            border: 2px solid var(--matte-black);
+        }
+
+        body { background-color: var(--matte-black); color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        /* Global Background */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, var(--deep-navy) 0%, var(--matte-black) 100%); }
+        .ambient-light { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: 0; }
+
+        /* Glassmorphism */
+        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
+        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+        .glass-card:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--electric-blue); }
+
+        /* Page System */
+        .page { display: none; opacity: 0; transform: translateY(20px); padding-top: 140px; padding-bottom: 100px; min-height: 100vh; }
+        .active-page { display: block; opacity: 1; transform: translateY(0); }
+
+        /* Nav Links */
+        .nav-link { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.4); transition: 0.3s; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: var(--electric-blue); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+
+        /* Global Floating Portrait Style */
+        .portrait-frame { position: relative; width: 100%; max-width: 480px; border-radius: 40px; padding: 10px; background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 50px 100px rgba(0,0,0,0.5); animation: float 6s ease-in-out infinite; }
+        .portrait-frame img { width: 100%; border-radius: 32px; filter: contrast(1.05) brightness(1.1); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .gradient-text { background: linear-gradient(to right, #fff, var(--electric-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Experience Timeline Elements */
+        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; }
+        .timeline-line-v { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0.3; }
+        .exp-section { position: relative; margin-bottom: 100px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; }
+        .exp-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 24px; height: 24px; background: var(--matte-black); border: 4px solid var(--electric-blue); border-radius: 50%; z-index: 10; box-shadow: 0 0 20px var(--electric-blue); }
+        .exp-content { width: 45%; }
+        .exp-right { margin-left: auto; }
+        .exp-left { margin-right: auto; text-align: right; }
+        .metric-badge { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); padding: 5px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; color: var(--electric-blue); text-transform: uppercase; }
+
+        /* Skills Page Specific Styles */
+        .skill-progress-bg { background: rgba(255,255,255,0.05); height: 4px; width: 100%; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .skill-progress-fill { background: linear-gradient(90deg, var(--electric-blue), #a855f7); height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .domain-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; cursor: pointer; }
+        .domain-card:hover { transform: translateY(-10px); background: rgba(59, 130, 246, 0.1); border-color: var(--electric-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .skill-circle { transition: 0.5s; stroke-dasharray: 283; stroke-dashoffset: 283; }
+        
+        .floating-ui-item { position: absolute; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px; animation: floatUI 8s infinite ease-in-out; pointer-events: none; }
+        @keyframes floatUI { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(15px, -20px); } }
+        
+        .animated-skill-border { position: relative; overflow: hidden; }
+        .animated-skill-border::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--electric-blue)); animation: rotateBorder 4s linear infinite; opacity: 0; transition: 0.3s; }
+        .animated-skill-border:hover::before { opacity: 1; }
+        .animated-skill-border-inner { position: relative; z-index: 1; background: #05070a; margin: 1px; border-radius: inherit; height: calc(100% - 2px); width: calc(100% - 2px); }
+        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 1024px) {
+            .timeline-line-v { left: 20px; transform: none; }
+            .exp-dot { left: 20px; transform: none; }
+            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="bg-canvas"></div>
+    <div id="cursor-light" class="ambient-light"></div>
+
+    <!-- MAIN NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[1000] glass border-b border-white/5">
+        <div class="px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="h-10 w-10 bg-blue-600 rounded-lg flex items-center justify-center font-black text-xl shadow-lg shadow-blue-600/30">JR</div>
+                <div><p class="text-[9px] font-bold tracking-[0.3em] text-blue-500 uppercase">Executive Intelligence</p><h2 class="text-sm font-black uppercase tracking-tighter">Joel Ruthvik</h2></div>
+            </div>
+            <button onclick="toggleMobileMenu()" class="glass px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border-blue-500/30 text-blue-400"><i class="fa-solid fa-bars-staggered mr-2"></i> Menu</button>
+        </div>
+        <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
+            <div class="flex px-8 py-3 space-x-10 min-w-max">
+                <button onclick="showPage('home')" class="nav-link active" data-page="home">Home</button>
+                <button onclick="showPage('about')" class="nav-link" data-page="about">About Me</button>
+                <button onclick="showPage('experience')" class="nav-link" data-page="experience">Experience</button>
+                <button onclick="showPage('skills')" class="nav-link" data-page="skills">Skills</button>
+                <button onclick="showPage('clients')" class="nav-link" data-page="clients">Clients</button>
+                <button onclick="showPage('services')" class="nav-link" data-page="services">Services</button>
+                <button onclick="showPage('certifications')" class="nav-link" data-page="certifications">Certifications</button>
+                <button onclick="showPage('education')" class="nav-link" data-page="education">Education</button>
+                <button onclick="showPage('projects')" class="nav-link" data-page="projects">Achievements</button>
+                <button onclick="showPage('social')" class="nav-link" data-page="social">Networking</button>
+                <button onclick="showPage('blog')" class="nav-link" data-page="blog">Updates</button>
+                <button onclick="showPage('contact')" class="nav-link" data-page="contact">Contact</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/98 z-[2000] hidden flex flex-col items-center justify-center p-10">
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-20 text-center">
+            <button onclick="showPage('home'); toggleMobileMenu()" class="text-2xl font-bold">01. Home</button>
+            <button onclick="showPage('about'); toggleMobileMenu()" class="text-2xl font-bold">02. About Me</button>
+            <button onclick="showPage('experience'); toggleMobileMenu()" class="text-2xl font-bold">03. Experience</button>
+            <button onclick="showPage('skills'); toggleMobileMenu()" class="text-2xl font-bold">04. Skills</button>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         1. HOME PAGE
+         ========================================================= -->
+    <section id="home" class="page active-page px-6 lg:px-20">
+        <div class="max-w-[1600px] mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative flex justify-center lg:justify-start order-2 lg:order-1">
+                <div class="absolute h-[50px] w-[180px] glass -top-5 left-10 rounded-xl flex items-center px-4 z-10"><i class="fa-solid fa-microchip text-blue-500 mr-2"></i> <span class="text-[9px] font-black tracking-widest uppercase">Tech Vetting</span></div>
+                <div class="absolute h-[50px] w-[180px] glass bottom-10 -right-5 rounded-xl flex items-center px-4 z-10"><i class="fa-solid fa-briefcase text-blue-500 mr-2"></i> <span class="text-[9px] font-black tracking-widest uppercase">US IT Specialist</span></div>
+                <div class="portrait-frame"><img src="https://media.licdn.com/dms/image/v2/D4D03AQEa6RexYgRnQg/profile-displayphoto-crop_800_800/B4DZxyupkqJwAI-/0/1771451434620?e=1781136000&v=beta&t=9S9_MDGUmZ5RF26y8siwUOy43Itn9nGuXWIP6EcRJ_4" alt="Joel Ruthvik"></div>
+            </div>
+            <div class="space-y-8 order-1 lg:order-2">
+                <h1 class="text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter">THUMMALA <br><span class="gradient-text italic">JOEL RUTHVIK</span></h1>
+                <h2 class="text-2xl font-light text-gray-400">Talent Acquisition Specialist</h2>
+                <div class="max-w-xl">
+                    <p class="text-lg text-blue-400 font-medium mb-6 min-h-[4em] italic">“<span id="typing-hero"></span>”</p>
+                    <p id="hero-paragraph" class="text-gray-400 text-sm leading-relaxed opacity-0">Results-driven Talent Acquisition Specialist with extensive expertise in US IT Staffing, Technical Recruitment, Recruitment Operations, and Enterprise Hiring Solutions. Experienced in Fortune 500 lifecycles for IBM, Capgemini, Barclays, and Comcast.</p>
+                </div>
+                <div class="flex flex-wrap gap-4 pt-6"><button onclick="showPage('experience')" class="bg-blue-600 px-8 py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest shadow-xl shadow-blue-600/30">Explore Portfolio</button><button class="glass px-8 py-3 rounded-xl font-bold uppercase text-[10px] tracking-widest">View Resume</button></div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 mt-32 border-t border-white/5 pt-16">
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">6+</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Years Exp</p></div>
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Enterprise</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Client Exposure</p></div>
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Fortune 500</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Support</p></div>
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Multi-Domain</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Technical Hiring</p></div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         2. ABOUT ME PAGE
+         ========================================================= -->
+    <section id="about" class="page px-6 lg:px-20 overflow-visible">
+        <div class="max-w-7xl mx-auto mb-32">
+            <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-16">ABOUT <span class="gradient-text italic">ME</span></h1>
+            <div class="grid lg:grid-cols-2 gap-20 items-start">
+                <div class="flex justify-center sticky top-40"><div class="portrait-frame"><img src="https://media.licdn.com/dms/image/v2/D4D03AQEa6RexYgRnQg/profile-displayphoto-crop_800_800/B4DZxyupkqJwAI-/0/1771451434620?e=1781136000&v=beta&t=9S9_MDGUmZ5RF26y8siwUOy43Itn9nGuXWIP6EcRJ_4" alt="Portrait"></div></div>
+                <div class="space-y-12">
+                    <h2 class="text-3xl font-bold font-heading italic text-blue-500">Connecting talent with opportunities.</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed">I am a passionate recruitment professional with 6+ years of experience in US IT Staffing. I specialize in bridging the gap between exceptional technical talent and major industry giants like <b class="text-white">Tata Elxsi, IBM, Capgemini, and Barclays.</b></p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="glass p-5 rounded-2xl border-l-4 border-blue-500"><h4 class="font-bold text-blue-500 uppercase text-[10px] tracking-widest mb-2">My Journey</h4><p class="text-xs text-gray-400">Softworld ➔ Teckwizcentric ➔ Savya Infotech</p></div>
+                        <div class="glass p-5 rounded-2xl border-l-4 border-purple-500"><h4 class="font-bold text-purple-500 uppercase text-[10px] tracking-widest mb-2">Expertise</h4><p class="text-xs text-gray-400">Full-cycle Recruitment, Vendor Mgmt, C2C/W2</p></div>
+                    </div>
+                    <div class="glass p-8 rounded-3xl"><h4 class="font-bold mb-4">Education</h4><p class="text-sm">B.A Psychology – BRAOU</p><p class="text-sm">B.Tech in Computer Science Engineering</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         3. PROFESSIONAL EXPERIENCE
+         ========================================================= -->
+    <section id="experience" class="page px-6 lg:px-20">
+        <div class="max-w-7xl mx-auto text-center mb-32">
+            <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-6">PROFESSIONAL <span class="gradient-text italic">EXPERIENCE</span></h1>
+            <p class="text-gray-400 text-xl max-w-3xl mx-auto">6+ years of delivering top-tier recruitment solutions and technical hiring expertise for enterprise-level clients.</p>
+        </div>
+
+        <div class="timeline-container pb-20">
+            <div class="timeline-line-v"></div>
+
+            <!-- SAVYA INFOTECH -->
+            <div class="exp-section">
+                <div class="exp-dot" style="top: 20px;"></div>
+                <div class="exp-content exp-right">
+                    <div class="glass p-10 rounded-[40px] border-t-2 border-blue-600">
+                        <div class="flex justify-between items-start mb-6">
+                            <div><h2 class="text-3xl font-black">Savya Infotech / VentleyTech</h2><p class="text-blue-500 font-bold uppercase text-[10px] tracking-widest">Talent Acquisition Specialist</p></div>
+                            <span class="glass px-4 py-1 rounded-full text-[9px] font-bold">2024 - PRESENT</span>
+                        </div>
+                        <div class="space-y-4 text-gray-400 text-sm leading-relaxed mb-8">
+                            <p>• Managing complete recruitment lifecycle for Fortune 500: <b class="text-white">IBM, Barclays, Comcast, Capgemini.</b></p>
+                            <p>• Sourcing top technical talent across Banking and Telecom domains via Dice, LinkedIn, Monster.</p>
+                            <p>• Orchestrating C2C/W2 rate negotiations and onboarding compliance processes.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="metric-badge">Banking Domain</span><span class="metric-badge">Vendor Mgmt</span><span class="metric-badge">Technical Screening</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TECKWIZCENTRIC -->
+            <div class="exp-section">
+                <div class="exp-dot" style="top: 20px;"></div>
+                <div class="exp-content exp-left">
+                    <div class="glass p-10 rounded-[40px] border-t-2 border-gray-600">
+                        <div class="flex justify-between items-start mb-6 flex-row-reverse">
+                            <div class="text-right"><h2 class="text-3xl font-black">Teckwizcentric OPC</h2><p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Manager Admin</p></div>
+                            <span class="glass px-4 py-1 rounded-full text-[9px] font-bold">2022 - 2024</span>
+                        </div>
+                        <div class="space-y-4 text-gray-400 text-sm leading-relaxed mb-8">
+                            <p>• Led HR support operations, recruiter coordination, and administrative management.</p>
+                            <p>• Conducted background verifications and recruitment compliance audits (PF/ESI).</p>
+                            <p>• Mentored new recruiters on US IT market dynamics and interview preparation.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 justify-end">
+                            <span class="metric-badge">Team Coordination</span><span class="metric-badge">HR Support</span><span class="metric-badge">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOFTWORLD -->
+            <div class="exp-section">
+                <div class="exp-dot" style="top: 20px;"></div>
+                <div class="exp-content exp-right">
+                    <div class="glass p-10 rounded-[40px] border-t-2 border-gray-800">
+                        <div class="flex justify-between items-start mb-6">
+                            <div><h2 class="text-3xl font-black">Softworld Technologies</h2><p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">US IT Recruiter / Sys Admin</p></div>
+                            <span class="glass px-4 py-1 rounded-full text-[9px] font-bold">2019 - 2022</span>
+                        </div>
+                        <div class="space-y-4 text-gray-400 text-sm leading-relaxed mb-8">
+                            <p>• Executed bench sales operations, sourcing and marketing IT consultants to vendors.</p>
+                            <p>• Negotiated rates and maintained vendor relationships on Dice & Corp-Corp.</p>
+                            <p>• Managed systems administration, hardware setup, and security measures.</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="metric-badge">Bench Sales</span><span class="metric-badge">Systems Admin</span><span class="metric-badge">Technical Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         4. SKILLS & EXPERTISE PAGE (UPDATED)
+         ========================================================= -->
+    <section id="skills" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Hero Section -->
+        <div class="relative py-32 text-center overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-gradient-to-b from-blue-900/10 to-transparent"></div>
+            <div class="floating-ui-item top-20 left-[15%]"><i class="fa-solid fa-user-check text-blue-500 mr-2"></i> <span class="text-[10px] font-bold">Candidate Vetted</span></div>
+            <div class="floating-ui-item bottom-20 right-[15%]"><i class="fa-solid fa-file-contract text-blue-500 mr-2"></i> <span class="text-[10px] font-bold">C2C Agreement</span></div>
+            
+            <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-8 reveal-text">SKILLS & <span class="gradient-text italic">EXPERTISE</span></h1>
+            <p class="text-xl text-gray-400 max-w-4xl mx-auto reveal-sub">Delivering strategic talent acquisition solutions, enterprise recruitment expertise, and technical hiring excellence across diverse technology domains.</p>
+        </div>
+
+        <!-- Core Expertise Overview -->
+        <div class="max-w-7xl mx-auto mb-32">
+            <div class="flex items-center gap-6 mb-16">
+                <div class="h-px flex-1 bg-white/10"></div>
+                <h2 class="text-2xl font-black uppercase tracking-widest">Core Recruitment Expertise</h2>
+                <div class="h-px flex-1 bg-white/10"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Skill Card Template -->
+                <script>
+                    const expertiseItems = [
+                        { name: "Talent Acquisition", val: "95%", desc: "End-to-end strategy for high-volume and niche hiring.", icon: "fa-users-rays" },
+                        { name: "US IT Staffing", val: "98%", desc: "Deep knowledge of US market dynamics and tax terms.", icon: "fa-globe-americas" },
+                        { name: "Technical Recruitment", val: "96%", desc: "Expertise in vetting developers, QA, and engineers.", icon: "fa-code" },
+                        { name: "Full-cycle Recruitment", val: "94%", desc: "Managing from requirement gathering to onboarding.", icon: "fa-arrows-spin" },
+                        { name: "Vendor Management", val: "92%", desc: "Building strong relationships with tier-1 vendors.", icon: "fa-handshake" },
+                        { name: "C2C / W2 Hiring", val: "97%", desc: "Navigating complex visa and employment classifications.", icon: "fa-file-invoice-dollar" },
+                        { name: "Bench Sales Ops", val: "90%", desc: "Marketing consultants effectively on job portals.", icon: "fa-chart-line" },
+                        { name: "Recruitment Workflow", val: "93%", desc: "Optimizing ATS processes and feedback loops.", icon: "fa-diagram-project" },
+                        { name: "Talent Pipeline", val: "95%", desc: "Maintaining active pools of pre-vetted tech talent.", icon: "fa-database" }
+                    ];
+                </script>
+
+                <!-- Rendering Skills (Note: Actual HTML for SSR) -->
+                <div class="animated-skill-border glass rounded-3xl p-8 transition-all hover:scale-[1.02]">
+                    <div class="animated-skill-border-inner p-4">
+                        <i class="fa-solid fa-users-rays text-3xl text-blue-500 mb-6"></i>
+                        <h3 class="font-bold text-lg mb-2">Talent Acquisition</h3>
+                        <p class="text-xs text-gray-500 mb-6">End-to-end strategy for high-volume and niche hiring.</p>
+                        <div class="flex justify-between items-end"><span class="text-[10px] font-black text-blue-500 uppercase">Expertise Level</span><span class="text-xl font-black">95%</span></div>
+                        <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 95%;"></div></div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="animated-skill-border glass rounded-3xl p-8 transition-all hover:scale-[1.02]">
+                    <div class="animated-skill-border-inner p-4">
+                        <i class="fa-solid fa-globe-americas text-3xl text-blue-500 mb-6"></i>
+                        <h3 class="font-bold text-lg mb-2">US IT Staffing</h3>
+                        <p class="text-xs text-gray-500 mb-6">Deep knowledge of US market dynamics and tax terms.</p>
+                        <div class="flex justify-between items-end"><span class="text-[10px] font-black text-blue-500 uppercase">Market Mastery</span><span class="text-xl font-black">98%</span></div>
+                        <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 98%;"></div></div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="animated-skill-border glass rounded-3xl p-8 transition-all hover:scale-[1.02]">
+                    <div class="animated-skill-border-inner p-4">
+                        <i class="fa-solid fa-handshake text-3xl text-blue-500 mb-6"></i>
+                        <h3 class="font-bold text-lg mb-2">Vendor Management</h3>
+                        <p class="text-xs text-gray-500 mb-6">Building strong relationships with tier-1 vendors.</p>
+                        <div class="flex justify-between items-end"><span class="text-[10px] font-black text-blue-500 uppercase">Relations</span><span class="text-xl font-black">92%</span></div>
+                        <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 92%;"></div></div>
+                    </div>
+                </div>
+                <!-- Row 2 -->
+                <div class="animated-skill-border glass rounded-3xl p-8 transition-all hover:scale-[1.02]">
+                    <div class="animated-skill-border-inner p-4">
+                        <i class="fa-solid fa-code text-3xl text-blue-500 mb-6"></i>
+                        <h3 class="font-bold text-lg mb-2">Technical Vetting</h3>
+                        <p class="text-xs text-gray-500 mb-6">Deep-dive assessment of developer stacks and skills.</p>
+                        <div class="flex justify-between items-end"><span class="text-[10px] font-black text-blue-500 uppercase">Vetting Accuracy</span><span class="text-xl font-black">96%</span></div>
+                        <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 96%;"></div></div>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-3xl p-8 transition-all hover:scale-[1.02]">
+                    <div class="animated-skill-border-inner p-4">
+                        <i class="fa-solid fa-arrows-spin text-3xl text-blue-500 mb-6"></i>
+                        <h3 class="font-bold text-lg mb-2">Full-Cycle Ops</h3>
+                        <p class="text-xs text-gray-500 mb-6">Managing lifecycles from JD to successful onboarding.</p>
+                        <div class="flex justify-between items-end"><span class="text-[10px] font-black text-blue-500 uppercase">Optimization</span><span class="text-xl font-black">94%</span></div>
+                        <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 94%;"></div></div>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-3xl p-8 transition-all hover:scale-[1.02]">
+                    <div class="animated-skill-border-inner p-4">
+                        <i class="fa-solid fa-chart-line text-3xl text-blue-500 mb-6"></i>
+                        <h3 class="font-bold text-lg mb-2">Analytics & Strategy</h3>
+                        <p class="text-xs text-gray-500 mb-6">Data-driven hiring and recruitment performance tracking.</p>
+                        <div class="flex justify-between items-end"><span class="text-[10px] font-black text-blue-500 uppercase">Data Proficiency</span><span class="text-xl font-black">90%</span></div>
+                        <div class="skill-progress-bg"><div class="skill-progress-fill" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Recruitment Domains -->
+        <div class="max-w-7xl mx-auto py-32 border-y border-white/5">
+            <h2 class="text-4xl font-black mb-16 italic text-center">Technical <span class="text-blue-500 not-italic uppercase">Hiring Domains</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="domain-card p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-building-columns text-2xl text-blue-500 mb-4"></i>
+                    <h4 class="text-[10px] font-black uppercase">Banking</h4>
+                </div>
+                <div class="domain-card p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-tower-broadcast text-2xl text-blue-500 mb-4"></i>
+                    <h4 class="text-[10px] font-black uppercase">Telecom</h4>
+                </div>
+                <div class="domain-card p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-layer-group text-2xl text-blue-500 mb-4"></i>
+                    <h4 class="text-[10px] font-black uppercase">Full Stack</h4>
+                </div>
+                <div class="domain-card p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-cloud text-2xl text-blue-500 mb-4"></i>
+                    <h4 class="text-[10px] font-black uppercase">Cloud/AWS</h4>
+                </div>
+                <div class="domain-card p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-robot text-2xl text-blue-500 mb-4"></i>
+                    <h4 class="text-[10px] font-black uppercase">AI/ML</h4>
+                </div>
+                <div class="domain-card p-6 rounded-2xl text-center">
+                    <i class="fa-solid fa-vial-circle-check text-2xl text-blue-500 mb-4"></i>
+                    <h4 class="text-[10px] font-black uppercase">QA/DevOps</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platforms Dashboard -->
+        <div class="max-w-7xl mx-auto py-32">
+            <h2 class="text-2xl font-black uppercase tracking-widest mb-16 text-center">Recruitment Command Center</h2>
+            <div class="glass p-12 rounded-[3rem] relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 text-blue-500/20 text-8xl font-black">TOOLS</div>
+                <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-10">
+                    <div class="text-center group">
+                        <div class="h-20 w-20 glass mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                            <i class="fa-solid fa-database text-2xl"></i>
+                        </div>
+                        <h5 class="text-xs font-bold uppercase">Dice / Monster</h5>
+                    </div>
+                    <div class="text-center group">
+                        <div class="h-20 w-20 glass mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                            <i class="fa-brands fa-linkedin-in text-2xl"></i>
+                        </div>
+                        <h5 class="text-xs font-bold uppercase">LinkedIn Recruiter</h5>
+                    </div>
+                    <div class="text-center group">
+                        <div class="h-20 w-20 glass mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                            <i class="fa-solid fa-sitemap text-2xl"></i>
+                        </div>
+                        <h5 class="text-xs font-bold uppercase">ATS Systems</h5>
+                    </div>
+                    <div class="text-center group">
+                        <div class="h-20 w-20 glass mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                            <i class="fa-solid fa-file-excel text-2xl"></i>
+                        </div>
+                        <h5 class="text-xs font-bold uppercase">Reporting Tools</h5>
+                    </div>
+                    <div class="text-center group">
+                        <div class="h-20 w-20 glass mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors">
+                            <i class="fa-solid fa-shield-halved text-2xl"></i>
+                        </div>
+                        <h5 class="text-xs font-bold uppercase">Compliance Portals</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote -->
+        <div class="max-w-5xl mx-auto text-center py-32">
+            <h2 class="text-4xl md:text-6xl font-black leading-tight italic">
+                “Exceptional recruitment is not just about <span class="text-blue-500">hiring talent</span> — it’s about building the future of organizations through the <span class="not-italic uppercase font-light text-2xl tracking-widest text-white/50">right people.</span>”
+            </h2>
+        </div>
+
+        <!-- Leadership & Operational Visualization -->
+        <div class="max-w-7xl mx-auto py-32 grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <h2 class="text-4xl font-black mb-8">Leadership & <br><span class="text-blue-500 uppercase italic">Operational Excellence</span></h2>
+                <div class="space-y-6">
+                    <div class="flex gap-6 items-start">
+                        <div class="h-10 w-10 glass rounded-full flex-shrink-0 flex items-center justify-center font-bold text-blue-500">01</div>
+                        <div><h4 class="font-bold mb-1">Recruiter Mentorship</h4><p class="text-xs text-gray-500">Training junior teams on US IT market dynamics and sourcing strategies.</p></div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <div class="h-10 w-10 glass rounded-full flex-shrink-0 flex items-center justify-center font-bold text-blue-500">02</div>
+                        <div><h4 class="font-bold mb-1">Compliance & Auditing</h4><p class="text-xs text-gray-500">Overseeing background checks and recruitment documentation (PF/ESI).</p></div>
+                    </div>
+                    <div class="flex gap-6 items-start">
+                        <div class="h-10 w-10 glass rounded-full flex-shrink-0 flex items-center justify-center font-bold text-blue-500">03</div>
+                        <div><h4 class="font-bold mb-1">Workflow Automation</h4><p class="text-xs text-gray-500">Implementing internal reporting systems for faster turnaround times.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-3xl font-black text-blue-500 mb-2">99%</div>
+                    <div class="text-[9px] font-bold uppercase">Compliance Rate</div>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-3xl font-black text-blue-500 mb-2">24h</div>
+                    <div class="text-[9px] font-bold uppercase">Average Turnaround</div>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-3xl font-black text-blue-500 mb-2">500+</div>
+                    <div class="text-[9px] font-bold uppercase">Offers Processed</div>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center">
+                    <div class="text-3xl font-black text-blue-500 mb-2">15+</div>
+                    <div class="text-[9px] font-bold uppercase">Tech Domains</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Understanding Block -->
+        <div class="max-w-7xl mx-auto py-20 bg-blue-600/5 rounded-[4rem] border border-blue-500/10 p-12 text-center">
+            <i class="fa-solid fa-microchip text-5xl text-blue-500 mb-8"></i>
+            <h2 class="text-4xl font-black mb-6 uppercase">The Technical Edge</h2>
+            <p class="text-lg text-gray-400 max-w-3xl mx-auto">
+                With a background in <span class="text-white font-bold">Computer Science Engineering</span>, Joel possesses a unique ability to bridge the gap between complex engineering requirements and human potential. This technical foundation allows for precise screening of modern enterprise stacks including Java Full Stack, AWS/Cloud ecosystems, DevOps pipelines, and AI/ML architectures.
+            </p>
+        </div>
+
+        <!-- Soft Skills Excellence (Circular) -->
+        <div class="max-w-7xl mx-auto py-32">
+            <h2 class="text-2xl font-black uppercase tracking-widest mb-20 text-center">Soft Skill Excellence</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="text-center relative">
+                    <svg class="w-32 h-32 mx-auto transform -rotate-90">
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" class="text-white/5" />
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" stroke-dasharray="364.4" stroke-dashoffset="36.4" class="text-blue-500 skill-circle" />
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center font-black text-lg">90%</div>
+                    <h5 class="mt-6 text-[10px] font-black uppercase">Communication</h5>
+                </div>
+                <div class="text-center relative">
+                    <svg class="w-32 h-32 mx-auto transform -rotate-90">
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" class="text-white/5" />
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" stroke-dasharray="364.4" stroke-dashoffset="54.6" class="text-blue-500 skill-circle" />
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center font-black text-lg">85%</div>
+                    <h5 class="mt-6 text-[10px] font-black uppercase">Leadership</h5>
+                </div>
+                <div class="text-center relative">
+                    <svg class="w-32 h-32 mx-auto transform -rotate-90">
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" class="text-white/5" />
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" stroke-dasharray="364.4" stroke-dashoffset="18.2" class="text-blue-500 skill-circle" />
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center font-black text-lg">95%</div>
+                    <h5 class="mt-6 text-[10px] font-black uppercase">Negotiation</h5>
+                </div>
+                <div class="text-center relative">
+                    <svg class="w-32 h-32 mx-auto transform -rotate-90">
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" class="text-white/5" />
+                        <circle cx="64" cy="64" r="58" stroke="currentColor" stroke-width="4" fill="transparent" stroke-dasharray="364.4" stroke-dashoffset="7.2" class="text-blue-500 skill-circle" />
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center font-black text-lg">98%</div>
+                    <h5 class="mt-6 text-[10px] font-black uppercase">Problem Solving</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- (OTHER 9 PAGES PRESERVED) -->
+    <section id="clients" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">CLIENTS</h1></section>
+    <section id="services" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">SERVICES</h1></section>
+    <section id="certifications" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">CERTIFICATIONS</h1></section>
+    <section id="education" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">EDUCATION</h1></section>
+    <section id="projects" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">ACHIEVEMENTS</h1></section>
+    <section id="social" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">NETWORKING</h1></section>
+    <section id="blog" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">UPDATES</h1></section>
+    <section id="contact" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">CONTACT</h1></section>
+
+    <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
+        <p>© 2024 THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(TextPlugin, ScrollTrigger);
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('.nav-link');
+            gsap.to('.active-page', {
+                opacity: 0, y: 15, duration: 0.3,
+                onComplete: () => {
+                    pages.forEach(p => p.classList.remove('active-page'));
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    document.getElementById(pageId).classList.add('active-page');
+                    const link = document.querySelector(`[data-page="${pageId}"]`);
+                    if(link) link.classList.add('active');
+                    gsap.fromTo(document.getElementById(pageId), { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 });
+                    window.scrollTo(0, 0);
+                    if(pageId === 'home') runHomeAnimations();
+                    if(pageId === 'skills') runSkillsAnimations();
+                }
+            });
+        }
+
+        function runHomeAnimations() {
+            gsap.to("#typing-hero", { duration: 3, text: "Bridging the gap between top-tier tech talent and industry leaders. 6+ years of expertise in US IT Staffing.", ease: "none" });
+            gsap.to("#hero-paragraph", { opacity: 1, y: 0, duration: 1, delay: 0.5 });
+        }
+
+        function runSkillsAnimations() {
+            gsap.from(".reveal-text", { y: 100, opacity: 0, duration: 1, ease: "power4.out" });
+            gsap.from(".reveal-sub", { y: 20, opacity: 0, duration: 1, delay: 0.3 });
+            
+            // Animate progress bars
+            gsap.utils.toArray('.skill-progress-fill').forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                gsap.to(bar, { width: targetWidth, duration: 2, ease: "power2.out", scrollTrigger: bar });
+            });
+
+            // Animate circular skills
+            gsap.utils.toArray('.skill-circle').forEach(circle => {
+                const offset = circle.getAttribute('stroke-dashoffset');
+                circle.style.strokeDashoffset = "364.4";
+                gsap.to(circle, { strokeDashoffset: offset, duration: 2, ease: "power2.out", scrollTrigger: circle });
+            });
+        }
+
+        function toggleMobileMenu() { document.getElementById('mobile-menu').classList.toggle('hidden'); }
+
+        document.addEventListener('mousemove', (e) => {
+            gsap.to('#cursor-light', { x: e.clientX - 400, y: e.clientY - 400, duration: 2 });
+        });
+
+        window.onload = () => {
+            runHomeAnimations();
+        }
+    </script>
+</body>
+</html>
