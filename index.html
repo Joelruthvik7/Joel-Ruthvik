@@ -106,7 +106,18 @@
             .exp-dot { left: 20px; transform: none; }
             .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
             }
-    </style>
+    
+
+
+/* Recruitment Services Specific */
+        .service-icon-box { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--electric-blue); font-size: 1.5rem; margin-bottom: 1.5rem; transition: 0.5s; }
+        .service-reveal-card:hover .service-icon-box { background: var(--electric-blue); color: white; transform: scale(1.1) rotate(15deg); }
+        .workflow-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--electric-blue), transparent); opacity: 0.2; z-index: 0; }
+        .glow-pulse { animation: pulseGlow 2s infinite alternate; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); } }
+
+
+</style>
 </head>
 <body>
 
@@ -168,13 +179,13 @@
             <button onclick="showPage('experience'); toggleMobileMenu()" class="text-2xl font-bold">03. Experience</button>
             <button onclick="showPage('skills'); toggleMobileMenu()" class="text-2xl font-bold">04. Skills</button>
             <button onclick="showPage('clients'); toggleMobileMenu()" class="text-2xl font-bold">05. clients</button>
-            <button onclick="showPage('certifications'); toggleMobileMenu()" class="text-2xl font-bold">06. certifications</button>
-            <button onclick="showPage('education'); toggleMobileMenu()" class="text-2xl font-bold">07. education</button>
-            <button onclick="showPage('projects'); toggleMobileMenu()" class="text-2xl font-bold">08. projects</button>
-            <button onclick="showPage('social'); toggleMobileMenu()" class="text-2xl font-bold">09. social</button>
-            <button onclick="showPage('blog'); toggleMobileMenu()" class="text-2xl font-bold">10. blog</button>
-            <button onclick="showPage('contact'); toggleMobileMenu()" class="text-2xl font-bold">11. contact</button>
-            <button onclick="showPage('Social'); toggleMobileMenu()" class="text-2xl font-bold">12. Social Media</button>
+            <button onclick="showPage('services'); toggleMobileMenu()" class="text-2xl font-bold">06. Services</button>
+            <button onclick="showPage('certifications'); toggleMobileMenu()" class="text-2xl font-bold">07. certifications</button>
+            <button onclick="showPage('education'); toggleMobileMenu()" class="text-2xl font-bold">08. education</button>
+            <button onclick="showPage('projects'); toggleMobileMenu()" class="text-2xl font-bold">09. projects</button>
+            <button onclick="showPage('social'); toggleMobileMenu()" class="text-2xl font-bold">10. social</button>
+            <button onclick="showPage('blog'); toggleMobileMenu()" class="text-2xl font-bold">11. blog</button>
+            <button onclick="showPage('contact'); toggleMobileMenu()" class="text-2xl font-bold">12. contact</button>            
         </div>
     </div>
 
@@ -728,8 +739,201 @@
         </div>
     </section>
 
-    <!-- (OTHER 8 PAGES PRESERVED) -->
-    <section id="services" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">SERVICES</h1></section>
+
+<!-- =========================================================
+         6. RECRUITMENT SERVICES PAGE (FULLY UPDATED)
+         ========================================================= -->
+    <section id="services" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Cinematic Hero Section -->
+        <div class="max-w-7xl mx-auto py-24 text-center relative z-10">
+            <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-600/10 blur-[100px] pointer-events-none"></div>
+            <div class="inline-block glass px-4 py-1 rounded-full text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-6">Expert Talent Acquisition</div>
+            <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-8 service-main-title">RECRUITMENT <span class="gradient-text italic">SERVICES</span></h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed reveal-service-sub">Delivering strategic talent acquisition solutions, enterprise hiring excellence, and technology-driven recruitment services for modern organizations.</p>
+            
+            <div class="flex flex-wrap justify-center gap-6 mt-12">
+                <button class="bg-blue-600 px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-xl shadow-blue-600/20 hover:scale-105 transition-transform">Hire Talent</button>
+                <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest hover:bg-white/5 transition-all">Schedule Consultation</button>
+            </div>
+        </div>
+
+        <!-- End-to-End Solutions -->
+        <div class="max-w-7xl mx-auto py-32">
+            <div class="flex items-center gap-6 mb-20">
+                <h2 class="text-4xl font-black uppercase italic">End-to-End <span class="text-blue-500 not-italic uppercase">Solutions</span></h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-blue-500/30 to-transparent"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative">
+                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <div class="service-icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3 class="text-lg font-bold mb-3">Requirement Analysis</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Deep-dive into technical stacks and business needs.</p>
+                </div>
+                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <div class="service-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <h3 class="text-lg font-bold mb-3">Talent Sourcing</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Multichannel sourcing across Dice, LinkedIn, and internal databases.</p>
+                </div>
+                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <div class="service-icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h3 class="text-lg font-bold mb-3">Technical Evaluation</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Precise vetting of engineering skills and cultural fit.</p>
+                </div>
+                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <div class="service-icon-box"><i class="fa-solid fa-handshake-simple"></i></div>
+                    <h3 class="text-lg font-bold mb-3">Offer Negotiation</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Managing C2C/W2 rate discussions and final closures.</p>
+                </div>
+                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <div class="service-icon-box"><i class="fa-solid fa-shield-check"></i></div>
+                    <h3 class="text-lg font-bold mb-3">Compliance Verification</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Ensuring documentation and background checks are airtight.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- US IT Staffing Grid -->
+        <div class="max-w-7xl mx-auto py-32 bg-blue-600/5 rounded-[4rem] border border-blue-500/10 p-16">
+            <h2 class="text-4xl font-black mb-16 text-center italic">US IT <span class="text-blue-500 not-italic uppercase">Staffing Services</span></h2>
+            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-file-contract text-2xl text-blue-500 group-hover:text-white mb-4"></i>
+                    <h4 class="font-bold mb-2">Contract Staffing</h4>
+                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Agile workforce solutions for project-based needs.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-building-user text-2xl text-blue-500 group-hover:text-white mb-4"></i>
+                    <h4 class="font-bold mb-2">C2C Hiring</h4>
+                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Managing Corp-to-Corp partnerships efficiently.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-id-card text-2xl text-blue-500 group-hover:text-white mb-4"></i>
+                    <h4 class="font-bold mb-2">W2 Hiring</h4>
+                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Full-cycle management of W2 consultants.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-laptop-house text-2xl text-blue-500 group-hover:text-white mb-4"></i>
+                    <h4 class="font-bold mb-2">Remote Hiring</h4>
+                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Building borderless technical teams.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Recruitment Expertise -->
+        <div class="max-w-7xl mx-auto py-40">
+            <h2 class="text-2xl font-black uppercase tracking-[0.3em] mb-20 text-center">Technical <span class="text-blue-500">Hiring Expertise</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-brands fa-java text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">Java Full Stack</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-solid fa-vial-circle-check text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">QA Automation</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-solid fa-infinity text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">DevOps/Cloud</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-solid fa-database text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">Data Engineering</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-brands fa-salesforce text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">Salesforce</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-solid fa-robot text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">AI & ML</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-solid fa-mobile-screen-button text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">Mobile Testing</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[2.5rem]">
+                    <div class="animated-skill-border-inner p-10 text-center">
+                        <i class="fa-solid fa-layer-group text-4xl text-blue-500 mb-6"></i>
+                        <h5 class="text-xs font-black uppercase">UI Automation</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recruitment Operations Dashboard -->
+        <div class="max-w-7xl mx-auto py-32 mb-40">
+            <div class="glass p-16 rounded-[4rem] relative overflow-hidden border border-blue-500/20">
+                <div class="grid lg:grid-cols-2 gap-20 items-center relative z-10">
+                    <div>
+                        <h2 class="text-4xl font-black mb-8">Operational <br><span class="text-blue-500 italic uppercase">Excellence</span></h2>
+                        <div class="space-y-8">
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-500 font-bold">01</div>
+                                <div><h4 class="font-bold">EST/CST Coordination</h4><p class="text-[10px] text-gray-500">Expert scheduling across major US time zones.</p></div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-500 font-bold">02</div>
+                                <div><h4 class="font-bold">ATS Optimization</h4><p class="text-[10px] text-gray-500">Advanced recruitment workflow and data management.</p></div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-500 font-bold">03</div>
+                                <div><h4 class="font-bold">Recruitment Analytics</h4><p class="text-[10px] text-gray-500">Data-driven insights for faster turnaround times.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass p-10 rounded-3xl text-center border-b-4 border-blue-600">
+                            <h5 class="text-4xl font-black text-white mb-2">98%</h5>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-blue-500">Client Satisfaction</p>
+                        </div>
+                        <div class="glass p-10 rounded-3xl text-center border-b-4 border-white/10">
+                            <h5 class="text-4xl font-black text-white mb-2">24h</h5>
+                            <p class="text-[9px] font-black uppercase tracking-widest text-blue-500">Submission Time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recruitment Process Flow Visualization -->
+        <div class="max-w-7xl mx-auto mb-40">
+            <h2 class="text-center text-2xl font-black uppercase tracking-widest mb-20">Strategic <span class="text-blue-500">Process Flow</span></h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Requirement Gathering</div>
+                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
+                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Talent Sourcing</div>
+                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
+                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Technical Screening</div>
+                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
+                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Submission</div>
+                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
+                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Onboarding</div>
+            </div>
+        </div>
+
+        <!-- Cinematic Quote -->
+        <div class="max-w-5xl mx-auto text-center py-40 border-t border-white/5">
+            <h2 class="text-5xl lg:text-7xl font-black italic leading-[1.1]">
+                “Recruitment is more than filling positions — it is about <span class="text-blue-500">creating the foundation</span> for organizational success through exceptional talent.”
+            </h2>
+        </div>
+    </section>
+
+    <!-- (OTHER PAGES PRESERVED) -->
     <section id="certifications" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">CERTIFICATIONS</h1></section>
     <section id="education" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">EDUCATION</h1></section>
     <section id="projects" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">ACHIEVEMENTS</h1></section>
@@ -760,6 +964,7 @@
                     if(pageId === 'home') runHomeAnimations();
                     if(pageId === 'skills') runSkillsAnimations();
 		    if(pageId === 'clients') runClientsAnimations();
+                    if(pageId === 'services') runServicesAnimations();
                 }
             });
         }
@@ -825,6 +1030,34 @@ function runClientsAnimations() {
             runHomeAnimations();
         }
     
+function runServicesAnimations() {
+
+    gsap.from(".service-main-title", {
+        y: 80,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.out"
+    });
+
+    gsap.from(".reveal-service-sub", {
+        opacity: 0,
+        y: 20,
+        duration: 1,
+        delay: 0.4
+    });
+
+    gsap.from(".service-reveal-card", {
+        scale: 0.8,
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        stagger: 0.15,
+        ease: "back.out(1.7)"
+    });
+
+}
+
+
 </script>
 </body>
 </html>
