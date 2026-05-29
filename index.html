@@ -125,6 +125,25 @@
             .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
             }
 
+/* Animated Category Grid */
+        .category-card { transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .category-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.08); }
+
+        .glow-pulse { animation: pulseGlow 2s infinite alternate; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.1); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); } }       
+
+ /* News Ticker */
+        .ticker-container { overflow: hidden; white-space: nowrap; }
+        .ticker-text { display: inline-block; animation: ticker 40s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+ /* Contact Page Custom Components */
+        .contact-input { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 1.25rem; border-radius: 1.5rem; width: 100%; outline: none; transition: 0.4s; }
+        .contact-input:focus { border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
+        .contact-label { position: absolute; left: 1.25rem; top: 1.25rem; pointer-events: none; transition: 0.3s; color: rgba(255,255,255,0.3); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
+        .contact-input:focus ~ .contact-label, .contact-input:not(:placeholder-shown) ~ .contact-label { transform: translateY(-2.2rem) scale(0.8); color: var(--electric-blue); }
+
+
 </style>
 
 <title>Joel Ruthvik | Talent Acquisition Manager & Web Designer</title>
@@ -1487,11 +1506,785 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </div>
     </section>
 
-    <!-- (OTHER PAGES PRESERVED) -->
-    <section id="projects" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">ACHIEVEMENTS</h1></section>
-    <section id="social" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">NETWORKING</h1></section>
-    <section id="blog" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">UPDATES</h1></section>
-    <section id="contact" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">CONTACT</h1></section>
+
+<!-- =========================================================
+         9. PROJECTS & ACHIEVEMENTS (RE-ENGINEERED)
+         ========================================================= -->
+    <section id="projects" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Cinematic Hero -->
+        <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+            <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 achievement-hero-badge">Professional Excellence</div>
+            <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none achievement-hero-title">PROJECTS & <br><span class="gradient-text italic">ACHIEVEMENTS</span></h1>
+            <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-achievement-sub font-light">
+                Showcasing impactful projects, professional milestones, technical exposure, and achievements that define a results-driven recruitment career.
+            </p>
+        </div>
+
+        <!-- Major Academic Project Section -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl font-black uppercase italic mb-4">Major Academic <span class="text-blue-500 not-italic uppercase">Project</span></h2>
+                <div class="w-24 h-1 bg-blue-600 rounded-full"></div>
+            </div>
+
+            <div class="animated-skill-border glass rounded-[5rem] overflow-hidden group">
+                <div class="animated-skill-border-inner p-12 lg:p-20">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="space-y-8">
+                            <span class="text-blue-500 font-black text-xs tracking-[0.3em] uppercase">2020 • Machine Learning & AI</span>
+                            <h3 class="text-4xl lg:text-6xl font-black leading-tight">Prediction of the Author of Twitter Data</h3>
+                            <p class="text-gray-400 text-lg leading-relaxed">
+                                Developed a deep learning project utilizing RNN and LSTM algorithms to analyze tweet patterns, identify authorship, perform sentiment analysis, and detect location data.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="metric-badge">AI</span><span class="metric-badge">Machine Learning</span><span class="metric-badge">RNN</span><span class="metric-badge">LSTM</span><span class="metric-badge">Data Analytics</span><span class="metric-badge">NLP</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-6 pt-10 border-t border-white/5">
+                                <div class="text-[10px] text-gray-500 font-bold uppercase"><i class="fa-solid fa-code-branch text-blue-500 mr-2"></i> NLP Implementation</div>
+                                <div class="text-[10px] text-gray-500 font-bold uppercase"><i class="fa-solid fa-brain text-blue-500 mr-2"></i> Deep Learning</div>
+                                <div class="text-[10px] text-gray-500 font-bold uppercase"><i class="fa-solid fa-magnifying-glass-chart text-blue-500 mr-2"></i> Sentiment Analysis</div>
+                                <div class="text-[10px] text-gray-500 font-bold uppercase"><i class="fa-solid fa-chart-line text-blue-500 mr-2"></i> Predictive Analytics</div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <!-- Visual Graphic -->
+                            <div class="w-full aspect-square bg-blue-600/5 rounded-full flex items-center justify-center relative overflow-hidden glow-pulse">
+                                <i class="fa-solid fa-network-wired text-[15rem] text-blue-500/10"></i>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <i class="fa-brands fa-twitter text-7xl text-blue-500 mb-6 block"></i>
+                                        <div class="w-32 h-1 bg-blue-500 mx-auto rounded-full mb-4"></div>
+                                        <p class="text-[10px] font-black uppercase tracking-widest">LSTM Data Stream</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Professional Achievements Grid -->
+        <div class="max-w-7xl mx-auto py-40">
+            <h2 class="text-center text-3xl font-black uppercase tracking-[0.5em] mb-24 text-blue-500">Professional <span class="text-white">Achievements</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-12 rounded-[3.5rem] hover:border-blue-500 transition-all group">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-briefcase"></i></div>
+                    <h4 class="text-2xl font-bold mb-4">6+ Years Tenure</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Solid experience in US IT Staffing and Talent Acquisition at an enterprise level.</p>
+                </div>
+                <div class="glass p-12 rounded-[3.5rem] hover:border-blue-500 transition-all group">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-building-shield"></i></div>
+                    <h4 class="text-2xl font-bold mb-4">Fortune 500 Mastery</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Successfully managed recruitment lifecycles for IBM, Capgemini, Barclays, and Comcast.</p>
+                </div>
+                <div class="glass p-12 rounded-[3.5rem] hover:border-blue-500 transition-all group">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h4 class="text-2xl font-bold mb-4">Operational Excellence</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Coordinated hiring operations seamlessly across EST/CST time zones.</p>
+                </div>
+                <div class="glass p-12 rounded-[3.5rem] hover:border-blue-500 transition-all group">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-users-gear"></i></div>
+                    <h4 class="text-2xl font-bold mb-4">Recruiter Mentorship</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Optimized recruitment workflows and mentored teams for higher productivity.</p>
+                </div>
+                <div class="glass p-12 rounded-[3.5rem] hover:border-blue-500 transition-all group">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h4 class="text-2xl font-bold mb-4">Strategic Pipelines</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Maintained high submission-to-placement ratios in high-volume tech hiring.</p>
+                </div>
+                <div class="glass p-12 rounded-[3.5rem] hover:border-blue-500 transition-all group">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-handshake-angle"></i></div>
+                    <h4 class="text-2xl font-bold mb-4">Vendor Synergy</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Expert client and vendor relationship management to secure top talent.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Milestones Timeline -->
+        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+            <h2 class="text-center text-3xl font-black uppercase tracking-[0.5em] mb-24 text-blue-500">Career <span class="text-white">Milestones</span></h2>
+            <div class="timeline-container relative">
+                <div class="connector-line h-full w-[2px] bg-blue-600/30 absolute left-1/2 -translate-x-1/2"></div>
+                <div class="space-y-24">
+                    <div class="flex flex-col lg:flex-row items-center gap-10">
+                        <div class="lg:w-1/2 lg:text-right order-2 lg:order-1">
+                            <div class="glass p-10 rounded-[3rem]">
+                                <h4 class="text-xl font-black mb-2 text-blue-500">The Foundation</h4>
+                                <p class="text-sm text-gray-400">Started career in technical recruitment and systems administration.</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-blue-600 z-10 border-4 border-matte-black shadow-[0_0_20px_var(--electric-blue)] order-1 lg:order-2"></div>
+                        <div class="lg:w-1/2 order-3"></div>
+                    </div>
+                    <div class="flex flex-col lg:flex-row items-center gap-10">
+                        <div class="lg:w-1/2 order-1"></div>
+                        <div class="w-8 h-8 rounded-full bg-blue-600 z-10 border-4 border-matte-black shadow-[0_0_20px_var(--electric-blue)] order-2"></div>
+                        <div class="lg:w-1/2 order-3">
+                            <div class="glass p-10 rounded-[3rem]">
+                                <h4 class="text-xl font-black mb-2 text-blue-500">Management Leap</h4>
+                                <p class="text-sm text-gray-400">Progressed into recruitment operations and administrative management.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col lg:flex-row items-center gap-10">
+                        <div class="lg:w-1/2 lg:text-right order-2 lg:order-1">
+                            <div class="glass p-10 rounded-[3rem]">
+                                <h4 class="text-xl font-black mb-2 text-blue-500">Enterprise Scale</h4>
+                                <p class="text-sm text-gray-400">Advanced into enterprise talent acquisition for Fortune 500 clients.</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-blue-600 z-10 border-4 border-matte-black shadow-[0_0_20px_var(--electric-blue)] order-1 lg:order-2"></div>
+                        <div class="lg:w-1/2 order-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Exposure & Innovation Dashboard -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="glass p-16 lg:p-24 rounded-[5rem] border border-blue-500/20 relative overflow-hidden">
+                <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-5xl lg:text-7xl font-black italic mb-10 leading-tight">Innovation in <br><span class="text-blue-500 not-italic uppercase">Recruitment</span></h2>
+                        <div class="grid gap-6">
+                            <div class="glass p-6 rounded-3xl flex items-center gap-6 border-l-4 border-blue-500">
+                                <i class="fa-solid fa-robot text-blue-500 text-2xl"></i>
+                                <p class="text-sm font-bold">AI-driven productivity tools for talent discovery.</p>
+                            </div>
+                            <div class="glass p-6 rounded-3xl flex items-center gap-6 border-l-4 border-blue-500">
+                                <i class="fa-solid fa-chart-line text-blue-500 text-2xl"></i>
+                                <p class="text-sm font-bold">Advanced recruitment analytics and reporting.</p>
+                            </div>
+                            <div class="glass p-6 rounded-3xl flex items-center gap-6 border-l-4 border-blue-500">
+                                <i class="fa-solid fa-users-viewfinder text-blue-500 text-2xl"></i>
+                                <p class="text-sm font-bold">Technical screening methodologies for enterprise tech.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-4 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">6+</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Years Experience</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">500+</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Global Placements</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">Multi</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Domain Expert</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-4 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">F500</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Enterprise Clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cinematic Quote -->
+        <div class="max-w-6xl mx-auto text-center py-48 border-t border-white/5">
+            <h2 class="text-6xl lg:text-8xl font-black italic leading-tight achievement-quote">
+                “Achievements are built through consistency, innovation, and the ability to create <span class="text-blue-500">meaningful professional impact</span>.”
+            </h2>
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         10. SOCIAL MEDIA & NETWORKING PAGE (RE-ENGINEERED)
+         ========================================================= -->
+    <section id="social" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Cinematic Hero Section -->
+        <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+            <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 social-hero-badge">Digital Identity</div>
+            <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none social-hero-title">SOCIAL MEDIA & <br><span class="gradient-text italic">NETWORKING</span></h1>
+            <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-social-sub font-light">
+                Building meaningful professional connections, expanding digital presence, and creating opportunities through strategic networking.
+            </p>
+        </div>
+
+        <!-- Professional Digital Presence -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl font-black uppercase italic mb-4">Professional <span class="text-blue-500 not-italic uppercase">Digital Presence</span></h2>
+                <div class="w-24 h-1 bg-blue-600 rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-10">
+                    <div class="glass p-10 rounded-[3rem] border-l-4 border-blue-500 transition-all hover:translate-x-4">
+                        <h4 class="text-xl font-bold mb-4">Strategic Engagement</h4>
+                        <p class="text-gray-400">Actively engaged in professional networking, sharing recruitment insights and hiring updates to bridge the talent-leader gap.</p>
+                    </div>
+                    <div class="glass p-10 rounded-[3rem] border-l-4 border-white/10 transition-all hover:translate-x-4">
+                        <h4 class="text-xl font-bold mb-4">Relationship Focused</h4>
+                        <p class="text-gray-400">Leveraging social platforms for talent acquisition and branding to build long-term enterprise partnerships.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="glass p-12 rounded-full aspect-square flex items-center justify-center glow-pulse">
+                        <div class="text-center">
+                            <i class="fa-solid fa-share-nodes text-8xl text-blue-500/20 mb-8"></i>
+                            <p class="text-[10px] font-black tracking-[0.5em] text-blue-500 uppercase">Networking Pulse</p>
+                        </div>
+                    </div>
+                </div>
+        
+        </div>
+
+        <!-- Connect With Joel Ruthvik - Premium Social Cards -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="text-center mb-32">
+                <h2 class="text-6xl font-black italic">Connect With <span class="text-blue-500 not-italic uppercase">Joel Ruthvik</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- LinkedIn -->
+                <a href="https://www.linkedin.com/in/joel-ruthvik-84518325a/?utm_source=chatgpt.com" target="_blank" class="glass p-12 rounded-[4rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[12rem] text-blue-600/5 group-hover:text-blue-600/10 transition-colors"><i class="fa-brands fa-linkedin"></i></div>
+                    <i class="fa-brands fa-linkedin text-5xl text-[#0a66c2] mb-10 block"></i>
+                    <h3 class="text-3xl font-black mb-4">LinkedIn</h3>
+                    <p class="text-sm text-gray-500 mb-8 leading-relaxed">Professional networking, recruitment updates, and enterprise hiring communication.</p>
+                    <div class="flex flex-wrap gap-2 mb-10">
+                        <span class="metric-badge">Networking</span><span class="metric-badge">Talent Acquisition</span>
+                    </div>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-blue-500 group-hover:underline">Visit Profile <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></span>
+                </a>
+
+                <!-- Instagram -->
+                <div class="glass p-12 rounded-[4rem] group hover:border-pink-500 transition-all relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[12rem] text-pink-600/5 group-hover:text-pink-600/10 transition-colors"><i class="fa-brands fa-instagram"></i></div>
+                    <i class="fa-brands fa-instagram text-5xl text-[#e4405f] mb-10 block"></i>
+                    <h3 class="text-3xl font-black mb-4">Instagram</h3>
+                    <p class="text-sm text-gray-500 mb-8 leading-relaxed">Personal branding, visual professional updates, and creative networking engagement.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="metric-badge">Branding</span><span class="metric-badge">Social Engagement</span>
+                    </div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="glass p-12 rounded-[4rem] group hover:border-green-500 transition-all relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[12rem] text-green-600/5 group-hover:text-green-600/10 transition-colors"><i class="fa-brands fa-whatsapp"></i></div>
+                    <i class="fa-brands fa-whatsapp text-5xl text-[#25d366] mb-10 block"></i>
+                    <h3 class="text-3xl font-black mb-4">WhatsApp</h3>
+                    <p class="text-sm text-gray-500 mb-8 leading-relaxed">Direct recruitment coordination, instant networking, and business inquiry support.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="metric-badge">Business Comm</span><span class="metric-badge">Coordination</span>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <a href="mailto:hello@joelruthvik.com" class="glass p-12 rounded-[4rem] group hover:border-white transition-all relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[12rem] text-white/5 group-hover:text-white/10 transition-colors"><i class="fa-solid fa-envelope"></i></div>
+                    <i class="fa-solid fa-envelope text-5xl text-gray-400 mb-10 block"></i>
+                    <h3 class="text-3xl font-black mb-4">Official Email</h3>
+                    <p class="text-sm text-gray-500 mb-8 leading-relaxed">Professional inquiries, client discussions, and enterprise recruitment opportunities.</p>
+                    <p class="text-xs font-bold text-white mb-8">hello@joelruthvik.com</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="metric-badge">Enterprise</span><span class="metric-badge">Collaboration</span>
+                    </div>
+                </a>
+
+                <!-- Facebook -->
+                <div class="glass p-12 rounded-[4rem] group hover:border-blue-400 transition-all relative overflow-hidden">
+                    <div class="absolute -right-10 -top-10 text-[12rem] text-blue-400/5 group-hover:text-blue-400/10 transition-colors"><i class="fa-brands fa-facebook"></i></div>
+                    <i class="fa-brands fa-facebook text-5xl text-[#1877f2] mb-10 block"></i>
+                    <h3 class="text-3xl font-black mb-4">Facebook</h3>
+                    <p class="text-sm text-gray-500 mb-8 leading-relaxed">Outreach, community interaction, and digital engagement for professional growth.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="metric-badge">Community</span><span class="metric-badge">Outreach</span>
+                    </div>
+                </div>
+
+                <!-- CTA Matrix -->
+                <div class="flex flex-col gap-4">
+                    <a href="mailto:hello@joelruthvik.com" class="bg-blue-600 h-1/2 rounded-[3rem] flex items-center justify-center font-black uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/30 hover:scale-105 transition-all">Send Official Email</a>
+                    <a href="https://www.linkedin.com/in/joel-ruthvik-84518325a/" target="_blank" class="glass h-1/2 rounded-[3rem] flex items-center justify-center font-black uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all">Connect on LinkedIn</a>
+                </div>
+            </div>
+
+        <!-- Networking Philosophy -->
+        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+            <div class="glass p-16 lg:p-24 rounded-[5rem] relative overflow-hidden">
+                <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-5xl lg:text-7xl font-black italic mb-10 leading-tight">Networking <br><span class="text-blue-500 not-italic uppercase">Philosophy</span></h2>
+                        <p class="text-xl text-gray-400 leading-relaxed mb-12">Recruitment is built on communication and trust. Joel Ruthvik believes that meaningful professional networks create the bridge to long-term enterprise success.</p>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border border-blue-500/20"><div class="w-2 h-2 bg-blue-500 rounded-full"></div> <p class="text-xs font-bold uppercase tracking-widest">Trust drives results</p></div>
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border border-blue-500/20"><div class="w-2 h-2 bg-blue-500 rounded-full"></div> <p class="text-xs font-bold uppercase tracking-widest">Visibility enhances impact</p></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-8 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">6+</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Years Reach</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">Global</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Connections</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">Multi</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Platform Presence</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-8 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">Elite</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Engagement</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Professional Communication Excellence -->
+        <div class="max-w-7xl mx-auto py-40">
+            <h2 class="text-center text-3xl font-black uppercase tracking-[0.5em] mb-24 text-blue-500">Communication <span class="text-white">Excellence</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="stat-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-comments text-2xl"></i></div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest text-center">Engagement</h5>
+                </div>
+                <div class="stat-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-bridge text-2xl"></i></div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest text-center">Relationship Mgmt</h5>
+                </div>
+                <div class="stat-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-users-gear text-2xl"></i></div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest text-center">Leadership</h5>
+                </div>
+                <div class="stat-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-globe-americas text-2xl"></i></div>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest text-center">Global Reach</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cinematic Quote -->
+        <div class="max-w-6xl mx-auto text-center py-48 border-t border-white/5">
+            <h2 class="text-6xl lg:text-7xl font-black italic leading-tight social-quote">
+                “Professional networking is the bridge that transforms connections into <span class="text-blue-500">opportunities</span> and relationships into long-term success.”
+            </h2>
+        </div>
+    </section>
+
+<!-- =========================================================
+         11. BLOG & LATEST UPDATES PAGE (RE-ENGINEERED)
+         ========================================================= -->
+    <section id="blog" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Cinematic Hero Section -->
+        <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+            <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 blog-hero-badge">Thought Leadership</div>
+            <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none blog-hero-title">BLOG & LATEST <br><span class="gradient-text italic">UPDATES</span></h1>
+            <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-blog-sub font-light">
+                Sharing recruitment insights, hiring trends, professional experiences, technology updates, and industry knowledge from the evolving world of talent acquisition.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mt-16">
+                <button class="bg-blue-600 px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/40 hover:scale-105 transition-all">Read Latest Posts</button>
+                <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all border border-white/10">Hiring Insights</button>
+                <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all border border-white/10">Recruitment Trends</button>
+                <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all border border-white/10">Explore Articles</button>
+            </div>
+        </div>
+
+        <!-- Featured Articles Section -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl font-black uppercase italic mb-4">Featured <span class="text-blue-500 not-italic uppercase">Articles</span></h2>
+                <div class="w-24 h-1 bg-blue-600 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Large Blog Card 1 -->
+                <div class="glass p-10 rounded-[4rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                    <div class="h-[300px] w-full bg-blue-600/10 rounded-[3rem] mb-8 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bbda3865c670?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-50 grayscale hover:grayscale-0">
+                    </div>
+                    <span class="metric-badge mb-4">Recruitment Trends</span>
+                    <h3 class="text-4xl font-black mb-4">Top Hiring Trends in US IT Staffing 2026</h3>
+                    <p class="text-gray-500 leading-relaxed mb-10">An in-depth look at how remote hiring and technical vetting are redefining the US staffing landscape this year.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Oct 24, 2024</span>
+                        <button class="text-blue-500 font-black uppercase text-[10px] tracking-widest group-hover:underline">Read More <i class="fa-solid fa-arrow-right-long ml-2"></i></button>
+                    </div>
+                </div>
+                <!-- Large Blog Card 2 -->
+                <div class="glass p-10 rounded-[4rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                    <div class="h-[300px] w-full bg-blue-600/10 rounded-[3rem] mb-8 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-50 grayscale hover:grayscale-0">
+                    </div>
+                    <span class="metric-badge mb-4">AI in Recruitment</span>
+                    <h3 class="text-4xl font-black mb-4">How AI is Changing Talent Acquisition</h3>
+                    <p class="text-gray-500 leading-relaxed mb-10">From candidate matching to predictive analytics—AI is no longer just a tool, it's a recruiter's digital co-pilot.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Sep 12, 2024</span>
+                        <button class="text-blue-500 font-black uppercase text-[10px] tracking-widest group-hover:underline">Read More <i class="fa-solid fa-arrow-right-long ml-2"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Recruitment Insights (Smaller cards) -->
+        <div class="max-w-7xl mx-auto py-20">
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card Topic List -->
+                <div class="glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <p class="text-blue-500 font-black text-[10px] uppercase mb-2">Technical Recruitment</p>
+                    <h4 class="text-xl font-bold mb-4">How Technical Recruitment is Evolving in 2026</h4>
+                    <p class="text-sm text-gray-500 mb-6">Navigating complex skillsets in the age of rapid technology iteration.</p>
+                    <a href="#" class="text-[10px] font-black uppercase text-blue-500">Read Insight</a>
+                </div>
+                <div class="glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <p class="text-blue-500 font-black text-[10px] uppercase mb-2">Candidate Experience</p>
+                    <h4 class="text-xl font-bold mb-4">Building Strong Candidate Relationships</h4>
+                    <p class="text-sm text-gray-500 mb-6">Why human-centric communication is the ultimate competitive advantage.</p>
+                    <a href="#" class="text-[10px] font-black uppercase text-blue-500">Read Insight</a>
+                </div>
+                <div class="glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
+                    <p class="text-blue-500 font-black text-[10px] uppercase mb-2">Operations</p>
+                    <h4 class="text-xl font-bold mb-4">Modern Recruitment Workflow Optimization</h4>
+                    <p class="text-sm text-gray-500 mb-6">Trimming the fat: streamlining submissions for enterprise clients.</p>
+                    <a href="#" class="text-[10px] font-black uppercase text-blue-500">Read Insight</a>
+                </div>
+        </div>
+
+        <!-- Content Categories Grid -->
+        <div class="max-w-7xl mx-auto py-40">
+            <h2 class="text-center text-3xl font-black uppercase tracking-[0.5em] mb-24 text-blue-500">Content <span class="text-white">Categories</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- 12 categories -->
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-users-rays text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Talent Acquisition</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-laptop-code text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Tech Recruitment</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-flag-usa text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">US IT Staffing</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-up-long text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Career Growth</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-gears text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Recruitment Ops</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-building-user text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Enterprise Hiring</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-user-check text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">HR Coordination</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-chalkboard-user text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Leadership Dev</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-comment-dots text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Communication Skills</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-robot text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">AI & Tech</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-id-badge text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Digital Branding</h5>
+                </div>
+                <div class="category-card glass p-8 rounded-[2.5rem] text-center border border-white/5">
+                    <i class="fa-solid fa-chart-line text-3xl text-blue-500 mb-6"></i>
+                    <h5 class="text-[9px] font-black uppercase tracking-widest">Industry Trends</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Updates & Announcements (Ticker & Board) -->
+        <div class="max-w-7xl mx-auto py-20">
+            <div class="glass p-1 rounded-full mb-10 relative overflow-hidden border border-blue-500/20">
+                <div class="ticker-container flex items-center bg-black/40 rounded-full px-6 py-4">
+                    <span class="bg-blue-600 px-4 py-1 rounded-full text-[9px] font-black uppercase mr-6">Live Updates</span>
+                    <p class="ticker-text text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                        • NEW JOB OPENING: Senior Java Full Stack Developer (IBM) • LATEST BLOG: "How AI is changing the technical interview" • RECRUITMENT MILESTONE: Joel Ruthvik reaches 500+ global placements • HIRING ALERT: Banking Domain experts needed for Barclays projects •
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recruitment Thought Leadership (Dashboard) -->
+        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+            <div class="glass p-16 lg:p-24 rounded-[5rem] relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-5xl lg:text-7xl font-black italic mb-10 leading-tight">Thought <br><span class="text-blue-500 not-italic uppercase">Leadership</span></h2>
+                        <p class="text-xl text-gray-400 leading-relaxed mb-12">
+                            Establishing a modern recruitment perspective through consistent real-world experience sharing, mentoring, and workforce transformation strategies.
+                        </p>
+                        <div class="grid gap-4">
+                             <div class="glass p-6 rounded-3xl flex items-center gap-6 border border-white/5">
+                                <i class="fa-solid fa-pen-nib text-blue-500"></i>
+                                <p class="text-xs font-bold uppercase tracking-widest">Real-world experience sharing</p>
+                             </div>
+                             <div class="glass p-6 rounded-3xl flex items-center gap-6 border border-white/5">
+                                <i class="fa-solid fa-magnifying-glass-plus text-blue-500"></i>
+                                <p class="text-xs font-bold uppercase tracking-widest">Industry innovation & learning</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-4 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">6+</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Years Expertise</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">12+</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Core Domains</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">F500</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Enterprise Insights</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-4 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">Elite</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Network Reach</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- Engage With Content (CTAs) -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <a href="#" class="glass p-10 rounded-[3rem] text-center hover:bg-blue-600 transition-all group">
+                    <i class="fa-brands fa-linkedin text-3xl mb-4 group-hover:text-white text-blue-500"></i>
+                    <p class="text-[9px] font-black uppercase tracking-widest">Follow LinkedIn</p>
+                </a>
+                <a href="mailto:hello@joelruthvik.com" class="glass p-10 rounded-[3rem] text-center hover:bg-blue-600 transition-all group">
+                    <i class="fa-solid fa-briefcase text-3xl mb-4 group-hover:text-white text-blue-500"></i>
+                    <p class="text-[9px] font-black uppercase tracking-widest">Hire Services</p>
+                </a>
+                <a href="#" class="glass p-10 rounded-[3rem] text-center hover:bg-blue-600 transition-all group">
+                    <i class="fa-solid fa-book-open-reader text-3xl mb-4 group-hover:text-white text-blue-500"></i>
+                    <p class="text-[9px] font-black uppercase tracking-widest">Read Insights</p>
+                </a>
+                <a href="#" class="glass p-10 rounded-[3rem] text-center hover:bg-blue-600 transition-all group">
+                    <i class="fa-solid fa-handshake text-3xl mb-4 group-hover:text-white text-blue-500"></i>
+                    <p class="text-[9px] font-black uppercase tracking-widest">Collaborate</p>
+                </a>
+                <a href="#" class="glass p-10 rounded-[3rem] text-center hover:bg-blue-600 transition-all group">
+                    <i class="fa-solid fa-bell text-3xl mb-4 group-hover:text-white text-blue-500"></i>
+                    <p class="text-[9px] font-black uppercase tracking-widest">Subscribe</p>
+                </a>
+            </div>
+            <div class="mt-20 text-center text-gray-500">
+                <p class="text-[10px] font-black uppercase tracking-widest">hello@joelruthvik.com • Professional Communications Only</p>
+            </div>
+
+        <!-- Cinematic Quote -->
+        <div class="max-w-6xl mx-auto text-center py-48 border-t border-white/5">
+            <h2 class="text-6xl lg:text-7xl font-black italic leading-tight blog-quote">
+                “Knowledge shared with purpose creates <span class="text-blue-500">opportunities</span>, inspires growth, and builds stronger professional communities.”
+            </h2>
+        </div>
+    </section>
+
+
+    <!-- =========================================================
+         12. CONTACT PAGE (RE-ENGINEERED)
+         ========================================================= -->
+    <section id="contact" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Cinematic Hero Section -->
+        <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+            <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 contact-hero-badge">Direct Access</div>
+            <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none contact-hero-title">CONTACT <br><span class="gradient-text italic">ME</span></h1>
+            <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-contact-sub font-light">
+                Let’s connect to discuss recruitment solutions, enterprise hiring, professional collaboration, and career opportunities.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mt-16">
+                <button class="bg-blue-600 px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/40 hover:scale-105 transition-all">Schedule a Meeting</button>
+                <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all border border-white/10">Connect Professionally</button>
+            </div>
+        </div>
+
+        <!-- Get In Touch Matrix -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-12">
+                    <h2 class="text-6xl font-black italic">Get In <span class="text-blue-500 not-italic uppercase">Touch</span></h2>
+                    <p class="text-xl text-gray-400 font-light leading-relaxed">
+                        Highly approachable, professional, and enterprise-focused Talent Acquisition Specialist open to technical staffing requirements, business inquiries, and candidate coordination.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Email Card -->
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                            <i class="fa-solid fa-envelope text-3xl text-blue-500 mb-6 block"></i>
+                            <h4 class="text-xl font-bold mb-2">Official Email</h4>
+                            <p class="text-[11px] font-bold text-gray-500 mb-6">hello@joelruthvik.com</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="metric-badge">Official Communication</span>
+                                <span class="metric-badge">Enterprise Support</span>
+                            </div>
+                        </div>
+                        <!-- Phone Card -->
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                            <i class="fa-solid fa-phone-volume text-3xl text-blue-500 mb-6 block"></i>
+                            <h4 class="text-xl font-bold mb-2">Phone Contact</h4>
+                            <p class="text-[11px] font-bold text-gray-500 mb-1">+91 8897865414</p>
+                            <p class="text-[11px] font-bold text-gray-500 mb-6">+91 9666889775 (WhatsApp)</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="metric-badge">Direct Access</span>
+                                <span class="metric-badge">Recruitment Support</span>
+                            </div>
+                        </div>
+                        <!-- LinkedIn Card -->
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                            <i class="fa-brands fa-linkedin text-3xl text-blue-500 mb-6 block"></i>
+                            <h4 class="text-xl font-bold mb-2">LinkedIn</h4>
+                            <p class="text-[11px] font-bold text-gray-500 mb-6">Professional Industry Hub</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="metric-badge">Networking</span>
+                                <span class="metric-badge">Talent Acquisition</span>
+                            </div>
+                        </a>
+                        <!-- Location Card -->
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                            <i class="fa-solid fa-location-dot text-3xl text-blue-500 mb-6 block"></i>
+                            <h4 class="text-xl font-bold mb-2">Location</h4>
+                            <p class="text-[11px] font-bold text-gray-500 mb-6">Hyderabad, Telangana, India</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="metric-badge">Global Connectivity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Futuristic Contact Form -->
+                <div class="relative">
+                    <div class="animated-skill-border glass rounded-[4rem]">
+                        <div class="animated-skill-border-inner p-12 lg:p-16">
+                            <h3 class="text-3xl font-black mb-10 italic uppercase">Send a Professional <span class="text-blue-500">Inquiry</span></h3>
+                            <form class="space-y-10">
+                                <div class="grid md:grid-cols-2 gap-10">
+                                    <div class="relative">
+                                        <input type="text" id="name" placeholder=" " class="contact-input">
+                                        <label for="name" class="contact-label">Full Name</label>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="email" id="email" placeholder=" " class="contact-input">
+                                        <label for="email" class="contact-label">Email Address</label>
+                                    </div>
+                                </div>
+                                <div class="grid md:grid-cols-2 gap-10">
+                                    <div class="relative">
+                                        <input type="text" id="company" placeholder=" " class="contact-input">
+                                        <label for="company" class="contact-label">Company Name</label>
+                                    </div>
+                                    <div class="relative">
+                                        <select class="contact-input appearance-none text-gray-400">
+                                            <option>Recruitment Support</option>
+                                            <option>Enterprise Hiring</option>
+                                            <option>Technical Staffing</option>
+                                            <option>Partnership Inquiries</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="relative">
+                                    <textarea id="message" rows="4" placeholder=" " class="contact-input"></textarea>
+                                    <label for="message" class="contact-label">How can I support your goals?</label>
+                                </div>
+                                <button class="w-full bg-blue-600 py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] shadow-2xl shadow-blue-600/30 hover:scale-[1.02] transition-all">Engage Command Center</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recruitment & Collaboration Opportunities -->
+        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+            <h2 class="text-center text-4xl font-black mb-24 italic uppercase">Recruitment & <span class="text-blue-500">Collaboration</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-users-gear text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Talent Coordination</h5>
+                </div>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-diagram-project text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Enterprise Staffing</h5>
+                </div>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-handshake-simple text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Vendor Partnerships</h5>
+                </div>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
+                    <i class="fa-solid fa-magnifying-glass-plus text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Technical Sourcing</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Global Communication Section -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="glass p-16 lg:p-24 rounded-[5rem] relative overflow-hidden">
+                <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div class="relative h-[400px] flex items-center justify-center">
+                        <i class="fa-solid fa-earth-americas text-[20rem] text-blue-500/10 absolute"></i>
+                        <div class="relative z-10 text-center">
+                            <div class="glow-pulse w-32 h-32 rounded-full bg-blue-600/20 border border-blue-500 flex items-center justify-center mx-auto mb-10">
+                                <i class="fa-solid fa-tower-broadcast text-4xl text-blue-500"></i>
+                            </div>
+                            <h4 class="text-2xl font-black uppercase tracking-widest">Global Reach</h4>
+                            <p class="text-[10px] font-bold text-gray-500 mt-2">EST / CST Time Zone Operations</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-5xl lg:text-7xl font-black italic leading-tight mb-10">Communication <br><span class="text-blue-500 uppercase not-italic">Philosophy</span></h2>
+                        <div class="grid gap-6">
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-blue-500">
+                                <div class="text-xs font-bold uppercase tracking-widest">Transparent Engagement</div>
+                            </div>
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-white/10">
+                                <div class="text-xs font-bold uppercase tracking-widest">Response Excellence</div>
+                            </div>
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-blue-500">
+                                <div class="text-xs font-bold uppercase tracking-widest">Relationship Consistency</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Connectivity -->
+        <div class="max-w-7xl mx-auto py-40">
+            <h2 class="text-center text-[10px] font-black uppercase tracking-[1em] mb-12 text-gray-500">Social Connectivity</h2>
+            <div class="flex justify-center gap-12">
+                <a href="#" class="text-3xl text-gray-500 hover:text-blue-500 hover:scale-125 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#" class="text-3xl text-gray-500 hover:text-pink-500 hover:scale-125 transition-all"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-3xl text-gray-500 hover:text-green-500 hover:scale-125 transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="text-3xl text-gray-500 hover:text-white hover:scale-125 transition-all"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+
+        <!-- Stats Counter -->
+        <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 py-20 border-t border-white/5">
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">6+</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Recruitment Years</p></div>
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Enterprise</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Communication</p></div>
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Global</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Networking</p></div>
+            <div class="text-center"><h3 class="text-4xl font-black text-blue-500">High</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Response Accuracy</p></div>
+        </div>
+
+        <!-- Cinematic Quote -->
+        <div class="max-w-6xl mx-auto text-center py-48">
+            <h2 class="text-6xl lg:text-7xl font-black italic leading-tight contact-quote">
+                “Strong communication builds meaningful relationships, and meaningful relationships create <span class="text-blue-500">exceptional opportunities</span>.”
+            </h2>
+        </div>
+    </section>
+
 
     <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
         <p>© THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
@@ -1695,6 +2488,61 @@ gsap.from(".stat-card", {
 });
 
 }
+
+function runProjectsAnimations() {
+            gsap.from(".achievement-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+            gsap.from(".reveal-achievement-sub", { opacity: 0, y: 40, duration: 1, delay: 0.5 });
+            gsap.from(".glass", {
+                opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out"
+            });
+            gsap.from(".achievement-quote", {
+                opacity: 0, scale: 0.9, duration: 2, ease: "power2.out"
+            });
+            gsap.from(".stat-card", {
+                scale: 0.5, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
+            });
+        }
+
+function runSocialAnimations() {
+            gsap.from(".social-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+            gsap.from(".reveal-social-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+            gsap.from(".glass", {
+                opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out"
+            });
+            gsap.from(".social-quote", {
+                opacity: 0, scale: 0.9, duration: 2, ease: "power2.out"
+            });
+            gsap.from(".stat-card", {
+                scale: 0.5, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
+            });
+        }
+
+ function runBlogAnimations() {
+            gsap.from(".blog-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+            gsap.from(".reveal-blog-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+            gsap.from(".glass", {
+                opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out"
+            });
+            gsap.from(".blog-quote", {
+                opacity: 0, scale: 0.9, duration: 2, ease: "power2.out"
+            });
+            gsap.from(".stat-card", {
+                scale: 0.5, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
+            });
+        }
+
+function runContactAnimations() {
+            gsap.from(".contact-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+            gsap.from(".reveal-contact-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+            gsap.from(".glass", { opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out" });
+            gsap.from(".contact-quote", { opacity: 0, scale: 0.9, duration: 2, ease: "power2.out" });
+  }
+
+/* Generic shared trigger functions for previous sections */
+        function runEducationAnimations() { gsap.from(".edu-stage", { opacity: 0, y: 50, stagger: 0.3 }); }
+        function runProjectsAnimations() { gsap.from(".animated-skill-border", { opacity: 0, scale: 0.9 }); }
+        function runSocialAnimations() { gsap.from(".social-hero-title", { y: 80, opacity: 0 }); }
+        function runBlogAnimations() { gsap.from(".blog-hero-title", { x: -50, opacity: 0 }); }
 
 </script>
 </body>
