@@ -91,7 +91,8 @@
             .exp-dot { left: 20px; transform: none; }
             .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
         }
- /* Clients Page Custom Enhancements */
+        
+/* Clients Page Custom Enhancements */
         .client-reveal-card { transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease; border: 1px solid rgba(255,255,255,0.05); }
         .client-reveal-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3); border-color: var(--electric-blue); }
         .client-logo-container { width: 64px; height: 64px; background: rgba(59, 130, 246, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(59, 130, 246, 0.2); transition: 0.3s; }
@@ -101,21 +102,28 @@
         .domain-grid-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.05), transparent); transform: translateX(-100%); transition: 0.5s; }
         .domain-grid-card:hover::after { transform: translateX(100%); }
 
-        @media (max-width: 1024px) {
-            .timeline-line-v { left: 20px; transform: none; }
-            .exp-dot { left: 20px; transform: none; }
-            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
-            }
-    
-
-
-/* Recruitment Services Specific */
+/* Recruitment Services Specific Enhanced Styles */
         .service-icon-box { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--electric-blue); font-size: 1.5rem; margin-bottom: 1.5rem; transition: 0.5s; }
         .service-reveal-card:hover .service-icon-box { background: var(--electric-blue); color: white; transform: scale(1.1) rotate(15deg); }
         .workflow-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--electric-blue), transparent); opacity: 0.2; z-index: 0; }
         .glow-pulse { animation: pulseGlow 2s infinite alternate; }
         @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); } }
+        
+        .stat-card { position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); }
+        .stat-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent); transition: 0.5s; }
+        .stat-card:hover::after { left: 100%; }
 
+
+/* Academic Specific */
+        .edu-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .edu-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--electric-blue); background: rgba(59,130,246,0.05); }
+        .connector-line { width: 2px; height: 100%; background: linear-gradient(to bottom, var(--electric-blue), transparent); position: absolute; left: 50%; transform: translateX(-50%); z-index: 0; opacity: 0.3; }
+
+ @media (max-width: 1024px) {
+            .timeline-line-v { left: 20px; transform: none; }
+            .exp-dot { left: 20px; transform: none; }
+            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
+            }
 
 </style>
 
@@ -128,7 +136,10 @@ content="Joel Ruthvik - Talent Acquisition Manager, US IT Staffing Specialist, R
 content="Joel Ruthvik, Talent Acquisition Manager, US IT Staffing, Technical Recruitment, Bench Sales, Recruitment Operations, Web Designer">
 
 <link rel="canonical" href="https://joelruthvik.com/">
-	
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 <body>
 
@@ -192,7 +203,7 @@ content="Joel Ruthvik, Talent Acquisition Manager, US IT Staffing, Technical Rec
             <button onclick="showPage('clients'); toggleMobileMenu()" class="text-2xl font-bold">05. clients</button>
             <button onclick="showPage('services'); toggleMobileMenu()" class="text-2xl font-bold">06. Services</button>
             <button onclick="showPage('certifications'); toggleMobileMenu()" class="text-2xl font-bold">07. certifications</button>
-            <button onclick="showPage('education'); toggleMobileMenu()" class="text-2xl font-bold">08. education</button>
+            <button onclick="showPage('education'); toggleMobileMenu()" class="text-2xl font-bold">08. Education</button>
             <button onclick="showPage('projects'); toggleMobileMenu()" class="text-2xl font-bold">09. projects</button>
             <button onclick="showPage('social'); toggleMobileMenu()" class="text-2xl font-bold">10. social</button>
             <button onclick="showPage('blog'); toggleMobileMenu()" class="text-2xl font-bold">11. blog</button>
@@ -752,194 +763,357 @@ content="Joel Ruthvik, Talent Acquisition Manager, US IT Staffing, Technical Rec
 
 
 <!-- =========================================================
-         6. RECRUITMENT SERVICES PAGE (FULLY UPDATED)
+         6. RECRUITMENT SERVICES PAGE (RE-ENGINEERED)
          ========================================================= -->
     <section id="services" class="page px-6 lg:px-20 overflow-hidden relative">
         <!-- Cinematic Hero Section -->
-        <div class="max-w-7xl mx-auto py-24 text-center relative z-10">
-            <div class="absolute -top-10 left-1/2 -translate-x-1/2 w-64 h-64 bg-blue-600/10 blur-[100px] pointer-events-none"></div>
-            <div class="inline-block glass px-4 py-1 rounded-full text-[10px] font-bold text-blue-500 uppercase tracking-widest mb-6">Expert Talent Acquisition</div>
-            <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-8 service-main-title">RECRUITMENT <span class="gradient-text italic">SERVICES</span></h1>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed reveal-service-sub">Delivering strategic talent acquisition solutions, enterprise hiring excellence, and technology-driven recruitment services for modern organizations.</p>
+        <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+            <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 animate-pulse">Enterprise Solutions</div>
+            <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none service-hero-title">RECRUITMENT <br><span class="gradient-text italic">SERVICES</span></h1>
+            <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-service-sub font-light">
+                Delivering strategic talent acquisition solutions, enterprise hiring excellence, and technology-driven recruitment services for modern organizations.
+            </p>
             
-            <div class="flex flex-wrap justify-center gap-6 mt-12">
-                <button class="bg-blue-600 px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest shadow-xl shadow-blue-600/20 hover:scale-105 transition-transform">Hire Talent</button>
-                <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[10px] tracking-widest hover:bg-white/5 transition-all">Schedule Consultation</button>
+            <div class="flex flex-wrap justify-center gap-6 mt-16">
+                <button class="bg-blue-600 px-12 py-5 rounded-2xl font-bold uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/40 hover:scale-110 transition-all duration-500">Hire Talent</button>
+                <button class="glass px-12 py-5 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all border border-white/10">Schedule Consultation</button>
+                <button class="glass px-12 py-5 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-blue-600/20 transition-all border border-blue-500/20">Recruitment Solutions</button>
+            </div>
+     
+        <!-- End-to-End Solutions Section -->
+        <div class="max-w-7xl mx-auto py-40">
+            <div class="flex flex-col items-center mb-24">
+                <h2 class="text-5xl font-black uppercase italic mb-4">End-to-End <span class="text-blue-500 not-italic uppercase">Solutions</span></h2>
+                <div class="w-24 h-1 bg-blue-600 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- 10 Solutions Displayed in a Grid -->
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Requirement Analysis</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Strategic mapping of technical stacks to business objectives.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Talent Sourcing</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Multi-channel discovery via LinkedIn, Dice, and internal networks.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-user-shield"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Candidate Screening</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Rigorous vetting for behavioral and cultural synergy.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Technical Evaluation</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Depth-of-knowledge assessment across engineering stacks.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Interview Coordination</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Seamless scheduling across global time-zones and stakeholders.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-file-export"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Client Submission</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Premium profile packaging with detailed vetting notes.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-handshake-simple"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Offer Negotiation</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Strategic C2C/W2 rate mediation and closing.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-user-plus"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Onboarding Coordination</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Facilitating smooth entry and project integration.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Compliance Verification</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Vigilant documentation and background check management.</p>
+                </div>
+                <div class="service-reveal-card glass p-10 rounded-[3.5rem] border border-white/5 hover:border-blue-500/40 group transition-all duration-500">
+                    <div class="service-icon-box group-hover:scale-110 transition-transform"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="text-xl font-bold mb-4">Recruitment Reporting</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed">Data-driven insights and pipeline transparency.</p>
+                </div>
             </div>
         </div>
 
-        <!-- End-to-End Solutions -->
-        <div class="max-w-7xl mx-auto py-32">
-            <div class="flex items-center gap-6 mb-20">
-                <h2 class="text-4xl font-black uppercase italic">End-to-End <span class="text-blue-500 not-italic uppercase">Solutions</span></h2>
-                <div class="h-px flex-1 bg-gradient-to-r from-blue-500/30 to-transparent"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 relative">
-                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
-                    <div class="service-icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
-                    <h3 class="text-lg font-bold mb-3">Requirement Analysis</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Deep-dive into technical stacks and business needs.</p>
+        <!-- US IT Staffing Services -->
+        <div class="max-w-7xl mx-auto py-40 bg-blue-600/5 rounded-[5rem] border border-blue-500/10 p-20 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 blur-[100px] -mr-48 -mt-48"></div>
+            <h2 class="text-6xl font-black mb-24 text-center italic">US IT <span class="text-blue-500 not-italic uppercase">Staffing Services</span></h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- 10 Staffing Services -->
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-file-contract text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Contract Staffing</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Project-based agile resource allocation.</p>
                 </div>
-                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
-                    <div class="service-icon-box"><i class="fa-solid fa-users-viewfinder"></i></div>
-                    <h3 class="text-lg font-bold mb-3">Talent Sourcing</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Multichannel sourcing across Dice, LinkedIn, and internal databases.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-building-user text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">C2C Hiring</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Expert Corp-to-Corp partner management.</p>
                 </div>
-                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
-                    <div class="service-icon-box"><i class="fa-solid fa-clipboard-check"></i></div>
-                    <h3 class="text-lg font-bold mb-3">Technical Evaluation</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Precise vetting of engineering skills and cultural fit.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-id-card text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">W2 Hiring</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Full-cycle management of individual W2s.</p>
                 </div>
-                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
-                    <div class="service-icon-box"><i class="fa-solid fa-handshake-simple"></i></div>
-                    <h3 class="text-lg font-bold mb-3">Offer Negotiation</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Managing C2C/W2 rate discussions and final closures.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-briefcase text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Full-time Hiring</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Permanent talent for long-term growth.</p>
                 </div>
-                <div class="service-reveal-card glass p-8 rounded-[3rem] border border-white/5 hover:border-blue-500/30 transition-all">
-                    <div class="service-icon-box"><i class="fa-solid fa-shield-check"></i></div>
-                    <h3 class="text-lg font-bold mb-3">Compliance Verification</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Ensuring documentation and background checks are airtight.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-house-laptop text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Remote Hiring</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Building borderless technical excellence.</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- US IT Staffing Grid -->
-        <div class="max-w-7xl mx-auto py-32 bg-blue-600/5 rounded-[4rem] border border-blue-500/10 p-16">
-            <h2 class="text-4xl font-black mb-16 text-center italic">US IT <span class="text-blue-500 not-italic uppercase">Staffing Services</span></h2>
-            <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-file-contract text-2xl text-blue-500 group-hover:text-white mb-4"></i>
-                    <h4 class="font-bold mb-2">Contract Staffing</h4>
-                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Agile workforce solutions for project-based needs.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-users-rectangle text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Hybrid Workforce</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Recruiting for modern work dynamics.</p>
                 </div>
-                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-building-user text-2xl text-blue-500 group-hover:text-white mb-4"></i>
-                    <h4 class="font-bold mb-2">C2C Hiring</h4>
-                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Managing Corp-to-Corp partnerships efficiently.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-microchip text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Enterprise Technical</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Specialized high-volume tech hiring.</p>
                 </div>
-                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-id-card text-2xl text-blue-500 group-hover:text-white mb-4"></i>
-                    <h4 class="font-bold mb-2">W2 Hiring</h4>
-                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Full-cycle management of W2 consultants.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-handshake text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Vendor Coordination</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Managing tiered supplier ecosystems.</p>
                 </div>
-                <div class="glass p-8 rounded-3xl group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-laptop-house text-2xl text-blue-500 group-hover:text-white mb-4"></i>
-                    <h4 class="font-bold mb-2">Remote Hiring</h4>
-                    <p class="text-[10px] text-gray-500 group-hover:text-white/80">Building borderless technical teams.</p>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-bullhorn text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Bench Consultant</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Marketing internal bench expertise effectively.</p>
+                </div>
+                <div class="glass p-10 rounded-3xl group hover:bg-blue-600 transition-all duration-500 border border-white/5">
+                    <i class="fa-solid fa-pipe-valve text-4xl text-blue-500 group-hover:text-white mb-6"></i>
+                    <h4 class="text-lg font-bold mb-3">Talent Pipeline</h4>
+                    <p class="text-xs text-gray-500 group-hover:text-white/70">Continuous proactive sourcing strategies.</p>
                 </div>
             </div>
         </div>
 
         <!-- Technical Recruitment Expertise -->
+        <div class="max-w-7xl mx-auto py-48">
+            <div class="text-center mb-32">
+                <h2 class="text-3xl font-black uppercase tracking-[0.5em] text-blue-500 mb-4">Technical</h2>
+                <h3 class="text-7xl font-black italic">HIRING EXPERTISE</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                <!-- 12 Technologies -->
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-brands fa-java text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Java Full Stack</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-shield-check text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">QA Automation</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-infinity text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">DevOps Engineer</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-database text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Data Engineer</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-brands fa-salesforce text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Salesforce</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-cloud text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Cloud (AWS/Azure)</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-brands fa-react text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Frontend Dev</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-brands fa-python text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Backend Dev</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-mobile-screen text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Mobile Testing</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-robot text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">AI & ML</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-server text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">Enterprise Apps</h5>
+                    </div>
+                </div>
+                <div class="animated-skill-border glass rounded-[3rem]">
+                    <div class="animated-skill-border-inner p-10 text-center flex flex-col items-center">
+                        <i class="fa-solid fa-object-group text-5xl text-blue-500 mb-6"></i>
+                        <h5 class="text-[10px] font-black uppercase tracking-widest">UI Automation</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Industry Focused Hiring Solutions -->
+        <div class="max-w-7xl mx-auto py-32">
+            <h2 class="text-4xl font-black mb-20 italic text-center">Industry Focused <span class="text-blue-500 uppercase not-italic">Domains</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <!-- 8 Domains -->
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-building-columns text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">BFSI</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-tower-broadcast text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">Telecomm</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-code-merge text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">IT Services</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-microchip text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">Enterprise Tech</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-rocket text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">Digital Trans.</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-cloud-bolt text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">Cloud Infra</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-bug-slash text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">QA & Automation</h5>
+                </div>
+                <div class="client-reveal-card glass p-12 rounded-[3.5rem] flex flex-col items-center gap-6 group hover:border-blue-500/50">
+                    <div class="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition-all"><i class="fa-solid fa-brain text-2xl"></i></div>
+                    <h5 class="text-xs font-black uppercase tracking-widest text-center">AI & Data</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recruitment Operations & Coordination Dashboard -->
         <div class="max-w-7xl mx-auto py-40">
-            <h2 class="text-2xl font-black uppercase tracking-[0.3em] mb-20 text-center">Technical <span class="text-blue-500">Hiring Expertise</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-brands fa-java text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">Java Full Stack</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-solid fa-vial-circle-check text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">QA Automation</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-solid fa-infinity text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">DevOps/Cloud</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-solid fa-database text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">Data Engineering</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-brands fa-salesforce text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">Salesforce</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-solid fa-robot text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">AI & ML</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-solid fa-mobile-screen-button text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">Mobile Testing</h5>
-                    </div>
-                </div>
-                <div class="animated-skill-border glass rounded-[2.5rem]">
-                    <div class="animated-skill-border-inner p-10 text-center">
-                        <i class="fa-solid fa-layer-group text-4xl text-blue-500 mb-6"></i>
-                        <h5 class="text-xs font-black uppercase">UI Automation</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Recruitment Operations Dashboard -->
-        <div class="max-w-7xl mx-auto py-32 mb-40">
-            <div class="glass p-16 rounded-[4rem] relative overflow-hidden border border-blue-500/20">
-                <div class="grid lg:grid-cols-2 gap-20 items-center relative z-10">
+            <div class="glass p-20 rounded-[5rem] relative overflow-hidden border border-blue-500/20">
+                <div class="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-600/5 blur-[80px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-24 items-center relative z-10">
                     <div>
-                        <h2 class="text-4xl font-black mb-8">Operational <br><span class="text-blue-500 italic uppercase">Excellence</span></h2>
-                        <div class="space-y-8">
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-500 font-bold">01</div>
-                                <div><h4 class="font-bold">EST/CST Coordination</h4><p class="text-[10px] text-gray-500">Expert scheduling across major US time zones.</p></div>
+                        <h2 class="text-5xl font-black mb-12">Operations <br><span class="text-blue-500 italic uppercase">Excellence</span></h2>
+                        <div class="grid gap-8">
+                            <div class="flex items-center gap-8 glass p-6 rounded-3xl border border-white/5">
+                                <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 font-bold">01</div>
+                                <div><h4 class="font-bold text-lg">EST/CST Coordination</h4><p class="text-xs text-gray-500">Expert global scheduling across US time zones.</p></div>
                             </div>
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-500 font-bold">02</div>
-                                <div><h4 class="font-bold">ATS Optimization</h4><p class="text-[10px] text-gray-500">Advanced recruitment workflow and data management.</p></div>
+                            <div class="flex items-center gap-8 glass p-6 rounded-3xl border border-white/5">
+                                <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 font-bold">02</div>
+                                <div><h4 class="font-bold text-lg">Vendor Management</h4><p class="text-xs text-gray-500">Strategic partnership and ecosystem handling.</p></div>
                             </div>
-                            <div class="flex items-center gap-6">
-                                <div class="w-12 h-12 glass rounded-xl flex items-center justify-center text-blue-500 font-bold">03</div>
-                                <div><h4 class="font-bold">Recruitment Analytics</h4><p class="text-[10px] text-gray-500">Data-driven insights for faster turnaround times.</p></div>
+                            <div class="flex items-center gap-8 glass p-6 rounded-3xl border border-white/5">
+                                <div class="w-14 h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center text-blue-500 font-bold">03</div>
+                                <div><h4 class="font-bold text-lg">Compliance & Audit</h4><p class="text-xs text-gray-500">Rigorous background and document verification.</p></div>
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="glass p-10 rounded-3xl text-center border-b-4 border-blue-600">
-                            <h5 class="text-4xl font-black text-white mb-2">98%</h5>
-                            <p class="text-[9px] font-black uppercase tracking-widest text-blue-500">Client Satisfaction</p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="stat-card glass p-12 rounded-[3.5rem] text-center border-b-8 border-blue-600">
+                            <h5 class="text-5xl font-black mb-4">98%</h5>
+                            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">Fulfillment Rate</p>
                         </div>
-                        <div class="glass p-10 rounded-3xl text-center border-b-4 border-white/10">
-                            <h5 class="text-4xl font-black text-white mb-2">24h</h5>
-                            <p class="text-[9px] font-black uppercase tracking-widest text-blue-500">Submission Time</p>
+                        <div class="stat-card glass p-12 rounded-[3.5rem] text-center border-b-8 border-white/10">
+                            <h5 class="text-5xl font-black mb-4">24h</h5>
+                            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">Turnaround Time</p>
+                        </div>
+                        <div class="stat-card glass p-12 rounded-[3.5rem] text-center border-b-8 border-white/10">
+                            <h5 class="text-5xl font-black mb-4">500+</h5>
+                            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">Technical Placements</p>
+                        </div>
+                        <div class="stat-card glass p-12 rounded-[3.5rem] text-center border-b-8 border-blue-600">
+                            <h5 class="text-5xl font-black mb-4">6+</h5>
+                            <p class="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500">Years Experience</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Recruitment Process Flow Visualization -->
-        <div class="max-w-7xl mx-auto mb-40">
-            <h2 class="text-center text-2xl font-black uppercase tracking-widest mb-20">Strategic <span class="text-blue-500">Process Flow</span></h2>
-            <div class="flex flex-wrap justify-center gap-4">
-                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Requirement Gathering</div>
-                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
-                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Talent Sourcing</div>
-                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
-                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Technical Screening</div>
-                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
-                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Submission</div>
-                <i class="fa-solid fa-chevron-right self-center text-blue-500/50"></i>
-                <div class="glass px-8 py-6 rounded-full border border-blue-500/20 text-xs font-bold uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Onboarding</div>
+        <!-- Recruitment Process Flow -->
+        <div class="max-w-7xl mx-auto py-40 mb-32">
+            <h2 class="text-center text-2xl font-black uppercase tracking-[0.5em] mb-32 text-blue-500">Strategic <span class="text-white">Workflow</span></h2>
+            <div class="flex flex-wrap justify-center items-center gap-6">
+                <div class="glass px-10 py-8 rounded-[2rem] border border-blue-500/20 text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Requirement Gathering</div>
+                <i class="fa-solid fa-chevron-right text-blue-500/40 text-xl hidden lg:block"></i>
+                <div class="glass px-10 py-8 rounded-[2rem] border border-blue-500/20 text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Talent Sourcing</div>
+                <i class="fa-solid fa-chevron-right text-blue-500/40 text-xl hidden lg:block"></i>
+                <div class="glass px-10 py-8 rounded-[2rem] border border-blue-500/20 text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Technical Screening</div>
+                <i class="fa-solid fa-chevron-right text-blue-500/40 text-xl hidden lg:block"></i>
+                <div class="glass px-10 py-8 rounded-[2rem] border border-blue-500/20 text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Offer Negotiation</div>
+                <i class="fa-solid fa-chevron-right text-blue-500/40 text-xl hidden lg:block"></i>
+                <div class="glass px-10 py-8 rounded-[2rem] border border-blue-500/20 text-xs font-black uppercase tracking-widest hover:bg-blue-600 transition-all cursor-default">Onboarding Support</div>
+            </div>
+        </div>
+
+        <!-- Why Choose Joel Ruthvik Strengths Section -->
+        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+            <h2 class="text-5xl font-black mb-24 italic">Why Organizations <span class="text-blue-500 not-italic uppercase">Choose Joel Ruthvik</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-blue-500">
+                    <h4 class="font-black text-blue-500 mb-4 uppercase tracking-widest text-[10px]">Technical Insight</h4>
+                    <p class="text-sm text-gray-400">Deep understanding of tech-stacks ensuring high-quality vetting.</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-white/10">
+                    <h4 class="font-black text-blue-500 mb-4 uppercase tracking-widest text-[10px]">Velocity</h4>
+                    <p class="text-sm text-gray-400">Rapid turnaround time for urgent enterprise requirements.</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-blue-500">
+                    <h4 class="font-black text-blue-500 mb-4 uppercase tracking-widest text-[10px]">Compliance</h4>
+                    <p class="text-sm text-gray-400">Strict adherence to US IT market trends and visa regulations.</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-white/10">
+                    <h4 class="font-black text-blue-500 mb-4 uppercase tracking-widest text-[10px]">Relationships</h4>
+                    <p class="text-sm text-gray-400">Exceptional client management and consultant engagement.</p>
+                </div>
             </div>
         </div>
 
         <!-- Cinematic Quote -->
-        <div class="max-w-5xl mx-auto text-center py-40 border-t border-white/5">
-            <h2 class="text-5xl lg:text-7xl font-black italic leading-[1.1]">
-                “Recruitment is more than filling positions — it is about <span class="text-blue-500">creating the foundation</span> for organizational success through exceptional talent.”
+        <div class="max-w-6xl mx-auto text-center py-48 border-t border-white/5">
+            <h2 class="text-6xl lg:text-8xl font-black italic leading-tight service-quote">
+                “Recruitment is more than filling positions — it is about <span class="text-blue-500">creating the foundation</span> for organizational success.”
             </h2>
         </div>
     </section>
@@ -1098,9 +1272,222 @@ content="Joel Ruthvik, Talent Acquisition Manager, US IT Staffing, Technical Rec
             </h2>
         </div>
     </section>
+    
+<!-- =========================================================
+         8. EDUCATION PAGE (RE-ENGINEERED)
+         ========================================================= -->
+    <section id="education" class="page px-6 lg:px-20 overflow-hidden relative">
+        <!-- Cinematic Hero -->
+        <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+            <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 edu-hero-badge">Academic Foundation</div>
+            <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none edu-hero-title">EDUCATION</h1>
+            <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-edu-sub font-light">
+                Building a strong foundation through technical education, continuous learning, and people-focused understanding.
+            </p>
+        </div>
+
+        <!-- Academic Journey Section -->
+        <div class="max-w-7xl mx-auto py-40 relative">
+            <div class="flex flex-col items-center mb-32">
+                <h2 class="text-5xl font-black uppercase italic mb-4">Academic <span class="text-blue-500 not-italic uppercase">Journey</span></h2>
+                <div class="w-24 h-1 bg-blue-600 rounded-full"></div>
+            </div>
+
+            <div class="relative">
+                <div class="connector-line"></div>
+                
+                <div class="space-y-32">
+                    <!-- Stage 1: Psychology -->
+                    <div class="edu-stage flex flex-col lg:flex-row gap-12 items-center relative">
+                        <div class="lg:w-1/2 lg:text-right order-2 lg:order-1">
+                            <div class="edu-card glass p-10 lg:p-14 rounded-[3.5rem] relative group">
+                                <span class="text-blue-500 font-black text-[12px] tracking-[0.3em] uppercase block mb-4">Current Pursuit • 2026</span>
+                                <h3 class="text-4xl lg:text-5xl font-black mb-6">B.A in Psychology</h3>
+                                <p class="text-blue-400 font-bold mb-6 italic">BRAOU (Dr. B.R. Ambedkar Open University)</p>
+                                <p class="text-gray-400 text-sm lg:text-base leading-relaxed mb-8">
+                                    Focusing on human behavior, interpersonal understanding, and organizational psychology. This educational background strengthens professional capabilities in talent acquisition and relationship building.
+                                </p>
+                                <div class="flex flex-wrap lg:justify-end gap-3 mb-8">
+                                    <span class="metric-badge">Psychology</span><span class="metric-badge">Human Behavior</span><span class="metric-badge">Emotional Intelligence</span><span class="metric-badge">Talent Assessment</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 text-left border-t border-white/5 pt-8">
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-check text-blue-500 mr-2"></i> Candidate Behavior</div>
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-check text-blue-500 mr-2"></i> Organizational Fit</div>
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-check text-blue-500 mr-2"></i> Elite Communication</div>
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-check text-blue-500 mr-2"></i> Leadership Synergy</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-600 border-8 border-matte-black shadow-[0_0_30px_rgba(59,130,246,0.8)] z-10 hidden lg:block"></div>
+                        <div class="lg:w-1/2 order-1 lg:order-3">
+                             <div class="w-24 h-24 rounded-3xl bg-blue-600/10 flex items-center justify-center text-blue-500 text-4xl"><i class="fa-solid fa-brain"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 2: B.Tech -->
+                    <div class="edu-stage flex flex-col lg:flex-row gap-12 items-center relative">
+                        <div class="lg:w-1/2 lg:order-1 flex lg:justify-end">
+                            <div class="w-24 h-24 rounded-3xl bg-blue-600/10 flex items-center justify-center text-blue-500 text-4xl"><i class="fa-solid fa-microchip"></i></div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-600 border-8 border-matte-black shadow-[0_0_30px_rgba(59,130,246,0.8)] z-10 hidden lg:block"></div>
+                        <div class="lg:w-1/2 order-2">
+                            <div class="edu-card glass p-10 lg:p-14 rounded-[3.5rem] relative group">
+                                <span class="text-blue-500 font-black text-[12px] tracking-[0.3em] uppercase block mb-4">Alumnus • 2020</span>
+                                <h3 class="text-4xl lg:text-5xl font-black mb-6">B.Tech in CSE</h3>
+                                <p class="text-blue-400 font-bold mb-6 italic">Enikepadu</p>
+                                <p class="text-gray-400 text-sm lg:text-base leading-relaxed mb-8">
+                                    Strong exposure to software development, technical systems, and enterprise technology environments. Helps bridge the gap between engineering teams and recruitment needs.
+                                </p>
+                                <div class="flex flex-wrap gap-3 mb-8">
+                                    <span class="metric-badge">Computer Science</span><span class="metric-badge">Software Engineering</span><span class="metric-badge">Enterprise IT</span><span class="metric-badge">Tech Evaluation</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4 text-left border-t border-white/5 pt-8">
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-code text-blue-500 mr-2"></i> Tech Requirements</div>
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-server text-blue-500 mr-2"></i> IT Systems</div>
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-terminal text-blue-500 mr-2"></i> Skill Identification</div>
+                                    <div class="text-[10px] text-gray-500 uppercase font-bold"><i class="fa-solid fa-laptop-code text-blue-500 mr-2"></i> Engineering Synergy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 3: Intermediate -->
+                    <div class="edu-stage flex flex-col lg:flex-row gap-12 items-center relative">
+                        <div class="lg:w-1/2 lg:text-right order-2 lg:order-1">
+                            <div class="edu-card glass p-10 lg:p-14 rounded-[3.5rem] relative group">
+                                <span class="text-blue-500 font-black text-[12px] tracking-[0.3em] uppercase block mb-4">Academic Foundation • 2016</span>
+                                <h3 class="text-4xl lg:text-5xl font-black mb-6">Intermediate</h3>
+                                <p class="text-blue-400 font-bold mb-6 italic">Chaitanya College, Gannavaram</p>
+                                <p class="text-gray-400 text-sm lg:text-base leading-relaxed mb-8">Focus on academic discipline, analytical skills, and career-oriented learning foundations.</p>
+                                <div class="flex flex-wrap lg:justify-end gap-3">
+                                    <span class="metric-badge">Academic Discipline</span><span class="metric-badge">Analytical Skills</span><span class="metric-badge">Communication</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-600 border-8 border-matte-black shadow-[0_0_30px_rgba(59,130,246,0.8)] z-10 hidden lg:block"></div>
+                        <div class="lg:w-1/2 order-1 lg:order-3">
+                             <div class="w-24 h-24 rounded-3xl bg-blue-600/10 flex items-center justify-center text-blue-500 text-4xl"><i class="fa-solid fa-book-open"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- Stage 4: SSC -->
+                    <div class="edu-stage flex flex-col lg:flex-row gap-12 items-center relative">
+                        <div class="lg:w-1/2 lg:order-1 flex lg:justify-end">
+                            <div class="w-24 h-24 rounded-3xl bg-blue-600/10 flex items-center justify-center text-blue-500 text-4xl"><i class="fa-solid fa-graduation-cap"></i></div>
+                        </div>
+                        <div class="w-12 h-12 rounded-full bg-blue-600 border-8 border-matte-black shadow-[0_0_30px_rgba(59,130,246,0.8)] z-10 hidden lg:block"></div>
+                        <div class="lg:w-1/2 order-2">
+                            <div class="edu-card glass p-10 lg:p-14 rounded-[3.5rem] relative group">
+                                <span class="text-blue-500 font-black text-[12px] tracking-[0.3em] uppercase block mb-4">Secondary Education • 2014</span>
+                                <h3 class="text-4xl lg:text-5xl font-black mb-6">SSC</h3>
+                                <p class="text-blue-400 font-bold mb-6 italic">Care and Share English Medium School</p>
+                                <p class="text-gray-400 text-sm lg:text-base leading-relaxed mb-8">Emphasis on academic fundamentals, personal growth, and early communication development.</p>
+                                <div class="flex flex-wrap gap-3">
+                                    <span class="metric-badge">Fundamentals</span><span class="metric-badge">Personal Growth</span><span class="metric-badge">Early Education</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Meets Recruitment Excellence -->
+        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+            <div class="glass p-16 lg:p-24 rounded-[5rem] relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <div>
+                        <h2 class="text-5xl lg:text-7xl font-black italic mb-10 leading-tight">Education Meets <br><span class="text-blue-500 not-italic uppercase">Recruitment</span></h2>
+                        <p class="text-xl text-gray-400 leading-relaxed mb-12 font-light">
+                            Joel Ruthvik’s background creates a unique strategic advantage—combining the technical precision of a <b class="text-white">Computer Science Engineer</b> with the human behavioral insight of a <b class="text-white">Psychologist</b>.
+                        </p>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6 glass p-6 rounded-[2rem] border border-blue-500/20">
+                                <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white"><i class="fa-solid fa-bridge"></i></div>
+                                <p class="text-sm font-bold tracking-wide">Bridges communication between candidates and tech leads.</p>
+                            </div>
+                            <div class="flex items-center gap-6 glass p-6 rounded-[2rem] border border-blue-500/20">
+                                <div class="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center text-white"><i class="fa-solid fa-bullseye"></i></div>
+                                <p class="text-sm font-bold tracking-wide">Evaluates technical talent with psychological precision.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-4 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">Dual</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Degree Focus</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">100%</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Tech Vetting</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                             <h4 class="text-4xl font-black mb-2">High</h4><p class="text-[10px] font-bold text-blue-500 uppercase">EQ Insight</p>
+                        </div>
+                        <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-4 border-blue-600">
+                             <h4 class="text-4xl font-black mb-2">Elite</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Engagement</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Strengths -->
+        <div class="max-w-7xl mx-auto py-40">
+            <h2 class="text-center text-3xl font-black uppercase tracking-[0.5em] mb-24 text-blue-500">Academic <span class="text-white">Strengths</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-microchip text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Technical Logic</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-users text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Human Psychology</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-message text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Elite Communication</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-magnifying-glass text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Problem Solving</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-chart-pie text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Analytical Thinking</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-user-group text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Leadership</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-network-wired text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Networking</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-sitemap text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Organization</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-rotate text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Adaptability</h5>
+                </div>
+                <div class="edu-card glass p-8 rounded-[2.5rem] text-center group">
+                    <i class="fa-solid fa-chess text-3xl text-gray-400 group-hover:text-blue-500 mb-6 transition-colors"></i>
+                    <h5 class="text-[10px] font-black uppercase tracking-widest">Strategic Thinking</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cinematic Quote -->
+        <div class="max-w-6xl mx-auto text-center py-48 border-t border-white/5">
+            <h2 class="text-6xl lg:text-8xl font-black italic leading-tight edu-quote">
+                “Education is the foundation that transforms knowledge into <span class="text-blue-500">professional excellence</span> and leadership.”
+            </h2>
+        </div>
+    </section>
 
     <!-- (OTHER PAGES PRESERVED) -->
-    <section id="education" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">EDUCATION</h1></section>
     <section id="projects" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">ACHIEVEMENTS</h1></section>
     <section id="social" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">NETWORKING</h1></section>
     <section id="blog" class="page px-6 lg:px-20"><h1 class="text-7xl font-black">UPDATES</h1></section>
@@ -1131,6 +1518,7 @@ content="Joel Ruthvik, Talent Acquisition Manager, US IT Staffing, Technical Rec
 		    if(pageId === 'clients') runClientsAnimations();
                     if(pageId === 'services') runServicesAnimations();
                     if(pageId === 'certifications') runCertificationsAnimations();
+                    if(pageId === 'education') runEducationAnimations();
                     window.scrollTo(0, 0);
                 }
             });
@@ -1199,30 +1587,26 @@ function runClientsAnimations() {
     
 function runServicesAnimations() {
 
-    gsap.from(".service-main-title", {
-        y: 80,
-        opacity: 0,
-        duration: 1.2,
-        ease: "power4.out"
+    gsap.from(".service-main-title", {y: 80,opacity: 0,duration: 1.2,ease: "power4.out"
     });
 
-    gsap.from(".reveal-service-sub", {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        delay: 0.4
-    });
+gsap.from(".service-hero-title", { y: 120, opacity: 0, duration: 1.5, ease: "power4.out" });
+            gsap.from(".reveal-service-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+            
+gsap.from(".service-reveal-card", {opacity: 0,y: 100,duration: 1,stagger: 0.15,ease: "power3.out", clearProps: "opacity,transform"
+});
+            
+gsap.from(".animated-skill-border", {
+                opacity: 0, y: 50, duration: 0.8, stagger: 0.05, ease: "power3.out"
+            });
+            gsap.from(".stat-card", {
+                scale: 0.5, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
+            });
+            gsap.from(".service-quote", {
+                opacity: 0, scale: 0.9, duration: 2, ease: "power2.out"
+            });
+        }
 
-    gsap.from(".service-reveal-card", {
-        scale: 0.8,
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        stagger: 0.15,
-        ease: "back.out(1.7)"
-    });
-
-}
 
 
 function runCertificationsAnimations() {
@@ -1243,38 +1627,74 @@ gsap.set(".reveal-cert-sub", {
 });
 
 gsap.set(".cert-card", {
-    opacity: 0,
-    y: 80,
-    scale: 0.8
+    opacity: 0,y: 80,scale: 0.8
 });
 
 gsap.to(".cert-hero-title", {
-    opacity: 1,
-    y: 0,
-    duration: 1.4,
-    ease: "power4.out"
+    opacity: 1,y: 0,duration: 1.4,ease: "power4.out"
 });
 
 gsap.to(".reveal-cert-sub", {
-    opacity: 1,
-    y: 0,
-    duration: 1,
-    delay: 0.3,
-    ease: "power3.out"
+    opacity: 1,y: 0,duration: 1,delay: 0.3,ease: "power3.out"
 });
 
 gsap.to(".cert-card", {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    duration: 1,
-    stagger: 0.15,
-    delay: 0.5,
-    ease: "back.out(1.7)"
+    opacity: 1,y: 0,scale: 1,duration: 1,stagger: 0.15,delay: 0.5,ease: "back.out(1.7)"
 });
 ```
+gsap.from(".cert-quote", { opacity: 0, scale: 0.95, duration: 2, ease: "power2.out" });
 
 }   
+
+ 
+function runEducationAnimations() {
+
+    gsap.from(".edu-hero-badge", {
+        scale: 0,opacity: 0,duration: 1
+    });
+
+
+    gsap.from(".edu-hero-title", {
+        y: 100,opacity: 0,duration: 1.5
+    });
+
+    gsap.from(".reveal-edu-sub", {
+        y: 50,opacity: 0,duration: 1,delay: 0.3
+    });
+
+    gsap.utils.toArray(".edu-card").forEach(card => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%"
+            },
+            y: 100,
+            opacity: 0,
+            duration: 1
+        });
+    });
+
+   gsap.utils.toArray(".edu-stage").forEach(stage => {
+        gsap.from(stage, {
+            scrollTrigger: {
+                trigger: stage,
+                start: "top 85%"
+            },
+            x: -100,
+            opacity: 0,
+            duration: 1.2
+        });
+    });
+
+gsap.from(".edu-quote", {
+    opacity: 0,scale: 0.9,duration: 2,ease: "power2.out"
+});
+
+gsap.from(".stat-card", {
+    scale: 0.5,opacity: 0,duration: 1,stagger: 0.2,ease: "power4.out"
+});
+
+}
 
 </script>
 </body>
