@@ -143,7 +143,9 @@
         .contact-label { position: absolute; left: 1.25rem; top: 1.25rem; pointer-events: none; transition: 0.3s; color: rgba(255,255,255,0.3); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
         .contact-input:focus ~ .contact-label, .contact-input:not(:placeholder-shown) ~ .contact-label { transform: translateY(-2.2rem) scale(0.8); color: var(--electric-blue); }
 
-
+/* testimonial */
+		.testimonial-card { transition: 0.4s ease; }
+        .testimonial-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); }
 </style>
 
 
@@ -266,7 +268,153 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Fortune 500</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Support</p></div>
             <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Multi-Domain</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Technical Hiring</p></div>
         </div>
-    </section>
+<!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="py-32 mt-24">
+            <div class="text-center mb-20">
+                <p class="text-blue-500 uppercase tracking-[0.3em] text-xs font-bold mb-4">TRUSTED PROFESSIONAL NETWORK</p>
+                <h2 class="text-5xl lg:text-7xl font-black">PROFESSIONAL <span class="gradient-text italic">RECOMMENDATIONS</span></h2>
+                <p class="text-gray-400 mt-6 max-w-3xl mx-auto">Real recommendations from managers, clients, colleagues, and industry professionals who have witnessed my work firsthand.</p>
+            </div>
+
+            <!-- COUNTERS -->
+            <div class="grid md:grid-cols-4 gap-6 mb-20">
+                <div class="glass p-8 rounded-3xl text-center"><h3 class="text-4xl font-black text-blue-500">50+</h3><p class="text-xs uppercase tracking-widest text-gray-500">Successful Placements</p></div>
+                <div class="glass p-8 rounded-3xl text-center"><h3 class="text-4xl font-black text-blue-500">500+</h3><p class="text-xs uppercase tracking-widest text-gray-500">Candidate Interviews</p></div>
+                <div class="glass p-8 rounded-3xl text-center"><h3 class="text-4xl font-black text-blue-500">10+</h3><p class="text-xs uppercase tracking-widest text-gray-500">Enterprise Clients</p></div>
+                <div class="glass p-8 rounded-3xl text-center"><h3 class="text-4xl font-black text-blue-500">6+</h3><p class="text-xs uppercase tracking-widest text-gray-500">Years Experience</p></div>
+            </div>
+
+            <!-- CARDS GRID -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/f2/7e/36/f27e36471dd9acf940137acf0f081b94.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div>
+                            <h4 class="font-bold text-lg">Rakesh Madderla</h4>
+                            <p class="text-blue-500 text-sm">Head of Operations</p>
+                            <p class="text-gray-500 text-xs">VentleyTech LLC</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic text-sm leading-relaxed">"I'm pleased to recommend Joel Ruthvik who has been a key part of our team at VentleyTech LLC as a Talent Acquisition Specialist..."</p>
+                    <button onclick="openTestimonial(this)" data-fulltext="I'm pleased to recommend Joel Ruthvik who has been a key part of our team at VentleyTech LLC as a Talent Acquisition Specialist and Web Designer. As Head of Operations, I've worked closely with Joel and seen his great contributions firsthand. Joel is excellent at finding and hiring top talent. His smart and efficient hiring strategies have helped us build a strong team and made the recruitment process smooth and effective. He's also a skilled web designer. Joel has created clean, modern, and user-friendly websites that have boosted our brand and impressed our clients. Joel is a dedicated, creative, and hardworking professional. Rakesh Madderala Head of Operations, VentleyTech LLC" class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                    <div class="mt-6 text-yellow-400 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/13/b3/bf/13b3bfc5b64073a8ae0038fb72930d6a.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div>
+                            <h4 class="font-bold text-lg">Abhilash Reddy</h4>
+                            <p class="text-blue-500 text-sm">Head of Operations (HR and Accounts)</p>
+                            <p class="text-gray-500 text-xs">VentlyTech LLC</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic text-sm leading-relaxed">"I have had the pleasure of working with Joel Ruthvik, and I can confidently say that he is an outstanding Talent Acquisition Specialist..."</p>
+                    <button onclick="openTestimonial(this)" data-fulltext="I have had the pleasure of working with Joel Ruthvik, and I can confidently say that he is an outstanding Talent Acquisition Specialist. His ability to handle teams effortlessly and foster a positive work environment truly sets him apart. Joel's exceptional multitasking skills, combined with his expertise in web design, make him a valuable asset to any team. His innovative approach and problem-solving mindset consistently drive success." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                    <div class="mt-6 text-yellow-400 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/15/31/04/153104bcb841768ee0f84e915a346d65.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div>
+                            <h4 class="font-bold text-lg">Venkatraju golla</h4>
+                            <p class="text-blue-500 text-sm">Software Engineer in Test</p>
+                            <p class="text-gray-500 text-xs">Broadridge</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic text-sm leading-relaxed">"Joel is an outstanding HR professional having exceptional skills in recruitment, engagement, and conflict resolution..."</p>
+                    <button onclick="openTestimonial(this)" data-fulltext="Joel is an outstanding HR professional having exceptional skills in recruitment, engagement, and conflict resolution. I would highly recommend him to any organization looking for an HR professional who truly makes a difference." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                    <div class="mt-6 text-yellow-400 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/c9/40/9c/c9409c7ce6580c1dd8aaeb6cb3683625.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div>
+                            <h4 class="font-bold text-lg">T. Joshua Rohit</h4>
+                            <p class="text-blue-500 text-sm">Team Lead</p>
+                            <p class="text-gray-500 text-xs">Deel Technologies</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic text-sm leading-relaxed">"I’ve been so fortunate to work along side Joel. He is highly compassionate, putting the needs of candidates first..."</p>
+                    <button onclick="openTestimonial(this)" data-fulltext="I’ve been so fortunate to work along side Joel at Deel Technologies. He is highly compassionate, putting the needs of her candidates first and building long lasting relationships. He collaborates effectively with all members of our team and will always jump in to help at a moments notice. His meticulous attention to detail and tenacious support are inspiring." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                    <div class="mt-6 text-yellow-400 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/8c/4f/7a/8c4f7a797cea75295e923dbe4fe51652.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div>
+                            <h4 class="font-bold text-lg">T. Job Rahul</h4>
+                            <p class="text-blue-500 text-sm">Technical Recruiter</p>
+                            <p class="text-gray-500 text-xs">Deel Technologies</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic text-sm leading-relaxed">"Working on any team that Joel leads is pure joy. Joel’s problem-solving skills are without equal..."</p>
+                    <button onclick="openTestimonial(this)" data-fulltext="I have had the pleasure of working with Joel Ruthvik for several years. Working on any team that Joel leads is pure joy. Joel’s problem-solving skills are without equal. He absolutely went above and beyond for me, and I can confidently say that Joel will not only be a future resource, but a friend I can rely on as I advance my professional career." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                    <div class="mt-6 text-yellow-400 text-lg">★★★★★</div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/6c/05/45/6c05450b195607a72bb0fb7d5d7f7fe9.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div>
+                            <h4 class="font-bold text-lg">Kavya Sree</h4>
+                            <p class="text-blue-500 text-sm">Technical Recruiter</p>
+                            <p class="text-gray-500 text-xs">VentleyTech LLC</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic text-sm leading-relaxed">"Joel has an incredible ability to handle everything efficiently and ensures that tasks are completed on time..."</p>
+                    <button onclick="openTestimonial(this)" data-fulltext="I have the privilege of working under Joel Ruthvik at Deel Technologies, and I can confidently say he is an exceptional manager. Joel has an incredible ability to handle everything efficiently and ensures that tasks are completed on time. His support and guidance create a collaborative and productive work environment." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                    <div class="mt-6 text-yellow-400 text-lg">★★★★★</div>
+                </div>
+                
+                <!-- (Remaining 4 cards omitted for brevity, but same pattern follows) -->
+                <!-- Card 7 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/58/9f/e6/589fe6878d536888df0bdb40cdd32bde.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div><h4 class="font-bold text-lg">Romans Corinthian</h4><p class="text-blue-500 text-sm">Manager</p></div>
+                    </div>
+                    <button onclick="openTestimonial(this)" data-fulltext="Joel guided me effectively during this period of change in my professional career with his ability to find a solution to every concern I encountered." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/fa/85/0a/fa850ae7120cace765a5df1448cb45b3.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div><h4 class="font-bold text-lg">Catherine Tresa</h4><p class="text-blue-500 text-sm">HR Admin</p></div>
+                    </div>
+                    <button onclick="openTestimonial(this)" data-fulltext="Joel is an outstanding colleague and recruiter. He goes above and beyond for all of her candidates and truly cares for their well being." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/4f/eb/64/4feb649726048ee64800f880c9771bcd.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div><h4 class="font-bold text-lg">Sai sree</h4><p class="text-blue-500 text-sm">IT Recruiter</p></div>
+                    </div>
+                    <button onclick="openTestimonial(this)" data-fulltext="Joel is welcoming, organized, and has outstanding attention to detail in his ability to uniquely identify people in a way that makes them feel valued." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="testimonial-card glass p-8 rounded-[30px] border border-blue-500/20">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img src="https://i.pinimg.com/736x/c6/af/3c/c6af3c0416889ffd5fbd09a3cc3f72d3.jpg" class="w-16 h-16 rounded-full border-2 border-blue-500">
+                        <div><h4 class="font-bold text-lg">Meghana G</h4><p class="text-blue-500 text-sm">IT Recruiter</p></div>
+                    </div>
+                    <button onclick="openTestimonial(this)" data-fulltext="Joel Ruthvik is the rare recruiter who not only understands how to recruit but also truly comprehends business needs." class="mt-5 text-blue-500 text-sm font-semibold hover:text-white transition">Read Full Recommendation →</button>
+                </div>
+            </div>
+        </section>	
+	</section>
 
     <!-- =========================================================
          2. ABOUT ME PAGE
@@ -2554,6 +2702,27 @@ function runContactAnimations() {
         function runSocialAnimations() { gsap.from(".social-hero-title", { y: 80, opacity: 0 }); }
         function runBlogAnimations() { gsap.from(".blog-hero-title", { x: -50, opacity: 0 }); }
 
+/* Testimonal functions */
+		
+function openTestimonial(btn) {
+            document.getElementById('testimonialContent').innerText = btn.getAttribute('data-fulltext');
+            document.getElementById('testimonialModal').classList.remove('hidden');
+            document.getElementById('testimonialModal').classList.add('flex');
+        }
+        function closeTestimonial() {
+            document.getElementById('testimonialModal').classList.add('hidden');
+            document.getElementById('testimonialModal').classList.remove('flex');
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            gsap.to('#cursor-light', { x: e.clientX - 300, y: e.clientY - 300, duration: 1.5 });
+        });
+
+        window.onload = () => {
+            gsap.to("#typing-hero", { duration: 3, text: "Empowering organizations by identifying and securing world-class technical talent.", ease: "none" });
+            gsap.to("#hero-paragraph", { opacity: 1, y: -10, duration: 1, delay: 0.8 });
+        };
+		
 </script>
 </body>
 </html>
