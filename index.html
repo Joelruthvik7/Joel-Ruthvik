@@ -3023,24 +3023,24 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                     <div class="animated-skill-border glass rounded-[4rem]">
                         <div class="animated-skill-border-inner p-12 lg:p-16">
                             <h3 class="text-3xl font-black mb-10 italic uppercase">Send a Professional <span class="text-blue-500">Inquiry</span></h3>
-                            <form class="space-y-10">
+                            <form id="contactForm" class="space-y-10">
                                 <div class="grid md:grid-cols-2 gap-10">
                                     <div class="relative">
-                                        <input type="text" id="name" placeholder=" " class="contact-input">
+                                        <input type="text" id="name" name="name" placeholder=" " class="contact-input" required>
                                         <label for="name" class="contact-label">Full Name</label>
                                     </div>
                                     <div class="relative">
-                                        <input type="email" id="email" placeholder=" " class="contact-input">
+                                        <input type="email" id="email" name="email" placeholder=" " class="contact-input" required>
                                         <label for="email" class="contact-label">Email Address</label>
                                     </div>
                                 </div>
                                 <div class="grid md:grid-cols-2 gap-10">
                                     <div class="relative">
-                                        <input type="text" id="company" placeholder=" " class="contact-input">
+                                        <input type="text" id="company" name="company" placeholder=" " class="contact-input">
                                         <label for="company" class="contact-label">Company Name</label>
                                     </div>
                                     <div class="relative">
-                                        <select class="contact-input appearance-none text-gray-400">
+                                        <select name="category" class="contact-input appearance-none text-gray-400">
                                             <option>Recruitment Support</option>
                                             <option>Enterprise Hiring</option>
                                             <option>Technical Staffing</option>
@@ -3049,10 +3049,12 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                                     </div>
                                 </div>
                                 <div class="relative">
-                                    <textarea id="message" rows="4" placeholder=" " class="contact-input"></textarea>
+                                    <textarea id="message" name="message" rows="4" placeholder=" " class="contact-input" required></textarea>
                                     <label for="message" class="contact-label">How can I support your goals?</label>
                                 </div>
-                                <button class="w-full bg-blue-600 py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] shadow-2xl shadow-blue-600/30 hover:scale-[1.02] transition-all">Engage Command Center</button>
+                                <button type="submit" class="w-full bg-blue-600 py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] shadow-2xl shadow-blue-600/30 hover:scale-[1.02] transition-all">
+    Engage Command Center
+</button>
                             </form>
                         </div>
                     </div>
@@ -3469,5 +3471,56 @@ function openTestimonial(btn) {
 
 		
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+emailjs.init("x7uRDRgp7KRALYhVz");
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const btn = this.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+
+    btn.innerHTML = "TRANSMITTING...";
+    btn.disabled = true;
+
+    emailjs.sendForm(
+        "service_hxmmpwv",
+        "template_ly118pc",
+        this
+    )
+    .then(() => {
+
+        btn.innerHTML = "✓ INQUIRY SENT";
+
+        alert("Thank you! Your inquiry has been sent successfully.");
+
+        this.reset();
+
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }, 3000);
+
+    })
+    .catch((error) => {
+
+        console.error(error);
+
+        btn.innerHTML = "FAILED - TRY AGAIN";
+
+        alert("Unable to send inquiry. Please try again.");
+
+        setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }, 3000);
+    });
+});
+</script>
+
 </body>
 </html>
