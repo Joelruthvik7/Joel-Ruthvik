@@ -143,6 +143,35 @@
         .exp-left { margin-right: auto; text-align: right; }
         .metric-badge { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); padding: 5px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; color: var(--electric-blue); text-transform: uppercase; }
 
+
+/* --- NEW CINEMATIC SYSTEM --- */
+        /* NEWLY ADDED CODE 11th June 2026 */
+        .experience-section-container { margin-bottom: 0 !important; padding-bottom: 80px; }
+        
+        .premium-glow-card { position: relative; overflow: hidden; transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease; border: 1px solid rgba(255,255,255,0.06); }
+        .premium-glow-card:hover { border-color: var(--electric-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.15); background: rgba(59, 130, 246, 0.02); }
+
+        .light-sweep { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent); transition: 0.8s; pointer-events: none; }
+        .premium-glow-card:hover .light-sweep { left: 100%; }
+
+        .career-journey-card { opacity: 0; }
+
+        .glass-panel-luxury { background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px); }
+
+        .proximity-glow { transition: filter 0.3s ease; }
+
+        /* Fix spacing gaps between sections */
+        #experience .py-40, #experience .mb-40 { padding-top: 5rem; padding-bottom: 5rem; margin-bottom: 2rem; }
+        
+        /* Entrance animation helpers */
+        .reveal-left { transform: translateX(-50px); }
+        .reveal-right { transform: translateX(50px); }
+        .reveal-bottom { transform: translateY(50px); }
+        
+        .museum-counter { font-variant-numeric: tabular-nums; }
+/* NEWLY ADDED CODE ENDED HERE 11th June 2026 */
+
+
         /* Skills Page Specific Styles */
         .skill-progress-bg { background: rgba(255,255,255,0.05); height: 4px; width: 100%; border-radius: 10px; overflow: hidden; margin-top: 10px; }
         .skill-progress-fill { background: linear-gradient(90deg, var(--electric-blue), #a855f7); height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
@@ -867,79 +896,177 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
     <!-- =========================================================
          3. PROFESSIONAL EXPERIENCE
          ========================================================= -->
-    <section id="experience" class="page px-6 lg:px-20">
-        <div class="max-w-7xl mx-auto text-center mb-32">
+    
+<section id="experience" class="page px-6 lg:px-20 overflow-visible">
+        <div class="max-w-7xl mx-auto text-center mb-16">
             <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-6">PROFESSIONAL <span class="gradient-text italic">EXPERIENCE</span></h1>
             <p class="text-gray-400 text-xl max-w-3xl mx-auto">6+ years of delivering top-tier recruitment solutions and technical hiring expertise for enterprise-level clients.</p>
         </div>
 
+        <!-- EXPERIENCE INTELLIGENCE DASHBOARD -->
+        <div class="max-w-7xl mx-auto mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- NEWLY ADDED CODE 11th June 2026 -->
+                <div class="glass-panel-luxury p-8 rounded-[40px] border-t-2 border-blue-500 premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <i class="fa-solid fa-user-tie text-blue-500 text-3xl mb-6"></i>
+                    <div class="text-5xl font-black mb-2"><span class="museum-counter" data-target="6">0</span>+</div>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em]">Years Intelligence</p>
+                </div>
+                <div class="glass-panel-luxury p-8 rounded-[40px] border-t-2 border-blue-500 premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <i class="fa-solid fa-handshake-angle text-blue-500 text-3xl mb-6"></i>
+                    <div class="text-5xl font-black mb-2"><span class="museum-counter" data-target="15">0</span>+</div>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em]">Partner Portals</p>
+                </div>
+                <div class="glass-panel-luxury p-8 rounded-[40px] border-t-2 border-blue-500 premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <i class="fa-solid fa-people-group text-blue-500 text-3xl mb-6"></i>
+                    <div class="text-5xl font-black mb-2"><span class="museum-counter" data-target="500">0</span>+</div>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em]">Talent Onboarded</p>
+                </div>
+                <div class="glass-panel-luxury p-8 rounded-[40px] border-t-2 border-blue-500 premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <i class="fa-solid fa-shield-halved text-blue-500 text-3xl mb-6"></i>
+                    <div class="text-5xl font-black mb-2">100%</div>
+                    <p class="text-[10px] font-bold text-gray-500 uppercase tracking-[0.3em]">Compliance Rating</p>
+                </div>
+                <!-- NEWLY ADDED CODE ENDED HERE 11th June 2026 -->
+            </div>
+        </div>
+
+        <!-- CAREER JOURNEY DOCUMENTARY -->
+        <div class="max-w-7xl mx-auto py-20 relative experience-section-container">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black italic tracking-tighter uppercase">The Journey <span class="text-blue-500 not-italic">Documentary</span></h2>
+            </div>
+            <div class="grid lg:grid-cols-3 gap-12 relative z-10">
+                <!-- NEWLY ADDED CODE 11th June 2026 -->
+                <!-- Milestone 1: Reveal Left -->
+                <div id="journey-1" class="career-journey-card reveal-left glass-panel-luxury p-12 rounded-[50px] border border-white/5 premium-glow-card group overflow-hidden proximity-glow">
+                    <div class="light-sweep"></div>
+                    <div class="absolute -right-5 -top-5 text-9xl font-black text-white/5 group-hover:text-blue-500/10">01</div>
+                    <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl mb-8"><i class="fa-solid fa-rocket"></i></div>
+                    <h3 class="text-3xl font-black mb-4">THE SOURCING ERA</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8">Specialized in US IT Bench Sales, navigating the complexities of Dice, Monster, and Corp-to-Corp negotiations.</p>
+                    <div class="pt-6 border-t border-white/10 flex gap-4"><span class="metric-badge">Market Speed</span><span class="metric-badge">C2C Expert</span></div>
+                </div>
+                <!-- Milestone 2: Reveal Bottom -->
+                <div id="journey-2" class="career-journey-card reveal-bottom glass-panel-luxury p-12 rounded-[50px] border border-white/5 premium-glow-card group overflow-hidden proximity-glow bg-blue-600/5">
+                    <div class="light-sweep"></div>
+                    <div class="absolute -right-5 -top-5 text-9xl font-black text-white/5 group-hover:text-blue-500/10">02</div>
+                    <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl mb-8"><i class="fa-solid fa-sitemap"></i></div>
+                    <h3 class="text-3xl font-black mb-4">OPERATIONAL LEAD</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8">Elevated to Manager Admin roles, taking charge of recruitment operations, performance tracking, and compliance auditing.</p>
+                    <div class="pt-6 border-t border-white/10 flex gap-4"><span class="metric-badge">Recruitment Ops</span><span class="metric-badge">Audit Control</span></div>
+                </div>
+                <!-- Milestone 3: Reveal Right -->
+                <div id="journey-3" class="career-journey-card reveal-right glass-panel-luxury p-12 rounded-[50px] border border-white/5 premium-glow-card group overflow-hidden proximity-glow shadow-2xl shadow-blue-600/10">
+                    <div class="light-sweep"></div>
+                    <div class="absolute -right-5 -top-5 text-9xl font-black text-white/5 group-hover:text-blue-500/10">03</div>
+                    <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl mb-8"><i class="fa-solid fa-crown"></i></div>
+                    <h3 class="text-3xl font-black mb-4">ENTERPRISE TA</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-8">Currently delivering premium talent acquisition strategies for Fortune 500 lifecycles (IBM, Barclays, Capgemini).</p>
+                    <div class="pt-6 border-t border-white/10 flex gap-4"><span class="metric-badge">Executive Search</span><span class="metric-badge">F500 Scale</span></div>
+                </div>
+                <!-- NEWLY ADDED CODE ENDED HERE 11th June 2026 -->
+            </div>
+        </div>
+
+        <!-- ENTERPRISE CLIENT SHOWCASE -->
+        <div class="max-w-7xl mx-auto py-20 experience-section-container">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- NEWLY ADDED CODE 11th June 2026 -->
+                <div class="glass p-10 rounded-[3rem] text-center premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <div class="text-5xl mb-6 text-white/20"><i class="fa-solid fa-building-columns"></i></div>
+                    <h4 class="text-2xl font-black mb-2">BARCLAYS</h4>
+                    <p class="text-[9px] font-bold text-blue-500 uppercase">Banking Excellence</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] text-center premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <div class="text-5xl mb-6 text-white/20"><i class="fa-solid fa-microchip"></i></div>
+                    <h4 class="text-2xl font-black mb-2">IBM</h4>
+                    <p class="text-[9px] font-bold text-blue-500 uppercase">Cloud Engineering</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] text-center premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <div class="text-5xl mb-6 text-white/20"><i class="fa-solid fa-network-wired"></i></div>
+                    <h4 class="text-2xl font-black mb-2">CAPGEMINI</h4>
+                    <p class="text-[9px] font-bold text-blue-500 uppercase">IT Consulting</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] text-center premium-glow-card proximity-glow">
+                    <div class="light-sweep"></div>
+                    <div class="text-5xl mb-6 text-white/20"><i class="fa-solid fa-tower-broadcast"></i></div>
+                    <h4 class="text-2xl font-black mb-2">COMCAST</h4>
+                    <p class="text-[9px] font-bold text-blue-500 uppercase">Telecom Ops</p>
+                </div>
+                <!-- NEWLY ADDED CODE ENDED HERE 11th June 2026 -->
+            </div>
+        </div>
+
+        <!-- ORIGINAL TIMELINE (WITH ENHANCED REVEALS) -->
         <div class="timeline-container pb-20">
             <div class="timeline-line-v"></div>
 
             <!-- SAVYA INFOTECH -->
             <div class="exp-section">
                 <div class="exp-dot" style="top: 20px;"></div>
-                <div class="exp-content exp-right">
-                    <div class="glass p-10 rounded-[40px] border-t-2 border-blue-600">
+                <div id="timeline-1" class="exp-content exp-right reveal-right">
+                    <!-- NEWLY ADDED CODE 11th June 2026 -->
+                    <div class="glass p-10 rounded-[40px] border-t-2 border-blue-600 premium-glow-card proximity-glow">
+                        <div class="light-sweep"></div>
                         <div class="flex justify-between items-start mb-6">
-                            <div><h2 class="text-3xl font-black">Savya Infotech / VentleyTech</h2><p class="text-blue-500 font-bold uppercase text-[10px] tracking-widest">Talent Acquisition Specialist</p></div>
+                            <div><h2 class="text-3xl font-black">Savya Infotech</h2><p class="text-blue-500 font-bold uppercase text-[10px] tracking-widest">Talent Acquisition Specialist</p></div>
                             <span class="glass px-4 py-1 rounded-full text-[9px] font-bold">2024 - PRESENT</span>
                         </div>
                         <div class="space-y-4 text-gray-400 text-sm leading-relaxed mb-8">
                             <p>• Managing complete recruitment lifecycle for Fortune 500: <b class="text-white">IBM, Barclays, Comcast, Capgemini.</b></p>
-                            <p>• Sourcing top technical talent across Banking and Telecom domains via Dice, LinkedIn, Monster.</p>
-                            <p>• Orchestrating C2C/W2 rate negotiations and onboarding compliance processes.</p>
                         </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="metric-badge">Banking Domain</span><span class="metric-badge">Vendor Mgmt</span><span class="metric-badge">Technical Screening</span>
-                        </div>
+                        <div class="flex flex-wrap gap-2"><span class="metric-badge">Banking Domain</span><span class="metric-badge">Technical Screening</span></div>
                     </div>
+                    <!-- NEWLY ADDED CODE ENDED HERE 11th June 2026 -->
                 </div>
             </div>
 
             <!-- TECKWIZCENTRIC -->
             <div class="exp-section">
                 <div class="exp-dot" style="top: 20px;"></div>
-                <div class="exp-content exp-left">
-                    <div class="glass p-10 rounded-[40px] border-t-2 border-gray-600">
+                <div id="timeline-2" class="exp-content exp-left reveal-left">
+                    <!-- NEWLY ADDED CODE 11th June 2026 -->
+                    <div class="glass p-10 rounded-[40px] border-t-2 border-gray-600 premium-glow-card proximity-glow">
+                        <div class="light-sweep"></div>
                         <div class="flex justify-between items-start mb-6 flex-row-reverse">
                             <div class="text-right"><h2 class="text-3xl font-black">Teckwizcentric OPC</h2><p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">Manager Admin</p></div>
                             <span class="glass px-4 py-1 rounded-full text-[9px] font-bold">2022 - 2024</span>
                         </div>
-                        <div class="space-y-4 text-gray-400 text-sm leading-relaxed mb-8">
-                            <p>• Led HR support operations, recruiter coordination, and administrative management.</p>
-                            <p>• Conducted background verifications and recruitment compliance audits (PF/ESI).</p>
-                            <p>• Mentored new recruiters on IT market dynamics and interview preparation.</p>
-                        </div>
-                        <div class="flex flex-wrap gap-2 justify-end">
-                            <span class="metric-badge">Team Coordination</span><span class="metric-badge">HR Support</span><span class="metric-badge">Leadership</span>
-                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">• Led HR support operations and recruitment compliance audits.</p>
+                        <div class="flex flex-wrap gap-2 justify-end"><span class="metric-badge">Team Coordination</span><span class="metric-badge">Leadership</span></div>
                     </div>
+                    <!-- NEWLY ADDED CODE ENDED HERE 11th June 2026 -->
                 </div>
             </div>
 
             <!-- SOFTWORLD -->
             <div class="exp-section">
                 <div class="exp-dot" style="top: 20px;"></div>
-                <div class="exp-content exp-right">
-                    <div class="glass p-10 rounded-[40px] border-t-2 border-gray-800">
+                <div id="timeline-3" class="exp-content exp-right reveal-right">
+                    <!-- NEWLY ADDED CODE 11th June 2026 -->
+                    <div class="glass p-10 rounded-[40px] border-t-2 border-gray-800 premium-glow-card proximity-glow">
+                        <div class="light-sweep"></div>
                         <div class="flex justify-between items-start mb-6">
                             <div><h2 class="text-3xl font-black">Softworld Technologies</h2><p class="text-gray-500 font-bold uppercase text-[10px] tracking-widest">IT Recruiter / Sys Admin</p></div>
                             <span class="glass px-4 py-1 rounded-full text-[9px] font-bold">2019 - 2022</span>
                         </div>
-                        <div class="space-y-4 text-gray-400 text-sm leading-relaxed mb-8">
-                            <p>• Executed bench sales operations, sourcing and marketing IT consultants to vendors.</p>
-                            <p>• Negotiated rates and maintained vendor relationships on Dice & Corp-Corp.</p>
-                            <p>• Managed systems administration, hardware setup, and security measures.</p>
-                        </div>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="metric-badge">Bench Sales</span><span class="metric-badge">Systems Admin</span><span class="metric-badge">Technical Support</span>
-                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8">• Executed bench sales operations, sourcing and marketing IT consultants.</p>
+                        <div class="flex flex-wrap gap-2"><span class="metric-badge">Bench Sales</span><span class="metric-badge">Systems Admin</span></div>
                     </div>
+                    <!-- NEWLY ADDED CODE ENDED HERE 11th June 2026 -->
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- =========================================================
          4. SKILLS & EXPERTISE PAGE (UPDATED)
@@ -3043,7 +3170,8 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                     if(pageId === 'services') runServicesAnimations();
                     if(pageId === 'certifications') runCertificationsAnimations();
                     if(pageId === 'education') runEducationAnimations();
-                    window.scrollTo(0, 0);
+	            if(pageId === 'experience') setTimeout(runExperienceMuseumAnimations, 300);                    
+		    window.scrollTo(0, 0);
                 }
             });
         }
@@ -3290,6 +3418,55 @@ function openTestimonial(btn) {
         document.addEventListener('mousemove', (e) => {
             gsap.to('#cursor-light', { x: e.clientX - 300, y: e.clientY - 300, duration: 1.5 });
         });
+
+ /* NEWLY ADDED CODE 11th June 2026 */
+        function runExperienceMuseumAnimations() {
+            // 1. Counter Reset & Trigger
+            gsap.utils.toArray('.museum-counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                gsap.to(counter, {
+                    innerText: target, duration: 2, snap: { innerText: 1 },
+                    scrollTrigger: { trigger: counter, start: "top 95%" }
+                });
+            });
+
+            // 2. Career Journey Reveal Sequence (Left, Bottom, Right)
+            const journeyTL = gsap.timeline({ scrollTrigger: { trigger: "#journey-1", start: "top 85%" } });
+            journeyTL.to("#journey-1", { opacity: 1, x: 0, duration: 1.2, ease: "power4.out" })
+                     .to("#journey-2", { opacity: 1, y: 0, duration: 1.2, ease: "power4.out" }, "-=0.8")
+                     .to("#journey-3", { opacity: 1, x: 0, duration: 1.2, ease: "power4.out" }, "-=0.8");
+
+            // 3. Original Timeline Reveal Sequence (L-to-C and R-to-C)
+            gsap.to("#timeline-1", { 
+                opacity: 1, x: 0, duration: 1.2, ease: "power3.out",
+                scrollTrigger: { trigger: "#timeline-1", start: "top 80%", toggleActions: "play none none none" }
+            });
+            gsap.to("#timeline-2", { 
+                opacity: 1, x: 0, duration: 1.2, ease: "power3.out",
+                scrollTrigger: { trigger: "#timeline-2", start: "top 80%", toggleActions: "play none none none" }
+            });
+            gsap.to("#timeline-3", { 
+                opacity: 1, x: 0, duration: 1.2, ease: "power3.out",
+                scrollTrigger: { trigger: "#timeline-3", start: "top 80%", toggleActions: "play none none none" }
+            });
+
+            // 4. Proximity Brightness Interaction
+            document.addEventListener('mousemove', (e) => {
+                const cards = document.querySelectorAll('.proximity-glow');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardX = rect.left + rect.width / 2;
+                    const cardY = rect.top + rect.height / 2;
+                    const dist = Math.hypot(e.clientX - cardX, e.clientY - cardY);
+                    
+                    // Executive proximity effect: brighten only when within 400px
+                    const brightness = Math.max(1, 1.4 - (dist / 600));
+                    gsap.to(card, { filter: `brightness(${brightness})`, duration: 0.4 });
+                });
+            });
+        }
+        /* NEWLY ADDED CODE ENDED HERE 11th June 2026 */
+
 		
 </script>
 </body>
