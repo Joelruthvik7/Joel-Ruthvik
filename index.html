@@ -248,6 +248,16 @@
 /* testimonial */
 		.testimonial-card { transition: 0.4s ease; }
         .testimonial-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); }
+
+/* NEWLY ADDED CODE 13th June 2026 */
+        .luxury-beam { position: absolute; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0; pointer-events: none; }
+        .contact-card-premium { transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .contact-card-premium:hover { box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); }
+        .social-link-magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-flex; position: relative; }
+        .social-tooltip { position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--electric-blue); color: white; padding: 4px 12px; border-radius: 6px; font-size: 10px; opacity: 0; transition: 0.3s; pointer-events: none; white-space: nowrap; }
+        .social-link-magnetic:hover .social-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .char-counter { font-size: 9px; color: rgba(255,255,255,0.2); position: absolute; right: 20px; bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+/* NEWLY ADDED CODE ENDED HERE 13th June 2026 */
 </style>
 
 
@@ -2954,6 +2964,10 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
     <section id="contact" class="page px-6 lg:px-20 overflow-hidden relative">
         <!-- Cinematic Hero Section -->
         <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+            <!-- NEWLY ADDED CODE 13th June 2026 -->
+            <div class="luxury-beam left-[20%]"></div>
+            <div class="luxury-beam right-[20%]"></div>
+            <!-- NEWLY ADDED CODE ENDED HERE 13th June 2026 -->
             <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
             <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 contact-hero-badge">Direct Access</div>
             <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none contact-hero-title">CONTACT <br><span class="gradient-text italic">ME</span></h1>
@@ -2961,13 +2975,17 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                 Let’s connect to discuss recruitment solutions, enterprise hiring, professional collaboration, and career opportunities.
             </p>
             <div class="flex flex-wrap justify-center gap-6 mt-16">
-                <button class="bg-blue-600 px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/40 hover:scale-105 transition-all">Schedule a Meeting</button>
+                <!-- NEWLY ADDED CODE 13th June 2026 -->
+                <a href="https://calendly.com/joelruthvik" target="_blank" class="bg-blue-600 px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/40 hover:scale-105 transition-all flex items-center">
+                    <i class="fa-solid fa-calendar-check mr-3"></i> Schedule a Meeting
+                </a>
+                <!-- NEWLY ADDED CODE ENDED HERE 13th June 2026 -->
                 <button class="glass px-10 py-4 rounded-2xl font-bold uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all border border-white/10">Connect Professionally</button>
             </div>
         </div>
 
         <!-- Get In Touch Matrix -->
-        <div class="max-w-7xl mx-auto py-40">
+        <div id="contact-matrix" class="max-w-7xl mx-auto py-40">
             <div class="grid lg:grid-cols-2 gap-20 items-center">
                 <div class="space-y-12">
                     <h2 class="text-6xl font-black italic">Get In <span class="text-blue-500 not-italic uppercase">Touch</span></h2>
@@ -2976,7 +2994,7 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <!-- Email Card -->
-                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden contact-card-premium proximity-glow">
                             <i class="fa-solid fa-envelope text-3xl text-blue-500 mb-6 block"></i>
                             <h4 class="text-xl font-bold mb-2">Official Email</h4>
                             <p class="text-[11px] font-bold text-gray-500 mb-6">hello@joelruthvik.com</p>
@@ -2986,7 +3004,7 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                             </div>
                         </div>
                         <!-- Phone Card -->
-                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden contact-card-premium proximity-glow">
                             <i class="fa-solid fa-phone-volume text-3xl text-blue-500 mb-6 block"></i>
                             <h4 class="text-xl font-bold mb-2">Phone Contact</h4>
                             <p class="text-[11px] font-bold text-gray-500 mb-1">+91 8897865414</p>
@@ -2997,7 +3015,8 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                             </div>
                         </div>
                         <!-- LinkedIn Card -->
-                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                        <!-- NEWLY ADDED CODE 13th June 2026 -->
+                        <a href="https://linkedin.com/in/joelruthvik" target="_blank" class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden contact-card-premium proximity-glow block">
                             <i class="fa-brands fa-linkedin text-3xl text-blue-500 mb-6 block"></i>
                             <h4 class="text-xl font-bold mb-2">LinkedIn</h4>
                             <p class="text-[11px] font-bold text-gray-500 mb-6">Professional Industry Hub</p>
@@ -3006,8 +3025,9 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                                 <span class="metric-badge">Talent Acquisition</span>
                             </div>
                         </a>
+                        <!-- NEWLY ADDED CODE ENDED HERE 13th June 2026 -->
                         <!-- Location Card -->
-                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                        <div class="glass p-8 rounded-[3rem] group hover:border-blue-500 transition-all relative overflow-hidden contact-card-premium proximity-glow">
                             <i class="fa-solid fa-location-dot text-3xl text-blue-500 mb-6 block"></i>
                             <h4 class="text-xl font-bold mb-2">Location</h4>
                             <p class="text-[11px] font-bold text-gray-500 mb-6">Hyderabad, Telangana, India</p>
@@ -3019,7 +3039,7 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                 </div>
 
                 <!-- Futuristic Contact Form -->
-                <div class="relative">
+                <div id="contact-form-container" class="relative">
                     <div class="animated-skill-border glass rounded-[4rem]">
                         <div class="animated-skill-border-inner p-12 lg:p-16">
                             <h3 class="text-3xl font-black mb-10 italic uppercase">Send a Professional <span class="text-blue-500">Inquiry</span></h3>
@@ -3049,12 +3069,15 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                                     </div>
                                 </div>
                                 <div class="relative">
-                                    <textarea id="message" name="message" rows="4" placeholder=" " class="contact-input" required></textarea>
+                                    <textarea id="message" name="message" rows="4" placeholder=" " class="contact-input" required maxlength="1000" oninput="updateCharCount(this)"></textarea>
                                     <label for="message" class="contact-label">How can I support your goals?</label>
+                                    <!-- NEWLY ADDED CODE 13th June 2026 -->
+                                    <div class="char-counter"><span id="char-current">0</span>/1000</div>
+                                    <!-- NEWLY ADDED CODE ENDED HERE 13th June 2026 -->
                                 </div>
-                                <button type="submit" class="w-full bg-blue-600 py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] shadow-2xl shadow-blue-600/30 hover:scale-[1.02] transition-all">
-    Engage Command Center
-</button>
+                                <button type="submit" class="w-full bg-blue-600 py-6 rounded-3xl font-black uppercase text-[11px] tracking-[0.3em] shadow-2xl shadow-blue-600/30 hover:scale-[1.02] transition-all overflow-hidden relative">
+                                    <span class="relative z-10">Engage Command Center</span>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -3063,30 +3086,30 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
         </div>
 
         <!-- Recruitment & Collaboration Opportunities -->
-        <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+        <div id="collaboration-grid" class="max-w-7xl mx-auto py-40 border-t border-white/5">
             <h2 class="text-center text-4xl font-black mb-24 italic uppercase">Recruitment & <span class="text-blue-500">Collaboration</span></h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-users-gear text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all proximity-glow">
+                    <i class="fa-solid fa-users-gear text-4xl mb-6 text-blue-500 group-hover:text-white transition-transform group-hover:rotate-12"></i>
                     <h5 class="text-[10px] font-black uppercase tracking-widest">Talent Coordination</h5>
                 </div>
-                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-diagram-project text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all proximity-glow">
+                    <i class="fa-solid fa-diagram-project text-4xl mb-6 text-blue-500 group-hover:text-white transition-transform group-hover:scale-110"></i>
                     <h5 class="text-[10px] font-black uppercase tracking-widest">Enterprise Staffing</h5>
                 </div>
-                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-handshake-simple text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all proximity-glow">
+                    <i class="fa-solid fa-handshake-simple text-4xl mb-6 text-blue-500 group-hover:text-white transition-transform group-hover:-rotate-12"></i>
                     <h5 class="text-[10px] font-black uppercase tracking-widest">Vendor Partnerships</h5>
                 </div>
-                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all">
-                    <i class="fa-solid fa-magnifying-glass-plus text-4xl mb-6 text-blue-500 group-hover:text-white"></i>
+                <div class="glass p-10 rounded-[3rem] text-center group hover:bg-blue-600 transition-all proximity-glow">
+                    <i class="fa-solid fa-magnifying-glass-plus text-4xl mb-6 text-blue-500 group-hover:text-white transition-transform group-hover:translate-y-[-5px]"></i>
                     <h5 class="text-[10px] font-black uppercase tracking-widest">Technical Sourcing</h5>
                 </div>
             </div>
         </div>
 
         <!-- Global Communication Section -->
-        <div class="max-w-7xl mx-auto py-40">
+        <div id="communication-philosophy" class="max-w-7xl mx-auto py-40">
             <div class="glass p-16 lg:p-24 rounded-[5rem] relative overflow-hidden">
                 <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
                 <div class="grid lg:grid-cols-2 gap-20 items-center">
@@ -3103,13 +3126,13 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                     <div>
                         <h2 class="text-5xl lg:text-7xl font-black italic leading-tight mb-10">Communication <br><span class="text-blue-500 uppercase not-italic">Philosophy</span></h2>
                         <div class="grid gap-6">
-                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-blue-500">
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-blue-500 hover:bg-white/5 transition-all">
                                 <div class="text-xs font-bold uppercase tracking-widest">Transparent Engagement</div>
                             </div>
-                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-white/10">
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-white/10 hover:bg-white/5 transition-all">
                                 <div class="text-xs font-bold uppercase tracking-widest">Response Excellence</div>
                             </div>
-                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-blue-500">
+                            <div class="flex items-center gap-6 glass p-6 rounded-3xl border-l-4 border-blue-500 hover:bg-white/5 transition-all">
                                 <div class="text-xs font-bold uppercase tracking-widest">Relationship Consistency</div>
                             </div>
                         </div>
@@ -3119,18 +3142,20 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
         </div>
 
         <!-- Social Connectivity -->
-        <div class="max-w-7xl mx-auto py-40">
+        <div id="social-connectivity" class="max-w-7xl mx-auto py-40">
             <h2 class="text-center text-[10px] font-black uppercase tracking-[1em] mb-12 text-gray-500">Social Connectivity</h2>
             <div class="flex justify-center gap-12">
-                <a href="#" class="text-3xl text-gray-500 hover:text-blue-500 hover:scale-125 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="text-3xl text-gray-500 hover:text-pink-500 hover:scale-125 transition-all"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="text-3xl text-gray-500 hover:text-green-500 hover:scale-125 transition-all"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="text-3xl text-gray-500 hover:text-white hover:scale-125 transition-all"><i class="fa-solid fa-envelope"></i></a>
+                <!-- NEWLY ADDED CODE 13th June 2026 -->
+                <a href="https://linkedin.com/in/joelruthvik" target="_blank" class="text-3xl text-gray-500 hover:text-blue-500 social-link-magnetic"><i class="fa-brands fa-linkedin-in"></i><span class="social-tooltip">LinkedIn</span></a>
+                <a href="https://www.instagram.com/joelruthvik" target="_blank" class="text-3xl text-gray-500 hover:text-pink-500 social-link-magnetic"><i class="fa-brands fa-instagram"></i><span class="social-tooltip">Instagram</span></a>
+                <a href="https://wa.me/919666889775" target="_blank" class="text-3xl text-gray-500 hover:text-green-500 social-link-magnetic"><i class="fa-brands fa-whatsapp"></i><span class="social-tooltip">WhatsApp</span></a>
+                <a href="mailto:hello@joelruthvik.com" class="text-3xl text-gray-500 hover:text-white social-link-magnetic"><i class="fa-solid fa-envelope"></i><span class="social-tooltip">Email</span></a>
+                <!-- NEWLY ADDED CODE ENDED HERE 13th June 2026 -->
             </div>
         </div>
 
         <!-- Stats Counter -->
-        <div class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 py-20 border-t border-white/5">
+        <div id="contact-stats" class="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 py-20 border-t border-white/5">
             <div class="text-center"><h3 class="text-4xl font-black text-blue-500">6+</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Recruitment Years</p></div>
             <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Enterprise</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Communication</p></div>
             <div class="text-center"><h3 class="text-4xl font-black text-blue-500">Global</h3><p class="text-[9px] font-bold text-gray-500 uppercase">Networking</p></div>
@@ -3138,12 +3163,13 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
         </div>
 
         <!-- Cinematic Quote -->
-        <div class="max-w-6xl mx-auto text-center py-48">
+        <div id="contact-final-quote" class="max-w-6xl mx-auto text-center py-48">
             <h2 class="text-6xl lg:text-7xl font-black italic leading-tight contact-quote">
                 “Strong communication builds meaningful relationships, and meaningful relationships create <span class="text-blue-500">exceptional opportunities</span>.”
             </h2>
         </div>
     </section>
+
 
 <!-- SUCCESS TOAST -->
 
@@ -3203,6 +3229,7 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
                     if(pageId === 'services') runServicesAnimations();
                     if(pageId === 'certifications') runCertificationsAnimations();
                     if(pageId === 'education') runEducationAnimations();
+		    if(pageId === 'contact') runContactAnimations();
 	            if(pageId === 'experience') setTimeout(runExperienceMuseumAnimations, 300);                    
 		    window.scrollTo(0, 0);
                 }
@@ -3423,12 +3450,69 @@ function runSocialAnimations() {
             });
         }
 
+/* NEWLY ADDED CODE 13th June 2026 */
 function runContactAnimations() {
-            gsap.from(".contact-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
-            gsap.from(".reveal-contact-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
-            gsap.from(".glass", { opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out" });
-            gsap.from(".contact-quote", { opacity: 0, scale: 0.9, duration: 2, ease: "power2.out" });
-  }
+    // Reveal Sequence
+    gsap.from(".contact-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+    gsap.from(".reveal-contact-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+
+    // Alternating ScrollTrigger reveals
+    gsap.from("#contact-matrix", {
+        x: -100, opacity: 0, duration: 1.5, ease: "power3.out",
+        scrollTrigger: { trigger: "#contact-matrix", start: "top 80%" }
+    });
+
+    gsap.from("#contact-form-container", {
+        x: 100, opacity: 0, duration: 1.5, ease: "power3.out",
+        scrollTrigger: { trigger: "#contact-form-container", start: "top 80%" }
+    });
+
+    gsap.from("#collaboration-grid", {
+        y: 100, opacity: 0, duration: 1.5, ease: "power3.out",
+        scrollTrigger: { trigger: "#collaboration-grid", start: "top 80%" }
+    });
+    
+
+    gsap.from("#communication-philosophy", {
+        x: -100, opacity: 0, duration: 1.5, ease: "power3.out",
+        scrollTrigger: { trigger: "#communication-philosophy", start: "top 80%" }
+    });
+
+    gsap.from("#social-connectivity", {
+        x: 100, opacity: 0, duration: 1.5, ease: "power3.out",
+        scrollTrigger: { trigger: "#social-connectivity", start: "top 80%" }
+    });
+
+    gsap.from(".contact-quote", { opacity: 0, scale: 0.9, duration: 2, ease: "power2.out" });
+
+    // Luxury Beam Animation
+    gsap.to(".luxury-beam", {
+        opacity: 0.3, y: 500, duration: 10, repeat: -1, yoyo: true, stagger: 2, ease: "sine.inOut"
+    });
+
+    // Magnetic Effect for Social Links
+    document.querySelectorAll('.social-link-magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(btn, { x: x * 0.4, y: y * 0.4, duration: 0.3 });
+        });
+        btn.addEventListener('mouseleave', () => {
+            gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+        });
+    });
+}
+
+function updateCharCount(textarea) {
+    document.getElementById('char-current').innerText = textarea.value.length;
+    if (textarea.value.length > 900) {
+        document.getElementById('char-current').classList.add('text-orange-500');
+    } else {
+        document.getElementById('char-current').classList.remove('text-orange-500');
+    }
+}
+/* NEWLY ADDED CODE ENDED HERE 13th June 2026 */
 
 /* Generic shared trigger functions for previous sections */
         function runEducationAnimations() { gsap.from(".edu-stage", { opacity: 0, y: 50, stagger: 0.3 }); }
