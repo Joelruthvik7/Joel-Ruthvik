@@ -60,6 +60,79 @@
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
         .gradient-text { background: linear-gradient(to right, #fff, var(--electric-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
+/* NEWLY ADDED CODE 22ND MAY 2024 */
+/* MARQUEE ENGINE STYLES */
+
+.marquee-container {
+            overflow: hidden;
+            display: flex;
+            user-select: none;
+            gap: 2rem;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 2rem;
+            animation: scroll-marquee 40s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100% - 2rem)); }
+        }
+
+        .marquee-card {
+            width: 380px;
+            flex-shrink: 0;
+            border-radius: 32px;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marquee-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--electric-blue), transparent);
+            opacity: 0;
+            transition: 0.5s;
+            z-index: 0;
+        }
+
+        .marquee-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--electric-blue);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3);
+        }
+
+        .marquee-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .marquee-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fast Marquee for Skills */
+        .marquee-fast .marquee-content { animation-duration: 25s; }
+        /* Reverse Marquee */
+        .marquee-reverse .marquee-content { animation-direction: reverse; }
+
+/* NEWLY ADDED CODE ENDED HERE */
+
         /* Experience Timeline Elements */
         .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; }
         .timeline-line-v { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0.3; }
@@ -477,16 +550,315 @@ Joel helped recruit a number of people on my team. I appreciate his drive and pa
     <section id="about" class="page px-6 lg:px-20 overflow-visible">
         <div class="max-w-7xl mx-auto mb-32">
             <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-16">ABOUT <span class="gradient-text italic">ME</span></h1>
-            <div class="grid lg:grid-cols-2 gap-20 items-start">
-                <div class="flex justify-center sticky top-40"><div class="portrait-frame"><img src="https://i.pinimg.com/736x/84/d5/d5/84d5d53aa436d932e6ed317d8bffd279.jpg" alt="Portrait"></div></div>
+            
+            <!-- Professional Journey Intro -->
+            <div class="grid lg:grid-cols-2 gap-20 items-start mb-32">
+                <div class="flex justify-center sticky top-40">
+                    <div class="portrait-frame"><img src="https://i.pinimg.com/736x/84/d5/d5/84d5d53aa436d932e6ed317d8bffd279.jpg" alt="Portrait"></div>
+                </div>
                 <div class="space-y-12">
                     <h2 class="text-3xl font-bold font-heading italic text-blue-500">Connecting talent with opportunities.</h2>
-                    <p class="text-gray-400 text-lg leading-relaxed">I am a passionate recruitment professional with 6+ years of experience in IT Staffing. I specialize in bridging the gap between exceptional technical talent and major industry giants like <b class="text-white">Tata Elxsi, IBM, Capgemini, and Barclays.</b></p>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        I am a passionate recruitment professional with 6+ years of experience in IT Staffing. I specialize in bridging the gap between exceptional technical talent and major industry giants like <b class="text-white">Tata Elxsi, IBM, Capgemini, and Barclays.</b>
+                    </p>
+                    
+                    <div class="glass p-8 rounded-3xl border border-white/10">
+                        <h3 class="text-blue-500 font-bold uppercase text-xs tracking-widest mb-4">Evolutionary Roadmap</h3>
+                        <div class="flex items-center gap-4 flex-wrap">
+                            <span class="glass px-4 py-2 rounded-full text-[10px] font-bold">Student</span>
+                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                            <span class="glass px-4 py-2 rounded-full text-[10px] font-bold">US IT Recruiter</span>
+                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                            <span class="glass px-4 py-2 rounded-full text-[10px] font-bold">Manager Admin</span>
+                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                            <span class="glass px-4 py-2 rounded-full text-[10px] font-bold">TA Specialist</span>
+                            <i class="fa-solid fa-chevron-right text-gray-600"></i>
+                            <span class="border border-blue-500/50 text-blue-400 px-4 py-2 rounded-full text-[10px] font-bold">Web Designer</span>
+                        </div>
+                    </div>
+
                     <div class="grid md:grid-cols-2 gap-4">
                         <div class="glass p-5 rounded-2xl border-l-4 border-blue-500"><h4 class="font-bold text-blue-500 uppercase text-[10px] tracking-widest mb-2">My Journey</h4><p class="text-xs text-gray-400">Softworld ➔ Teckwizcentric ➔ Savya Infotech</p></div>
                         <div class="glass p-5 rounded-2xl border-l-4 border-purple-500"><h4 class="font-bold text-purple-500 uppercase text-[10px] tracking-widest mb-2">Expertise</h4><p class="text-xs text-gray-400">Full-cycle Recruitment, Vendor Mgmt, C2C/W2</p></div>
                     </div>
-                    <div class="glass p-8 rounded-3xl"><h4 class="font-bold mb-4">Education</h4><p class="text-sm">B.A Psychology – BRAOU</p><p class="text-sm">B.Tech in Computer Science Engineering</p></div>
+                </div>
+            </div>
+
+            
+            <!-- NEWLY ADDED CODE 22ND MAY 2024 -->
+            <!-- RECRUITMENT ACHIEVEMENTS MARQUEE -->
+            
+            <div class="mb-32">
+                <h2 class="text-center text-4xl font-black uppercase mb-12 italic">Recruitment <span class="text-blue-500">Excellence</span></h2>
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        <!-- Card 1 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-building-columns text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">BFSI Recruitment</h3>
+                            <p class="text-xs text-gray-400">Expert hiring for Barclays, Wells Fargo, and leading fintech giants.</p>
+                            <div class="mt-4 text-[10px] font-bold text-blue-500">100% COMPLIANCE</div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-crown text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">Fortune 500</h3>
+                            <p class="text-xs text-gray-400">Delivering top-tier talent for IBM, Capgemini, and Comcast lifecycles.</p>
+                            <div class="mt-4 text-[10px] font-bold text-blue-500">EXECUTIVE SEARCH</div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-chart-line text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">Bench Sales Success</h3>
+                            <p class="text-xs text-gray-400">Proven track record in marketing consultants to prime vendors.</p>
+                            <div class="mt-4 text-[10px] font-bold text-blue-500">REVENUE GROWTH</div>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-user-shield text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">Technical Vetting</h3>
+                            <p class="text-xs text-gray-400">Deep screening for Full Stack, DevOps, and AI roles.</p>
+                            <div class="mt-4 text-[10px] font-bold text-blue-500">98% SELECTION RATE</div>
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-building-columns text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">BFSI Recruitment</h3>
+                            <p class="text-xs text-gray-400">Expert hiring for Barclays, Wells Fargo, and leading fintech giants.</p>
+                        </div>
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-crown text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">Fortune 500</h3>
+                            <p class="text-xs text-gray-400">Delivering top-tier talent for IBM, Capgemini, and Comcast.</p>
+                        </div>
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-chart-line text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">Bench Sales Success</h3>
+                            <p class="text-xs text-gray-400">Proven track record in marketing consultants.</p>
+                        </div>
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-user-shield text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-xl font-bold mb-2">Technical Vetting</h3>
+                            <p class="text-xs text-gray-400">Deep screening for Full Stack, DevOps, and AI roles.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+<!-- NEWLY ADDED CODE ENDED HERE -->
+            
+
+            
+            <!-- NEWLY ADDED CODE 22ND MAY 2024 -->
+            <!-- SKILLS EVOLUTION MARQUEE (REVERSE) -->
+            
+            <div class="mb-32">
+                <h2 class="text-2xl font-black uppercase italic mb-12">Core <span class="text-blue-500">Competencies</span></h2>
+                <div class="marquee-container marquee-fast marquee-reverse">
+                    <div class="marquee-content">
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-search text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">Boolean Search</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-brands fa-linkedin text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">LinkedIn Recruiter</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-users-gear text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">Vendor Management</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-file-contract text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">W2/C2C/1099</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-laptop-code text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">Web Development</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-brain text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">Psychological Vetting</span>
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-search text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">Boolean Search</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-brands fa-linkedin text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">LinkedIn Recruiter</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-users-gear text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">Vendor Management</span>
+                        </div>
+                        <div class="glass px-8 py-5 rounded-2xl flex items-center gap-4 border border-white/5 min-w-max">
+                            <i class="fa-solid fa-file-contract text-blue-500"></i> <span class="text-sm font-bold uppercase tracking-widest">W2/C2C/1099</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+<!-- NEWLY ADDED CODE ENDED HERE -->
+            
+
+            <!-- EXPERIENCE SECTION TRANSFORMD TO MARQUEE -->
+            <div class="mb-32">
+                <h2 class="text-2xl font-black uppercase italic mb-12">Professional <span class="text-blue-500">Timeline</span></h2>
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        <!-- Job 1 -->
+                        <div class="marquee-card">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase mb-4 block">Aug 2024 – Present</span>
+                            <h3 class="text-xl font-black mb-1">Savya Infotech</h3>
+                            <p class="text-[9px] font-bold text-gray-500 uppercase mb-6">Talent Acquisition Specialist</p>
+                            <p class="text-xs text-gray-400 leading-relaxed">Handling end-to-end recruitment for Barclays, IBM, and Comcast. Managed full lifecycle hiring from sourcing to onboarding.</p>
+                        </div>
+                        <!-- Job 2 -->
+                        <div class="marquee-card">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase mb-4 block">Jun 2022 – Aug 2024</span>
+                            <h3 class="text-xl font-black mb-1">Teckwizcentric (OPC)</h3>
+                            <p class="text-[9px] font-bold text-gray-500 uppercase mb-6">Manager Admin</p>
+                            <p class="text-xs text-gray-400 leading-relaxed">Overseeing HR operations, recruitment compliance, and auditing for offshore teams. Ensuring seamless operational delivery.</p>
+                        </div>
+                        <!-- Job 3 -->
+                        <div class="marquee-card">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase mb-4 block">Dec 2019 – Jun 2022</span>
+                            <h3 class="text-xl font-black mb-1">Softworld Technologies</h3>
+                            <p class="text-[9px] font-bold text-gray-500 uppercase mb-6">US IT Recruiter</p>
+                            <p class="text-xs text-gray-400 leading-relaxed">Specialized in Bench Sales and System Administration hiring. Successfully placed numerous consultants across US markets.</p>
+                        </div>
+                    </div>
+                    <!-- Duplicate for loop -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <div class="marquee-card">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase mb-4 block">Aug 2024 – Present</span>
+                            <h3 class="text-xl font-black mb-1">Savya Infotech</h3>
+                            <p class="text-[9px] font-bold text-gray-500 uppercase mb-6">Talent Acquisition Specialist</p>
+                        </div>
+                        <div class="marquee-card">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase mb-4 block">Jun 2022 – Aug 2024</span>
+                            <h3 class="text-xl font-black mb-1">Teckwizcentric (OPC)</h3>
+                            <p class="text-[9px] font-bold text-gray-500 uppercase mb-6">Manager Admin</p>
+                        </div>
+                        <div class="marquee-card">
+                            <span class="text-[10px] font-bold text-blue-500 uppercase mb-4 block">Dec 2019 – Jun 2022</span>
+                            <h3 class="text-xl font-black mb-1">Softworld Technologies</h3>
+                            <p class="text-[9px] font-bold text-gray-500 uppercase mb-6">US IT Recruiter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDUCATION SECTION TRANSFORMED TO MARQUEE -->
+            <div class="mb-32">
+                <h2 class="text-2xl font-black uppercase italic mb-12">Academic <span class="text-blue-500">Foundation</span></h2>
+                <div class="marquee-container marquee-reverse">
+                    <div class="marquee-content">
+                        <!-- Edu 1 -->
+                        <div class="marquee-card border-t-4 border-blue-500">
+                            <i class="fa-solid fa-brain text-2xl text-blue-500 mb-6"></i>
+                            <h4 class="font-bold text-lg">B.A Psychology</h4>
+                            <p class="text-xs text-gray-500 mb-2">2026 (Expected) | BRAOU</p>
+                            <p class="text-[10px] text-gray-400 leading-relaxed uppercase">Deepening Human Behavior Insights</p>
+                        </div>
+                        <!-- Edu 2 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-code text-2xl text-blue-500 mb-6"></i>
+                            <h4 class="font-bold text-lg">B.Tech CSE</h4>
+                            <p class="text-xs text-gray-500 mb-2">2020 | Computer Science</p>
+                            <p class="text-[10px] text-gray-400 leading-relaxed uppercase">Technical Problem Solving</p>
+                        </div>
+                        <!-- Edu 3 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-school text-2xl text-blue-500 mb-6"></i>
+                            <h4 class="font-bold text-lg">Intermediate</h4>
+                            <p class="text-xs text-gray-500 mb-2">2016 | Chaitanya College</p>
+                            <p class="text-[10px] text-gray-400 leading-relaxed uppercase">Science & Mathematics</p>
+                        </div>
+                        <!-- Edu 4 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-graduation-cap text-2xl text-blue-500 mb-6"></i>
+                            <h4 class="font-bold text-lg">SSC</h4>
+                            <p class="text-xs text-gray-500 mb-2">2014 | Care and Share</p>
+                            <p class="text-[10px] text-gray-400 leading-relaxed uppercase">Secondary Education</p>
+                        </div>
+                    </div>
+                    <!-- Duplicate -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <div class="marquee-card border-t-4 border-blue-500"><i class="fa-solid fa-brain text-2xl text-blue-500 mb-6"></i><h4 class="font-bold text-lg">B.A Psychology</h4></div>
+                        <div class="marquee-card"><i class="fa-solid fa-code text-2xl text-blue-500 mb-6"></i><h4 class="font-bold text-lg">B.Tech CSE</h4></div>
+                        <div class="marquee-card"><i class="fa-solid fa-school text-2xl text-blue-500 mb-6"></i><h4 class="font-bold text-lg">Intermediate</h4></div>
+                        <div class="marquee-card"><i class="fa-solid fa-graduation-cap text-2xl text-blue-500 mb-6"></i><h4 class="font-bold text-lg">SSC</h4></div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- NEWLY ADDED CODE 22ND MAY 2024 -->
+            <!-- GLOBAL CREDENTIALS & AWARDS MARQUEE -->
+            
+            <div class="mb-32">
+                <h2 class="text-center text-4xl font-black uppercase mb-12 italic">Honors & <span class="text-blue-500">Credentials</span></h2>
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        <!-- Certification 1 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-award text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-lg font-black uppercase">Guest Pick Award</h3>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Leadership Excellence</p>
+                        </div>
+                        <!-- Certification 2 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-trophy text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-lg font-black uppercase">Top Seller Award</h3>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Bench Sales Legend</p>
+                        </div>
+                        <!-- Certification 3 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-certificate text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-lg font-black uppercase">Android Fundamentals</h3>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Google Certified</p>
+                        </div>
+                        <!-- Certification 4 -->
+                        <div class="marquee-card">
+                            <i class="fa-solid fa-shield text-3xl text-blue-500 mb-6"></i>
+                            <h3 class="text-lg font-black uppercase">Cisco Cyber Cert</h3>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Network Security Essentials</p>
+                        </div>
+                    </div>
+                    <!-- Duplicate -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <div class="marquee-card"><i class="fa-solid fa-award text-3xl text-blue-500 mb-6"></i><h3 class="text-lg font-black uppercase">Guest Pick Award</h3></div>
+                        <div class="marquee-card"><i class="fa-solid fa-trophy text-3xl text-blue-500 mb-6"></i><h3 class="text-lg font-black uppercase">Top Seller Award</h3></div>
+                        <div class="marquee-card"><i class="fa-solid fa-certificate text-3xl text-blue-500 mb-6"></i><h3 class="text-lg font-black uppercase">Android Fundamentals</h3></div>
+                        <div class="marquee-card"><i class="fa-solid fa-shield text-3xl text-blue-500 mb-6"></i><h3 class="text-lg font-black uppercase">Cisco Cyber Cert</h3></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NEWLY ADDED CODE ENDED HERE -->
+
+            <!-- REMAINING ORIGINAL SECTIONS PRESERVED -->
+            <div class="mb-32">
+                <div class="animated-skill-border glass rounded-[40px] overflow-hidden">
+                    <div class="animated-skill-border-inner p-10 lg:p-16">
+                        <div class="grid lg:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <span class="bg-blue-600/20 text-blue-500 px-4 py-1 rounded-full text-[10px] font-bold uppercase mb-6 inline-block">B.Tech Capstone Project</span>
+                                <h3 class="text-4xl font-black mb-6 italic">Twitter Data Author Prediction <span class="text-blue-500">Using AI</span></h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-8">Developed an advanced machine learning model using RNN (LSTM) to predict tweet authorship.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-32 text-center py-20 bg-blue-600/5 rounded-[80px] px-10">
+                <h2 class="text-8xl font-black tracking-tighter mb-12 italic">THE <span class="text-blue-500">IMPACT</span></h2>
+                <p class="text-2xl font-medium text-gray-300 max-w-5xl mx-auto mb-20 italic">"My mission is to connect exceptional talent with meaningful opportunities while helping organizations grow."</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                    <div><p class="impact-number">01</p><p class="text-[8px] font-bold uppercase text-gray-500">Created Opportunities</p></div>
+                    <div><p class="impact-number">02</p><p class="text-[8px] font-bold uppercase text-gray-500">Solved Problems</p></div>
+                    <div><p class="impact-number">03</p><p class="text-[8px] font-bold uppercase text-gray-500">Helped People</p></div>
+                    <div><p class="impact-number">04</p><p class="text-[8px] font-bold uppercase text-gray-500">Strengthened Businesses</p></div>
+                    <div><p class="impact-number">05</p><p class="text-[8px] font-bold uppercase text-gray-500">Delivered Value</p></div>
                 </div>
             </div>
         </div>
