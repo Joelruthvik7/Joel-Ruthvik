@@ -1,1 +1,299 @@
+<!-- =========================================================
+         7. GAMIFIED WEB PORTFOLIO PAGE
+         ========================================================= -->
+    <section id="web-portfolio" class="page px-6 lg:px-20 relative">
+        <!-- Level Progress Top Bar -->
+        <div class="xp-header-bar flex items-center justify-between px-8">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-lg bg-blue-600/20 flex items-center justify-center border border-blue-500/30">
+                    <span class="text-blue-500 font-black text-xs" id="current-lvl-text">LVL 01</span>
+                </div>
+                <div>
+                    <p class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Global Ranking</p>
+                    <p class="text-xs font-black text-white">ELITE ARCHITECT</p>
+                </div>
+            </div>
+            <div class="flex-1 max-w-md mx-10">
+                <div class="flex justify-between text-[9px] font-bold uppercase tracking-widest mb-1 text-gray-500">
+                    <span>XP Progression</span>
+                    <span id="xp-counter">1500 / 9000 XP</span>
+                </div>
+                <div class="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
+                    <div id="global-xp-bar" class="h-full bg-gradient-to-right from-blue-600 to-purple-600 transition-all duration-700" style="width: 15%"></div>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <div class="progress-indicator-node active" data-node="1"></div>
+                <div class="progress-indicator-node" data-node="2"></div>
+                <div class="progress-indicator-node" data-node="3"></div>
+                <div class="progress-indicator-node" data-node="4"></div>
+                <div class="progress-indicator-node" data-node="5"></div>
+                <div class="progress-indicator-node" data-node="6"></div>
+            </div>
+        </div>
+
+        <!-- Hero Mission Briefing -->
+        <div class="max-w-7xl mx-auto py-32 text-center relative">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-bottom from-blue-500 to-transparent"></div>
+            <p class="text-blue-500 font-black text-[10px] tracking-[0.5em] uppercase mb-4 wp-hero-badge">System: Digital Construction Protocol</p>
+            <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-8 leading-none wp-hero-title">PROJECT <br><span class="gradient-text italic">MISSIONS</span></h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed reveal-wp-sub font-light">
+                Initializing portfolio sequence... Welcome, Agent. You are about to explore the digital assets developed by <span class="text-white font-bold italic">Thummala Joel Ruthvik</span>.
+            </p>
+        </div>
+
+        <!-- Quest Map Content -->
+        <div class="max-w-6xl mx-auto py-20 relative">
+            <div class="quest-connector"></div>
+
+            <!-- MISSION 01 -->
+            <div class="relative mb-40 wp-card" data-lvl="1" data-xp="15">
+                <div class="mission-level-badge">MISSION 01</div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="web-project-card light-sweep-effect">
+                        <div class="web-project-image-container">
+                            <img src="https://i.pinimg.com/736x/84/d5/d5/84d5d53aa436d932e6ed317d8bffd279.jpg" alt="Joel Ruthvik Portfolio">
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex gap-2"><span class="mission-tag">Personal Brand</span><span class="mission-tag">UI/UX Level 10</span></div>
+                        <h3 class="text-4xl font-black">JoelRuthvik.com</h3>
+                        <p class="text-gray-400 leading-relaxed">Luxury personal branding platform showcasing cross-disciplinary mastery. Features custom GSAP engine and Tailwind architecture.</p>
+                        
+                        <div class="grid grid-cols-3 gap-6 pt-4">
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-blue-400 mb-1"><span>COMPLEXITY</span><span>95%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-blue-500" style="width: 95%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-green-400 mb-1"><span>PERFORMANCE</span><span>99%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-green-500" style="width: 99%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-purple-400 mb-1"><span>CREATIVITY</span><span>90%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-purple-500" style="width: 90%"></div></div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://joelruthvik.com" target="_blank" class="glass px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-600 transition-all inline-block">Enter Deployment <i class="fa-solid fa-bolt-lightning ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSION 02 -->
+            <div class="relative mb-40 wp-card" data-lvl="2" data-xp="30">
+                <div class="mission-level-badge">MISSION 02</div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1 space-y-6 lg:text-right">
+                        <div class="flex gap-2 lg:justify-end"><span class="mission-tag">Enterprise</span><span class="mission-tag">Scalability Max</span></div>
+                        <h3 class="text-4xl font-black">SavyaInfotech.com</h3>
+                        <p class="text-gray-400 leading-relaxed">Corporate platform for IT staffing. Built for massive traffic and high-conversion candidate acquisition workflows.</p>
+                        <div class="grid grid-cols-3 gap-6 pt-4">
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-blue-400 mb-1"><span>COMPLEXITY</span><span>80%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-blue-500" style="width: 80%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-green-400 mb-1"><span>PERFORMANCE</span><span>92%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-green-500" style="width: 92%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-purple-400 mb-1"><span>CREATIVITY</span><span>75%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-purple-500" style="width: 75%"></div></div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://savyainfotech.com" target="_blank" class="glass px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-600 transition-all inline-block">Execute Launch <i class="fa-solid fa-rocket ml-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="web-project-card light-sweep-effect order-1 lg:order-2">
+                        <div class="web-project-image-container">
+                            <img src="https://i.pinimg.com/736x/2b/86/a3/2b86a3d0698540fa7528d3337bdd6997.jpg" alt="Savya Infotech">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSION 03 -->
+            <div class="relative mb-40 wp-card" data-lvl="3" data-xp="50">
+                <div class="mission-level-badge">MISSION 03</div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="web-project-card light-sweep-effect">
+                        <div class="web-project-image-container">
+                            <img src="https://i.pinimg.com/736x/b9/cb/86/b9cb86897da9d3c50e314d7466861a81.jpg" alt="VentleyTech">
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex gap-2"><span class="mission-tag">Recruitment UI</span><span class="mission-tag">Fluid Motion</span></div>
+                        <h3 class="text-4xl font-black">VentleyTech.com</h3>
+                        <p class="text-gray-400 leading-relaxed">A modern digital ecosystem for recruitment solutions. High emphasis on kinetic typography and interactive elements.</p>
+                        <div class="grid grid-cols-3 gap-6 pt-4">
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-blue-400 mb-1"><span>COMPLEXITY</span><span>85%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-blue-500" style="width: 85%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-green-400 mb-1"><span>PERFORMANCE</span><span>95%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-green-500" style="width: 95%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-purple-400 mb-1"><span>CREATIVITY</span><span>95%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-purple-500" style="width: 95%"></div></div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://ventleytech.com" target="_blank" class="glass px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-600 transition-all inline-block">Access Mainframe <i class="fa-solid fa-server ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSION 04 -->
+            <div class="relative mb-40 wp-card" data-lvl="4" data-xp="65">
+                <div class="mission-level-badge">MISSION 04</div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1 space-y-6 lg:text-right">
+                        <div class="flex gap-2 lg:justify-end"><span class="mission-tag">Media Focus</span><span class="mission-tag">Visual Engine</span></div>
+                        <h3 class="text-4xl font-black">ADEvents.in</h3>
+                        <p class="text-gray-400 leading-relaxed">Visual-rich event management platform. Optimized image streaming and interactive gallery modules.</p>
+                        <div class="grid grid-cols-3 gap-6 pt-4">
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-blue-400 mb-1"><span>COMPLEXITY</span><span>70%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-blue-500" style="width: 70%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-green-400 mb-1"><span>PERFORMANCE</span><span>88%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-green-500" style="width: 88%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-purple-400 mb-1"><span>CREATIVITY</span><span>99%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-purple-500" style="width: 99%"></div></div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://adevents.in" target="_blank" class="glass px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-600 transition-all inline-block">View Simulation <i class="fa-solid fa-eye ml-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="web-project-card light-sweep-effect order-1 lg:order-2">
+                        <div class="web-project-image-container">
+                            <img src="https://i.pinimg.com/736x/6f/30/28/6f3028f0907a514d869919d8591a4574.jpg" alt="AD Events">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSION 05 -->
+            <div class="relative mb-40 wp-card" data-lvl="5" data-xp="85">
+                <div class="mission-level-badge">MISSION 05</div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="web-project-card light-sweep-effect">
+                        <div class="web-project-image-container">
+                            <img src="https://i.pinimg.com/736x/ad/6a/28/ad6a28e0c46cebfa16956c80927f17cd.jpg" alt="Deel Technologies">
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex gap-2"><span class="mission-tag">Corporate</span><span class="mission-tag">SEO Prime</span></div>
+                        <h3 class="text-4xl font-black">DeelTechnologies.in</h3>
+                        <p class="text-gray-400 leading-relaxed">Technology service portal with a focus on SEO dominance and lead generation efficiency.</p>
+                        <div class="grid grid-cols-3 gap-6 pt-4">
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-blue-400 mb-1"><span>COMPLEXITY</span><span>75%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-blue-500" style="width: 75%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-green-400 mb-1"><span>PERFORMANCE</span><span>95%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-green-500" style="width: 95%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-purple-400 mb-1"><span>CREATIVITY</span><span>80%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-purple-500" style="width: 80%"></div></div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://deeltechnologies.in" target="_blank" class="glass px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-600 transition-all inline-block">Execute Probe <i class="fa-solid fa-satellite ml-2"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MISSION 06 -->
+            <div class="relative mb-40 wp-card" data-lvl="6" data-xp="100">
+                <div class="mission-level-badge">MISSION 06</div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1 space-y-6 lg:text-right">
+                        <div class="flex gap-2 lg:justify-end"><span class="mission-tag">Community</span><span class="mission-tag">Interactive</span></div>
+                        <h3 class="text-4xl font-black">JustBelive.in</h3>
+                        <p class="text-gray-400 leading-relaxed">Engagement-first community hub. Features dynamic resource management and multi-user portal accessibility.</p>
+                        <div class="grid grid-cols-3 gap-6 pt-4">
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-blue-400 mb-1"><span>COMPLEXITY</span><span>90%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-blue-500" style="width: 90%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-green-400 mb-1"><span>PERFORMANCE</span><span>93%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-green-500" style="width: 93%"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[9px] font-bold text-purple-400 mb-1"><span>CREATIVITY</span><span>85%</span></div>
+                                <div class="mission-stat-bar"><div class="mission-stat-fill bg-purple-500" style="width: 85%"></div></div>
+                            </div>
+                        </div>
+                        <div class="pt-6">
+                            <a href="https://justbelive.in" target="_blank" class="glass px-8 py-3 rounded-xl font-black uppercase text-[10px] tracking-widest hover:bg-blue-600 transition-all inline-block">Join Session <i class="fa-solid fa-users ml-2"></i></a>
+                        </div>
+                    </div>
+                    <div class="web-project-card light-sweep-effect order-1 lg:order-2">
+                        <div class="web-project-image-container">
+                            <img src="https://i.pinimg.com/736x/8d/25/a2/8d25a2df46808f0293da275c962b1b31.jpg" alt="JustBelieve">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievement Gallery -->
+        <div class="max-w-7xl mx-auto py-32 border-t border-white/5">
+            <h2 class="text-center text-[10px] font-black uppercase tracking-[1em] mb-20 text-gray-500">Unlocks & Badges</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="glass p-8 rounded-3xl text-center group hover:border-yellow-500 transition-all wp-achievement">
+                    <i class="fa-solid fa-trophy text-3xl text-gray-600 group-hover:text-yellow-500 mb-4 transition-colors"></i>
+                    <h5 class="text-[9px] font-black uppercase">First Deploy</h5>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center group hover:border-blue-500 transition-all wp-achievement">
+                    <i class="fa-solid fa-code text-3xl text-gray-600 group-hover:text-blue-500 mb-4 transition-colors"></i>
+                    <h5 class="text-[9px] font-black uppercase">Syntax Master</h5>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center group hover:border-purple-500 transition-all wp-achievement">
+                    <i class="fa-solid fa-wand-sparkles text-3xl text-gray-600 group-hover:text-purple-500 mb-4 transition-colors"></i>
+                    <h5 class="text-[9px] font-black uppercase">UI Wizard</h5>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center group hover:border-green-500 transition-all wp-achievement">
+                    <i class="fa-solid fa-bolt text-3xl text-gray-600 group-hover:text-green-500 mb-4 transition-colors"></i>
+                    <h5 class="text-[9px] font-black uppercase">Perf God</h5>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center group hover:border-red-500 transition-all wp-achievement">
+                    <i class="fa-solid fa-bug-slash text-3xl text-gray-600 group-hover:text-red-500 mb-4 transition-colors"></i>
+                    <h5 class="text-[9px] font-black uppercase">Bug Slayer</h5>
+                </div>
+                <div class="glass p-8 rounded-3xl text-center group hover:border-cyan-500 transition-all wp-achievement">
+                    <i class="fa-solid fa-globe text-3xl text-gray-600 group-hover:text-cyan-500 mb-4 transition-colors"></i>
+                    <h5 class="text-[9px] font-black uppercase">Net Hero</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quest CTA -->
+        <div class="max-w-6xl mx-auto py-32 text-center">
+            <div class="glass p-20 rounded-[5rem] overflow-hidden relative wp-cta">
+                <div class="absolute -top-10 -right-10 w-60 h-60 bg-blue-600/10 blur-[80px] rounded-full"></div>
+                <h2 class="text-5xl lg:text-7xl font-black italic mb-10 leading-tight">Ready for a <br><span class="text-blue-500 uppercase not-italic">New Project?</span></h2>
+                <p class="text-gray-400 text-lg max-w-3xl mx-auto mb-16 leading-relaxed">Whether you need a recruitment portal, personal brand, or enterprise solution, I am ready to begin the next development mission.</p>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="mailto:hello@joelruthvik.com" class="bg-blue-600 px-12 py-5 rounded-2xl font-black uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/30 hover:scale-105 transition-all">Start Project</a>
+                    <a href="https://wa.me/919666889775" target="_blank" class="glass px-12 py-5 rounded-2xl font-black uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all">Quick Chat</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
