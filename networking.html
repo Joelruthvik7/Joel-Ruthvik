@@ -1,3 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Joel Ruthvik | Talent Acquisition Manager & Web Designer </title>    
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Plus+Jakarta+Sans:wght@300;400;700&family=Inter:wght@400;600;800&family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --matte-black: #05070a;
+            --deep-navy: #0a101f;
+            --electric-blue: #3b82f6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- GLOBAL PREMIUM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--matte-black); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--electric-blue), #8b5cf6); 
+            border-radius: 10px;
+            border: 2px solid var(--matte-black);
+        }
+
+        body { background-color: var(--matte-black); color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        /* Global Background */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, var(--deep-navy) 0%, var(--matte-black) 100%); }
+        .ambient-light { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: 0; }
+
+        /* Glassmorphism */
+        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
+        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+        .glass-card:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--electric-blue); }
+
+        /* Page System */
+        .page { display: none; opacity: 0; transform: translateY(20px); padding-top: 140px; padding-bottom: 100px; min-height: 100vh; }
+        .active-page { display: block; opacity: 1; transform: translateY(0); }
+
+        /* Nav Links */
+        .nav-link { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.4); transition: 0.3s; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: var(--electric-blue); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+
+        /* Global Floating Portrait Style */
+        .portrait-frame { position: relative; width: 100%; max-width: 410px; border-radius: 40px; padding: 10px; background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 50px 100px rgba(0,0,0,0.5); animation: float 6s ease-in-out infinite; }
+        .portrait-frame img { width: 100%; border-radius: 32px; filter: contrast(1.05) brightness(1.1); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .gradient-text { background: linear-gradient(to right, #fff, var(--electric-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* NEWLY ADDED CODE 22ND MAY 2024 */
+/* MARQUEE ENGINE STYLES */
+
+.marquee-container {
+            overflow: hidden;
+            display: flex;
+            user-select: none;
+            gap: 2rem;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 2rem;
+            animation: scroll-marquee 40s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100% - 2rem)); }
+        }
+
+        .marquee-card {
+            width: 380px;
+            flex-shrink: 0;
+            border-radius: 32px;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marquee-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--electric-blue), transparent);
+            opacity: 0;
+            transition: 0.5s;
+            z-index: 0;
+        }
+
+        .marquee-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--electric-blue);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3);
+        }
+
+        .marquee-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .marquee-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fast Marquee for Skills */
+        .marquee-fast .marquee-content { animation-duration: 25s; }
+        /* Reverse Marquee */
+        .marquee-reverse .marquee-content { animation-direction: reverse; }
+
+/* NEWLY ADDED CODE ENDED HERE */
+
+        /* Experience Timeline Elements */
+        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; }
+        .timeline-line-v { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0.3; }
+        .exp-section { position: relative; margin-bottom: 100px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; }
+        .exp-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 24px; height: 24px; background: var(--matte-black); border: 4px solid var(--electric-blue); border-radius: 50%; z-index: 10; box-shadow: 0 0 20px var(--electric-blue); }
+        .exp-content { width: 45%; }
+        .exp-right { margin-left: auto; }
+        .exp-left { margin-right: auto; text-align: right; }
+        .metric-badge { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); padding: 5px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; color: var(--electric-blue); text-transform: uppercase; }
+
+
+/* --- NEW CINEMATIC SYSTEM --- */
+        /* NEWLY ADDED CODE 11th June 2026 */
+        .experience-section-container { margin-bottom: 0 !important; padding-bottom: 80px; }
+        
+        .premium-glow-card { position: relative; overflow: hidden; transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease; border: 1px solid rgba(255,255,255,0.06); }
+        .premium-glow-card:hover { border-color: var(--electric-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.15); background: rgba(59, 130, 246, 0.02); }
+
+        .light-sweep { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent); transition: 0.8s; pointer-events: none; }
+        .premium-glow-card:hover .light-sweep { left: 100%; }
+
+        .career-journey-card { opacity: 0; }
+
+        .glass-panel-luxury { background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px); }
+
+        .proximity-glow { transition: filter 0.3s ease; }
+
+        /* Fix spacing gaps between sections */
+        #experience .py-40, #experience .mb-40 { padding-top: 5rem; padding-bottom: 5rem; margin-bottom: 2rem; }
+        
+        /* Entrance animation helpers */
+        .reveal-left { transform: translateX(-50px); }
+        .reveal-right { transform: translateX(50px); }
+        .reveal-bottom { transform: translateY(50px); }
+        
+        .museum-counter { font-variant-numeric: tabular-nums; }
+/* NEWLY ADDED CODE ENDED HERE 11th June 2026 */
+
+
+        /* Skills Page Specific Styles */
+        .skill-progress-bg { background: rgba(255,255,255,0.05); height: 4px; width: 100%; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .skill-progress-fill { background: linear-gradient(90deg, var(--electric-blue), #a855f7); height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .domain-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; cursor: pointer; }
+        .domain-card:hover { transform: translateY(-10px); background: rgba(59, 130, 246, 0.1); border-color: var(--electric-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .skill-circle { transition: 0.5s; stroke-dasharray: 283; stroke-dashoffset: 283; }
+        
+        .floating-ui-item { position: absolute; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px; animation: floatUI 8s infinite ease-in-out; pointer-events: none; }
+        @keyframes floatUI { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(15px, -20px); } }
+        
+        .animated-skill-border { position: relative; overflow: hidden; }
+        .animated-skill-border::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--electric-blue)); animation: rotateBorder 4s linear infinite; opacity: 0; transition: 0.3s; }
+        .animated-skill-border:hover::before { opacity: 1; }
+        .animated-skill-border-inner { position: relative; z-index: 1; background: #05070a; margin: 1px; border-radius: inherit; height: calc(100% - 2px); width: calc(100% - 2px); }
+        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 1024px) {
+            .timeline-line-v { left: 20px; transform: none; }
+            .exp-dot { left: 20px; transform: none; }
+            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
+        }
+        
+/* Clients Page Custom Enhancements */
+        .client-reveal-card { transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .client-reveal-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3); border-color: var(--electric-blue); }
+        .client-logo-container { width: 64px; height: 64px; background: rgba(59, 130, 246, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(59, 130, 246, 0.2); transition: 0.3s; }
+        .client-reveal-card:hover .client-logo-container { background: var(--electric-blue); color: white; transform: rotate(10deg); }
+        
+        .domain-grid-card { position: relative; overflow: hidden; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
+        .domain-grid-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.05), transparent); transform: translateX(-100%); transition: 0.5s; }
+        .domain-grid-card:hover::after { transform: translateX(100%); }
+
+/* Recruitment Services Specific Enhanced Styles */
+        .service-icon-box { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--electric-blue); font-size: 1.5rem; margin-bottom: 1.5rem; transition: 0.5s; }
+        .service-reveal-card:hover .service-icon-box { background: var(--electric-blue); color: white; transform: scale(1.1) rotate(15deg); }
+        .workflow-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--electric-blue), transparent); opacity: 0.2; z-index: 0; }
+        .glow-pulse { animation: pulseGlow 2s infinite alternate; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); } }
+        
+        .stat-card { position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); }
+        .stat-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent); transition: 0.5s; }
+        .stat-card:hover::after { left: 100%; }
+
+
+/* Academic Specific */
+        .edu-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .edu-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--electric-blue); background: rgba(59,130,246,0.05); }
+        .connector-line { width: 2px; height: 100%; background: linear-gradient(to bottom, var(--electric-blue), transparent); position: absolute; left: 50%; transform: translateX(-50%); z-index: 0; opacity: 0.3; }
+
+ @media (max-width: 1024px) {
+            .timeline-line-v { left: 20px; transform: none; }
+            .exp-dot { left: 20px; transform: none; }
+            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
+            }
+
+/* Animated Category Grid */
+        .category-card { transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .category-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.08); }
+
+        .glow-pulse { animation: pulseGlow 2s infinite alternate; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.1); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); } }       
+
+ /* News Ticker */
+        .ticker-container { overflow: hidden; white-space: nowrap; }
+        .ticker-text { display: inline-block; animation: ticker 40s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+ /* Contact Page Custom Components */
+        .contact-input { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 1.25rem; border-radius: 1.5rem; width: 100%; outline: none; transition: 0.4s; }
+        .contact-input:focus { border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
+        .contact-label { position: absolute; left: 1.25rem; top: 1.25rem; pointer-events: none; transition: 0.3s; color: rgba(255,255,255,0.3); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
+        .contact-input:focus ~ .contact-label, .contact-input:not(:placeholder-shown) ~ .contact-label { transform: translateY(-2.2rem) scale(0.8); color: var(--electric-blue); }
+
+/* testimonial */
+		.testimonial-card { transition: 0.4s ease; }
+        .testimonial-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); }
+
+/* NEWLY ADDED CODE 13th June 2026 */
+        .luxury-beam { position: absolute; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0; pointer-events: none; }
+        .contact-card-premium { transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .contact-card-premium:hover { box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); }
+        .social-link-magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-flex; position: relative; }
+        .social-tooltip { position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--electric-blue); color: white; padding: 4px 12px; border-radius: 6px; font-size: 10px; opacity: 0; transition: 0.3s; pointer-events: none; white-space: nowrap; }
+        .social-link-magnetic:hover .social-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .char-counter { font-size: 9px; color: rgba(255,255,255,0.2); position: absolute; right: 20px; bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+/* NEWLY ADDED CODE ENDED HERE 13th June 2026 */
+
+
+/* NEWLY ADDED CODE 14th June 2026 */
+        .web-project-card { position: relative; border-radius: 2rem; overflow: hidden; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s ease; }
+        .web-project-card:hover { border-color: var(--electric-blue); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7), 0 18px 36px -18px rgba(59, 130, 246, 0.4); }
+        .web-project-image-container { position: relative; height: 260px; overflow: hidden; }
+        .web-project-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .web-project-card:hover .web-project-image-container img { transform: scale(1.05); }
+        .light-sweep-effect { position: relative; overflow: hidden; }
+        .light-sweep-effect::after { content: ''; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); transform: rotate(30deg); transition: 0.8s; }
+        .web-project-card:hover .light-sweep-effect::after { left: 150%; }
+        .tech-expertise-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 2rem; border-radius: 1.5rem; text-align: center; transition: 0.4s; }
+        .tech-expertise-card:hover { background: rgba(59, 130, 246, 0.08); border-color: var(--electric-blue); transform: translateY(-5px); }
+
+/* GAMIFIED WEB PORTFOLIO STYLES */
+        .mission-stat-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 6px; }
+        .mission-stat-fill { height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .mission-tag { font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 6px; background: rgba(59, 130, 246, 0.1); color: var(--electric-blue); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .quest-connector { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, var(--electric-blue), transparent); opacity: 0.2; z-index: 0; }
+        .mission-level-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--matte-black); border: 1px solid var(--electric-blue); padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 900; color: var(--electric-blue); z-index: 20; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+        .xp-header-bar { position: sticky; top: 110px; z-index: 500; background: rgba(5,7,10,0.8); backdrop-filter: blur(10px); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .progress-indicator-node { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.1); transition: 0.5s; }
+        .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
+/* END GAMIFIED WEB PORTFOLIO STYLES */
+
+</style>
+
+
+<meta name="description"
+content="Joel Ruthvik - Talent Acquisition Manager, IT Staffing Specialist, Recruitment Operations, Technical Recruitment and Web Designer.">
+
+
+<meta property="og:title"
+content="Joel Ruthvik | Talent Acquisition Manager & Web Designer">
+
+<meta property="og:description"
+content="IT Staffing Specialist, Technical Recruitment and Web Designer">
+
+<meta property="og:url"
+content="https://joelruthvik.com/">
+
+
+<meta name="keywords"
+content="Joel Ruthvik, Talent Acquisition Manager, IT Staffing, Technical Recruitment, Recruitment Operations, Web Designer">
+
+
+<link rel="canonical" href="https://joelruthvik.com/">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/favicon.png">
+</head>
+<body>
+
+	<div id="bg-canvas"></div>
+    <div id="cursor-light" class="ambient-light"></div>
+
+    <!-- MAIN NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[1000] glass border-b border-white/5">
+        <div class="px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+
+   
+ 
+   <img 
+        src="https://i.pinimg.com/736x/84/d5/d5/84d5d53aa436d932e6ed317d8bffd279.jpg" 
+        alt="Joel Ruthvik Logo"
+        class="h-14 w-auto rounded-xl shadow-lg shadow-blue-600/30"
+    />
+
+    <div>
+        <p class="text-[9px] font-bold tracking-[0.3em] text-blue-500 uppercase">
+            Executive Intelligence
+        </p>
+
+        <h2 class="text-sm font-black uppercase tracking-tighter">
+            THUMMALA Joel Ruthvik
+        </h2>
+    </div>
+
+</div>
+
+            <button onclick="toggleMobileMenu()" class="glass px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border-blue-500/30 text-blue-400"><i class="fa-solid fa-bars-staggered mr-2"></i> Menu</button>
+        </div>
+        <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
+<div class="flex px-8 py-3 space-x-10 min-w-max">
+<a href="index.html" class="nav-link">Home</a>
+<a href="about.html" class="nav-link active">About Me</a>
+<a href="experience.html" class="nav-link">Experience</a>
+<a href="skills.html" class="nav-link">Skills</a>
+<a href="clients.html" class="nav-link">Clients & Domains</a>
+<a href="services.html" class="nav-link">Services</a>
+<a href="portfolio.html" class="nav-link">Web Portfolio</a>
+<a href="certifications.html" class="nav-link">Certifications</a>
+<a href="education.html" class="nav-link">Education</a>
+<a href="achievements.html" class="nav-link">Achievements</a>
+<a href="networking.html" class="nav-link">Networking</a>
+<a href="updates.html" class="nav-link">Updates</a>
+<a href="contact.html" class="nav-link">Contact</a>
+</div>
+</div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/98 z-[2000] hidden flex flex-col items-center justify-center p-10">
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-20 text-center">
+<a href="index.html" class="text-2xl font-bold">01. Home</a>
+<a href="about.html" class="text-2xl font-bold">02. About Me</a>
+<a href="experience.html" class="text-2xl font-bold">03. Experience</a>
+<a href="skills.html" class="text-2xl font-bold">04. Skills</a>
+<a href="clients.html" class="text-2xl font-bold">05. Clients</a>
+<a href="services.html" class="text-2xl font-bold">06. Services</a>
+<a href="portfolio.html" class="text-2xl font-bold">07. Web Portfolio</a>
+<a href="certifications.html" class="text-2xl font-bold">08. Certifications</a>
+<a href="education.html" class="text-2xl font-bold">09. Education</a>
+<a href="achievements.html" class="text-2xl font-bold">10. Achievements</a>
+<a href="networking.html" class="text-2xl font-bold">11. Networking</a>
+<a href="updates.html" class="text-2xl font-bold">12. Updates</a>
+<a href="contact.html" class="text-2xl font-bold">13. Contact</a>
+</div>
+</div>
 
    <!-- =========================================================
      11. SOCIAL MEDIA & NETWORKING PAGE
@@ -239,4 +622,19 @@
     </div>
 </section>
 	
+<footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
+    <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
+</footer>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if(menu){
+        menu.classList.toggle('hidden');
+    }
+}
+</script>
+
+</body>
+</html>
 
