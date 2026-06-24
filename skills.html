@@ -45,11 +45,7 @@
         .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
         .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
         .glass-card:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--electric-blue); }
-
-        /* Page System */
-        .page { display: none; opacity: 0; transform: translateY(20px); padding-top: 140px; padding-bottom: 100px; min-height: 100vh; }
-        .active-page { display: block; opacity: 1; transform: translateY(0); }
-
+		
         /* Nav Links */
         .nav-link { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.4); transition: 0.3s; white-space: nowrap; }
         .nav-link:hover, .nav-link.active { color: var(--electric-blue); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
@@ -346,9 +342,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
 <div class="flex px-8 py-3 space-x-10 min-w-max">
 <a href="index.html" class="nav-link">Home</a>
-<a href="about.html" class="nav-link active">About Me</a>
+<a href="about.html" class="nav-link">About Me</a>
 <a href="experience.html" class="nav-link">Experience</a>
-<a href="skills.html" class="nav-link">Skills</a>
+<a href="skills.html" class="nav-link active">Skills</a>
 <a href="clients.html" class="nav-link">Clients & Domains</a>
 <a href="services.html" class="nav-link">Services</a>
 <a href="portfolio.html" class="nav-link">Web Portfolio</a>
