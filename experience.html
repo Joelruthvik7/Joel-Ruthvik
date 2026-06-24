@@ -555,14 +555,108 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </footer>
 
 <script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if(menu){
-        menu.classList.toggle('hidden');
-    }
+
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+// Mobile Menu
+function toggleMobileMenu(){
+    document.getElementById("mobile-menu").classList.toggle("hidden");
 }
+
+// Counter Animation
+gsap.utils.toArray(".museum-counter").forEach(counter=>{
+
+let target=+counter.dataset.target;
+
+gsap.to(counter,{
+innerText:target,
+duration:2,
+snap:{innerText:1},
+ease:"power3.out",
+scrollTrigger:{
+trigger:counter,
+start:"top 85%"
+}
+});
+
+});
+
+// Journey Cards
+gsap.utils.toArray(".career-journey-card").forEach(card=>{
+
+gsap.fromTo(card,
+
+{
+opacity:0,
+y:80
+},
+
+{
+opacity:1,
+y:0,
+duration:1.2,
+ease:"power4.out",
+
+scrollTrigger:{
+trigger:card,
+start:"top 80%"
+}
+
+});
+
+});
+
+// Timeline Cards
+gsap.utils.toArray(".exp-content").forEach(card=>{
+
+gsap.from(card,{
+
+opacity:0,
+x:80,
+duration:1,
+
+scrollTrigger:{
+trigger:card,
+start:"top 80%"
+}
+
+});
+
+});
+
+// Premium Cards
+gsap.utils.toArray(".premium-glow-card").forEach(card=>{
+
+gsap.from(card,{
+
+opacity:0,
+y:80,
+duration:1,
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
+
+});
+
+});
+
+// Cursor Light
+
+const cursor=document.getElementById("cursor-light");
+
+document.addEventListener("mousemove",e=>{
+
+gsap.to(cursor,{
+x:e.clientX-400,
+y:e.clientY-400,
+duration:.6
+});
+
+});
+
 </script>
 
 </body>
 </html>
-
