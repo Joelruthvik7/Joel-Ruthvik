@@ -392,8 +392,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
             <div class="floating-ui-item top-20 left-[15%]"><i class="fa-solid fa-user-check text-blue-500 mr-2"></i> <span class="text-[10px] font-bold">Candidate Vetted</span></div>
             <div class="floating-ui-item bottom-20 right-[15%]"><i class="fa-solid fa-file-contract text-blue-500 mr-2"></i> <span class="text-[10px] font-bold">C2C Agreement</span></div>
             
-            <h1 class="text-7xl lg:text-9xl font-black tracking-tighter mb-8 reveal-text">SKILLS & <span class="gradient-text italic">EXPERTISE</span></h1>
-            <p class="text-xl text-gray-400 max-w-4xl mx-auto reveal-sub">Delivering strategic talent acquisition solutions, enterprise recruitment expertise, and technical hiring excellence across diverse technology domains.</p>
+            <h1 class="skills-title text-7xl lg:text-9xl font-black tracking-tighter mb-8 reveal-text">SKILLS & <span class="gradient-text italic">EXPERTISE</span></h1>
+            <p class="skills-subtitle text-xl text-gray-400 max-w-4xl mx-auto reveal-sub">Delivering strategic talent acquisition solutions, enterprise recruitment expertise, and technical hiring excellence across diverse technology domains.</p>
         </div>
 
         <!-- Core Expertise Overview -->
@@ -652,14 +652,104 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </footer>
 
 <script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if(menu){
-        menu.classList.toggle('hidden');
-    }
-}
-</script>
 
+gsap.registerPlugin(TextPlugin, ScrollTrigger);
+
+function toggleMobileMenu(){
+
+document.getElementById("mobile-menu").classList.toggle("hidden");
+
+}
+
+document.addEventListener("mousemove",(e)=>{
+
+gsap.to("#cursor-light",{
+
+x:e.clientX-400,
+
+y:e.clientY-400,
+
+duration:2
+
+});
+
+});
+
+function runSkillsAnimations(){
+
+gsap.from(".reveal-text",{
+
+y:100,
+
+opacity:0,
+
+duration:1,
+
+ease:"power4.out"
+
+});
+
+gsap.from(".reveal-sub",{
+
+y:20,
+
+opacity:0,
+
+duration:1,
+
+delay:.3
+
+});
+
+gsap.utils.toArray(".skill-progress-fill").forEach(bar=>{
+
+const targetWidth=bar.style.width;
+
+bar.style.width="0%";
+
+gsap.to(bar,{
+
+width:targetWidth,
+
+duration:2,
+
+ease:"power2.out",
+
+scrollTrigger:bar
+
+});
+
+});
+
+gsap.utils.toArray(".skill-circle").forEach(circle=>{
+
+const offset=circle.getAttribute("stroke-dashoffset");
+
+circle.style.strokeDashoffset="364.4";
+
+gsap.to(circle,{
+
+strokeDashoffset:offset,
+
+duration:2,
+
+ease:"power2.out",
+
+scrollTrigger:circle
+
+});
+
+});
+
+}
+
+window.onload=()=>{
+
+runSkillsAnimations();
+
+};
+
+</script>
 </body>
 </html>
 
