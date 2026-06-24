@@ -631,6 +631,15 @@ gsap.from(".tech-card", {
     duration: 0.8,
     ease: "back.out(1.7)"
 });
+
+	// Refresh all ScrollTriggers after page loads
+window.addEventListener("load", () => {
+
+    runClientsAnimations();
+
+    ScrollTrigger.refresh();
+
+});
 	
 </script>
 </body>
