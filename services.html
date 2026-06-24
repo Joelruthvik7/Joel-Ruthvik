@@ -794,132 +794,142 @@ delay:.3
 // SERVICE CARDS
 // ==========================
 
-gsap.from(".service-reveal-card",{
+gsap.utils.toArray(".service-reveal-card").forEach(card=>{
 
-scrollTrigger:{
-trigger:".service-reveal-card",
-start:"top 85%"
-},
+gsap.from(card,{
 
 opacity:0,
 y:100,
-stagger:.15,
 duration:1,
-ease:"power4.out"
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
 
 });
 
+});
 // ==========================
 // STAFFING CARDS
 // ==========================
 
-gsap.from(".glass.group",{
+gsap.utils.toArray(".glass.group").forEach(card=>{
 
-scrollTrigger:{
-trigger:".glass.group",
-start:"top 85%"
-},
+gsap.from(card,{
 
 opacity:0,
 scale:.9,
-stagger:.12,
 duration:.9,
-ease:"back.out(1.7)"
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
 
 });
 
+});
 // ==========================
 // TECH EXPERTISE
 // ==========================
 
-gsap.from(".animated-skill-border",{
+gsap.utils.toArray(".animated-skill-border").forEach(card=>{
 
-scrollTrigger:{
-trigger:".animated-skill-border",
-start:"top 85%"
-},
+gsap.from(card,{
 
 opacity:0,
 scale:.75,
-stagger:.08,
 duration:.8,
-ease:"back.out(1.7)"
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
 
 });
 
+});
 // ==========================
 // DOMAIN CARDS
 // ==========================
 
-gsap.from(".client-reveal-card",{
+gsap.utils.toArray(".client-reveal-card").forEach(card=>{
 
-scrollTrigger:{
-trigger:".client-reveal-card",
-start:"top 85%"
-},
+gsap.from(card,{
 
 opacity:0,
 y:80,
-stagger:.15,
 duration:1,
-ease:"power3.out"
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
 
 });
 
+});
 // ==========================
 // OPERATION CARDS
 // ==========================
 
-gsap.from(".stat-card",{
+gsap.utils.toArray(".stat-card").forEach(card=>{
 
-scrollTrigger:{
-trigger:".stat-card",
-start:"top 85%"
-},
+gsap.from(card,{
 
 opacity:0,
 scale:.85,
-stagger:.15,
-duration:1
+duration:1,
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
 
 });
 
+});
 // ==========================
 // WORKFLOW
 // ==========================
 
-gsap.from(".cursor-default",{
+gsap.utils.toArray(".cursor-default").forEach(card=>{
 
-scrollTrigger:{
-trigger:".cursor-default",
-start:"top 90%"
-},
+gsap.from(card,{
 
 opacity:0,
 y:60,
-stagger:.12,
-duration:.8
+duration:.8,
+
+scrollTrigger:{
+trigger:card,
+start:"top 90%"
+}
 
 });
 
+});
 // ==========================
 // WHY CHOOSE CARDS
 // ==========================
 
-gsap.from(".border-l-4",{
+gsap.utils.toArray(".border-l-4").forEach(card=>{
 
-scrollTrigger:{
-trigger:".border-l-4",
-start:"top 85%"
-},
+gsap.from(card,{
 
 opacity:0,
 y:60,
-stagger:.15,
-duration:1
+duration:1,
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+}
 
 });
 
+});
 // ==========================
 // FINAL QUOTE
 // ==========================
@@ -938,6 +948,7 @@ ease:"power4.out"
 
 });
 
+	ScrollTrigger.refresh();
 </script>
 	
 </body>
