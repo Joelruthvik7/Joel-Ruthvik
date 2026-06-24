@@ -539,8 +539,189 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
+<script>
 
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
+// =========================
+// MOBILE MENU
+// =========================
+
+function toggleMobileMenu(){
+
+    const menu=document.getElementById("mobile-menu");
+
+    if(menu){
+        menu.classList.toggle("hidden");
+    }
+
+}
+
+// =========================
+// CURSOR LIGHT
+// =========================
+
+const cursor=document.getElementById("cursor-light");
+
+if(cursor){
+
+document.addEventListener("mousemove",(e)=>{
+
+gsap.to(cursor,{
+x:e.clientX-400,
+y:e.clientY-400,
+duration:.6,
+overwrite:"auto"
+});
+
+});
+
+}
+
+// =========================
+// HERO
+// =========================
+
+gsap.from(".client-title",{
+
+opacity:0,
+y:100,
+duration:1.2,
+ease:"power4.out"
+
+});
+
+gsap.from(".client-subtitle",{
+
+opacity:0,
+y:40,
+duration:1,
+delay:.25
+
+});
+
+// =========================
+// CLIENT CARDS
+// =========================
+
+gsap.utils.toArray(".client-reveal-card").forEach((card,i)=>{
+
+gsap.from(card,{
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+},
+
+opacity:0,
+y:80,
+duration:1,
+delay:i*.12,
+ease:"power4.out"
+
+});
+
+});
+
+// =========================
+// DOMAIN CARDS
+// =========================
+
+gsap.utils.toArray(".domain-grid-card").forEach((card,i)=>{
+
+gsap.from(card,{
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+},
+
+opacity:0,
+scale:.8,
+duration:.8,
+delay:i*.08,
+ease:"back.out(1.7)"
+
+});
+
+});
+
+// =========================
+// STAT CARDS
+// =========================
+
+gsap.utils.toArray(".client-stat-card").forEach((card,i)=>{
+
+gsap.from(card,{
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+},
+
+opacity:0,
+y:80,
+duration:1,
+delay:i*.15,
+ease:"power3.out"
+
+});
+
+});
+
+// =========================
+// TECH CARDS
+// =========================
+
+gsap.utils.toArray(".tech-card").forEach((card,i)=>{
+
+gsap.from(card,{
+
+scrollTrigger:{
+trigger:card,
+start:"top 85%"
+},
+
+opacity:0,
+scale:.8,
+duration:.8,
+delay:i*.06,
+ease:"back.out(1.7)"
+
+});
+
+});
+
+// =========================
+// FINAL QUOTE
+// =========================
+
+gsap.from(".max-w-5xl",{
+
+scrollTrigger:{
+trigger:".max-w-5xl",
+start:"top 80%"
+},
+
+opacity:0,
+y:100,
+duration:1.2,
+ease:"power4.out"
+
+});
+
+// =========================
+// REFRESH
+// =========================
+
+window.addEventListener("load",()=>{
+
+ScrollTrigger.refresh();
+
+});
+
+</script>
+	
 </body>
 </html>
 
