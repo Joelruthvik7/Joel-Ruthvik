@@ -150,8 +150,8 @@
         .light-sweep { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent); transition: 0.8s; pointer-events: none; }
         .premium-glow-card:hover .light-sweep { left: 100%; }
 
-        .career-journey-card { opacity: 0; }
-
+        .career-journey-card{ opacity:1; transform:none; }
+		
         .glass-panel-luxury { background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px); }
 
         .proximity-glow { transition: filter 0.3s ease; }
@@ -383,8 +383,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     
 <section id="experience" class="pt-[140px] pb-[100px] min-h-screen px-6 lg:px-20 overflow-visible">
 	<div class="max-w-7xl mx-auto text-center mb-16">
-            <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-6">PROFESSIONAL <span class="gradient-text italic">EXPERIENCE</span></h1>
-            <p class="text-gray-400 text-xl max-w-3xl mx-auto">6+ years of delivering top-tier recruitment solutions and technical hiring expertise for enterprise-level clients.</p>
+            <h1 class="experience-title text-6xl md:text-9xl font-black tracking-tighter mb-6">PROFESSIONAL <span class="gradient-text italic">EXPERIENCE</span></h1>
+            <p class="experience-subtitle text-gray-400 text-xl max-w-3xl mx-auto">6+ years of delivering top-tier recruitment solutions and technical hiring expertise for enterprise-level clients.</p>
         </div>
 
         <!-- EXPERIENCE INTELLIGENCE DASHBOARD -->
@@ -554,225 +554,133 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
 
-<script>
+	<script>
 
-gsap.registerPlugin(ScrollTrigger, TextPlugin);
+gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
-// =========================
-// MOBILE MENU
-// =========================
 function toggleMobileMenu() {
-    const menu = document.getElementById("mobile-menu");
-    if(menu){
-        menu.classList.toggle("hidden");
-    }
+    document.getElementById('mobile-menu').classList.toggle('hidden');
 }
 
-// =========================
-// COUNTERS
-// =========================
-gsap.utils.toArray(".museum-counter").forEach(counter=>{
+document.addEventListener('mousemove', (e) => {
+    gsap.to('#cursor-light', {
+        x: e.clientX - 300,
+        y: e.clientY - 300,
+        duration: 1.5
+    });
+});
 
-    let target = +counter.dataset.target;
+function runExperienceMuseumAnimations() {
 
-    gsap.to(counter,{
-        innerText:target,
-        duration:2,
-        snap:{innerText:1},
-        ease:"power3.out",
+    gsap.utils.toArray('.museum-counter').forEach(counter => {
+        const target = +counter.getAttribute('data-target');
 
-        scrollTrigger:{
-            trigger:counter,
-            start:"top 85%"
-        }
-
+        gsap.to(counter, {
+            innerText: target,
+            duration: 2,
+            snap: { innerText: 1 },
+            scrollTrigger: {
+                trigger: counter,
+                start: "top 95%"
+            }
+        });
     });
 
-});
-
-// =========================
-// HERO
-// =========================
-gsap.from(".experience-title",{
-
-    y:120,
-    opacity:0,
-    duration:1.5,
-    ease:"power4.out"
-
-});
-
-gsap.from(".experience-subtitle",{
-
-    y:50,
-    opacity:0,
-    duration:1.2,
-    delay:.3
-
-});
-
-// =========================
-// DASHBOARD CARDS
-// =========================
-gsap.utils.toArray(".premium-glow-card").forEach((card,i)=>{
-
-    gsap.from(card,{
-
-        opacity:0,
-        y:120,
-        scale:.85,
-        rotateX:15,
-
-        duration:1.2,
-
-        delay:i*.18,
-
-        ease:"power4.out",
-
-        scrollTrigger:{
-            trigger:card,
-            start:"top 85%",
-            toggleActions:"play none none none"
+    const journeyTL = gsap.timeline({
+        scrollTrigger: {
+            trigger: "#journey-1",
+            start: "top 85%"
         }
-
     });
 
-});
+    journeyTL
+    .to("#journey-1", {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power4.out"
+    })
+    .to("#journey-2", {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power4.out"
+    }, "-=0.8")
+    .to("#journey-3", {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power4.out"
+    }, "-=0.8");
 
-// =========================
-// JOURNEY CARDS
-// =========================
-gsap.utils.toArray(".career-journey-card").forEach((card,i)=>{
-
-    gsap.from(card,{
-
-        opacity:0,
-        y:100,
-        duration:1.2,
-        delay:i*.2,
-        ease:"power4.out",
-
-        scrollTrigger:{
-            trigger:card,
-            start:"top 85%"
+    gsap.to("#timeline-1", {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#timeline-1",
+            start: "top 80%",
+            toggleActions: "play none none none"
         }
-
     });
 
-});
-
-// =========================
-// TIMELINE
-// =========================
-gsap.utils.toArray(".exp-content").forEach(card=>{
-
-    gsap.from(card,{
-
-        opacity:0,
-        x:80,
-        duration:1,
-
-        scrollTrigger:{
-            trigger:card,
-            start:"top 85%"
+    gsap.to("#timeline-2", {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#timeline-2",
+            start: "top 80%",
+            toggleActions: "play none none none"
         }
-
     });
 
-});
+    gsap.to("#timeline-3", {
+        opacity: 1,
+        x: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: "#timeline-3",
+            start: "top 80%",
+            toggleActions: "play none none none"
+        }
+    });
 
-// =========================
-// CARD NUMBERS
-// =========================
-gsap.from(".card-number",{
+    document.addEventListener('mousemove', (e) => {
 
-    opacity:0,
-    scale:2,
+        const cards = document.querySelectorAll('.proximity-glow');
 
-    duration:1.4,
+        cards.forEach(card => {
 
-    stagger:.2,
+            const rect = card.getBoundingClientRect();
 
-    scrollTrigger:{
-        trigger:".card-number",
-        start:"top 85%"
-    }
+            const cardX = rect.left + rect.width / 2;
 
-});
+            const cardY = rect.top + rect.height / 2;
 
-// =========================
-// LIGHT SWEEP
-// =========================
-gsap.to(".light-sweep",{
+            const dist = Math.hypot(e.clientX - cardX, e.clientY - cardY);
 
-    left:"160%",
+            const brightness = Math.max(1, 1.4 - (dist / 600));
 
-    duration:2.8,
+            gsap.to(card, {
+                filter: `brightness(${brightness})`,
+                duration: 0.4
+            });
 
-    repeat:-1,
-
-    repeatDelay:1,
-
-    ease:"none"
-
-});
-
-// =========================
-// PREMIUM HOVER
-// =========================
-document.querySelectorAll(".premium-glow-card").forEach(card=>{
-
-    card.addEventListener("mousemove",(e)=>{
-
-        const rect=card.getBoundingClientRect();
-
-        const x=e.clientX-rect.left;
-        const y=e.clientY-rect.top;
-
-        gsap.to(card,{
-            rotationY:(x-rect.width/2)/20,
-            rotationX:-(y-rect.height/2)/20,
-            transformPerspective:1000,
-            duration:.35
         });
 
     });
 
-    card.addEventListener("mouseleave",()=>{
-
-        gsap.to(card,{
-            rotationX:0,
-            rotationY:0,
-            duration:.6,
-            ease:"power3.out"
-        });
-
-    });
-
-});
-
-// =========================
-// CURSOR LIGHT
-// =========================
-const cursor=document.getElementById("cursor-light");
-
-if(cursor){
-
-document.addEventListener("mousemove",e=>{
-
-gsap.to(cursor,{
-
-x:e.clientX-400,
-
-y:e.clientY-400,
-
-duration:.6
-
-});
-
-});
-
 }
+
+window.onload = () => {
+
+    runExperienceMuseumAnimations();
+
+};
 
 </script>
 	
