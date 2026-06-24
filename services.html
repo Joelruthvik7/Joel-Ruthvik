@@ -742,215 +742,128 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
-// ==========================
-// MOBILE MENU
-// ==========================
+// ======================
+// SHARED FUNCTIONS
+// ======================
 function toggleMobileMenu(){
     document.getElementById("mobile-menu").classList.toggle("hidden");
 }
 
-// ==========================
-// CURSOR LIGHT
-// ==========================
+// Cursor Light Effect
 const cursor = document.getElementById("cursor-light");
-
 if(cursor){
-
-document.addEventListener("mousemove",(e)=>{
-
-gsap.to(cursor,{
-x:e.clientX-400,
-y:e.clientY-400,
-duration:.6
-});
-
-});
-
+    document.addEventListener("mousemove",(e)=>{
+        gsap.to(cursor,{
+            x: e.clientX - 400,
+            y: e.clientY - 400,
+            duration: 0.8
+        });
+    });
 }
 
-// ==========================
-// HERO
-// ==========================
+// ======================
+// SERVICES ANIMATIONS (Fixed & Improved)
+// ======================
+function runServicesAnimations() {
 
-gsap.from(".service-hero-title",{
+    // Hero Title
+    gsap.from(".service-hero-title", {
+        y: 120,
+        opacity: 0,
+        duration: 1.5,
+        ease: "power4.out"
+    });
 
-y:100,
-opacity:0,
-duration:1.4,
-ease:"power4.out"
+    gsap.from(".reveal-service-sub", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        delay: 0.4
+    });
 
-});
+    // End-to-End Solution Cards
+    gsap.from(".service-reveal-card", {
+        scrollTrigger: { trigger: ".service-reveal-card", start: "top 85%" },
+        opacity: 0,
+        y: 100,
+        stagger: 0.1,
+        duration: 1,
+        ease: "power4.out"
+    });
 
-gsap.from(".reveal-service-sub",{
+    // IT Staffing Cards
+    gsap.from(".glass.group", {   // Better selector use chey
+        scrollTrigger: { trigger: ".glass.group", start: "top 85%" },
+        opacity: 0,
+        scale: 0.9,
+        stagger: 0.08,
+        duration: 0.9,
+        ease: "back.out(1.7)"
+    });
 
-y:40,
-opacity:0,
-duration:1,
-delay:.3
+    // Technical Expertise (animated-skill-border)
+    gsap.from(".animated-skill-border", {
+        scrollTrigger: { trigger: ".animated-skill-border", start: "top 85%" },
+        opacity: 0,
+        scale: 0.8,
+        stagger: 0.1,
+        duration: 0.9,
+        ease: "back.out(1.7)"
+    });
 
-});
+    // Domain Cards
+    gsap.from(".client-reveal-card", {
+        scrollTrigger: { trigger: ".client-reveal-card", start: "top 85%" },
+        opacity: 0,
+        y: 80,
+        stagger: 0.12,
+        duration: 1,
+        ease: "power3.out"
+    });
 
-// ==========================
-// SERVICE CARDS
-// ==========================
+    // Stat Cards
+    gsap.from(".stat-card", {
+        scrollTrigger: { trigger: ".stat-card", start: "top 85%" },
+        opacity: 0,
+        scale: 0.85,
+        stagger: 0.15,
+        duration: 1
+    });
 
-gsap.utils.toArray(".service-reveal-card").forEach(card=>{
+    // Workflow items
+    gsap.from(".cursor-default", {
+        scrollTrigger: { trigger: ".cursor-default", start: "top 90%" },
+        opacity: 0,
+        y: 60,
+        stagger: 0.1,
+        duration: 0.8
+    });
 
-gsap.from(card,{
+    // Why Choose Cards
+    gsap.from(".border-l-4", {
+        scrollTrigger: { trigger: ".border-l-4", start: "top 85%" },
+        opacity: 0,
+        y: 60,
+        stagger: 0.15,
+        duration: 1
+    });
 
-opacity:0,
-y:100,
-duration:1,
-
-scrollTrigger:{
-trigger:card,
-start:"top 85%"
+    // Final Quote
+    gsap.from(".service-quote", {
+        scrollTrigger: { trigger: ".service-quote", start: "top 80%" },
+        opacity: 0,
+        scale: 0.9,
+        duration: 1.4,
+        ease: "power4.out"
+    });
 }
 
-});
+// Page Load
+window.onload = () => {
+    runServicesAnimations();
+};
 
-});
-// ==========================
-// STAFFING CARDS
-// ==========================
-
-gsap.utils.toArray(".glass.group").forEach(card=>{
-
-gsap.from(card,{
-
-opacity:0,
-scale:.9,
-duration:.9,
-
-scrollTrigger:{
-trigger:card,
-start:"top 85%"
-}
-
-});
-
-});
-// ==========================
-// TECH EXPERTISE
-// ==========================
-
-gsap.utils.toArray(".animated-skill-border").forEach(card=>{
-
-gsap.from(card,{
-
-opacity:0,
-scale:.75,
-duration:.8,
-
-scrollTrigger:{
-trigger:card,
-start:"top 85%"
-}
-
-});
-
-});
-// ==========================
-// DOMAIN CARDS
-// ==========================
-
-gsap.utils.toArray(".client-reveal-card").forEach(card=>{
-
-gsap.from(card,{
-
-opacity:0,
-y:80,
-duration:1,
-
-scrollTrigger:{
-trigger:card,
-start:"top 85%"
-}
-
-});
-
-});
-// ==========================
-// OPERATION CARDS
-// ==========================
-
-gsap.utils.toArray(".stat-card").forEach(card=>{
-
-gsap.from(card,{
-
-opacity:0,
-scale:.85,
-duration:1,
-
-scrollTrigger:{
-trigger:card,
-start:"top 85%"
-}
-
-});
-
-});
-// ==========================
-// WORKFLOW
-// ==========================
-
-gsap.utils.toArray(".cursor-default").forEach(card=>{
-
-gsap.from(card,{
-
-opacity:0,
-y:60,
-duration:.8,
-
-scrollTrigger:{
-trigger:card,
-start:"top 90%"
-}
-
-});
-
-});
-// ==========================
-// WHY CHOOSE CARDS
-// ==========================
-
-gsap.utils.toArray(".border-l-4").forEach(card=>{
-
-gsap.from(card,{
-
-opacity:0,
-y:60,
-duration:1,
-
-scrollTrigger:{
-trigger:card,
-start:"top 85%"
-}
-
-});
-
-});
-// ==========================
-// FINAL QUOTE
-// ==========================
-
-gsap.from(".service-quote",{
-
-scrollTrigger:{
-trigger:".service-quote",
-start:"top 80%"
-},
-
-opacity:0,
-scale:.9,
-duration:1.4,
-ease:"power4.out"
-
-});
-
-	ScrollTrigger.refresh();
-</script>
-	
+</script>	
 </body>
 </html>
 
