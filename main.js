@@ -1,38 +1,5 @@
-<!-- SUCCESS TOAST -->
-
-<div id="successToast"
-     class="fixed top-10 right-10 z-[9999] translate-x-[500px] opacity-0 transition-all duration-500">
-
-    <div class="glass border border-green-500/30 bg-black/70 backdrop-blur-xl px-8 py-5 rounded-3xl shadow-2xl shadow-green-500/20">
-
-        <div class="flex items-center gap-4">
-
-            <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center">
-                <i class="fa-solid fa-check text-green-400 text-xl"></i>
-            </div>
-
-            <div>
-                <h4 class="font-bold text-green-400">
-                    Inquiry Sent Successfully
-                </h4>
-
-                <p class="text-sm text-gray-400">
-                    Thank you. I will respond shortly.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
-
-    <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
-        <p>© THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
-    </footer>
 
     <script>
         gsap.registerPlugin(TextPlugin, ScrollTrigger);
@@ -559,15 +526,3 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 });
 </script>
 
-<div id="certificateModal"
-     class="fixed inset-0 bg-black/90 z-[9999] hidden items-center justify-center p-6">
-
-    <button onclick="closeCertificate()"
-            class="absolute top-6 right-6 text-white text-5xl">
-        ×
-    </button>
-
-    <img id="certificateImage"
-         src=""
-         class="max-w-full max-h-full rounded-2xl shadow-2xl">
-</div>
