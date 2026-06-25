@@ -648,8 +648,148 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
+<script>
+    // 1. REGISTER GSAP PLUGINS
+    gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
-<script src="main.js"></script>
+    // 2. GLOBAL UI COMPONENTS
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+
+    // 3. CUSTOM CURSOR LIGHTING EFFECT
+    document.addEventListener('mousemove', (e) => {
+        const light = document.getElementById('cursor-light');
+        if (light) {
+            gsap.to(light, {
+                x: e.clientX - 400,
+                y: e.clientY - 400,
+                duration: 2,
+                ease: "power2.out"
+            });
+        }
+    });
+
+    // 4. CERTIFICATE MODAL SYSTEM (INTERNAL VIEWER)
+    function ensureModalExists() {
+        if (!document.getElementById('certificateModal')) {
+            const modalHTML = `
+                <div id="certificateModal" class="fixed inset-0 bg-black/95 z-[9999] hidden items-center justify-center p-6 backdrop-blur-xl">
+                    <button onclick="closeCertificate()" class="absolute top-8 right-8 text-white text-6xl hover:text-blue-500 transition-all z-[10000]">&times;</button>
+                    <img id="certificateImage" src="" class="max-w-full max-h-[90vh] rounded-2xl shadow-[0_0_50px_rgba(59,130,246,0.3)] border border-white/10 object-contain">
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            
+            document.getElementById('certificateModal').addEventListener('click', function(e) {
+                if (e.target === this) closeCertificate();
+            });
+        }
+    }
+
+    function openCertificate(src) {
+        ensureModalExists();
+        if (src.toLowerCase().endsWith('.pdf')) {
+            window.open(src, '_blank');
+            return;
+        }
+        const modal = document.getElementById('certificateModal');
+        const modalImg = document.getElementById('certificateImage');
+        modalImg.src = src;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+    }
+
+    function closeCertificate() {
+        const modal = document.getElementById('certificateModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+
+    // 5. CORE ANIMATION ENGINE (FIXED: NO HIDDEN STATES)
+    function runCertificationsAnimations() {
+        // FORCE EVERYTHING VISIBLE IMMEDIATELY
+        // This removes the "hidden" and "opacity 0" states from the CSS instantly
+        gsap.set(".page, .cert-card, .block.group, .cert-hero-title, .reveal-cert-sub, .cert-hero-badge", { 
+            display: 'block', 
+            opacity: 1, 
+            visibility: 'visible' 
+        });
+
+        // HERO SECTION ANIMATION (Slight slide up, always visible)
+        gsap.from(".cert-hero-badge", { y: 30, duration: 1, ease: "power3.out" });
+        gsap.from(".cert-hero-title", { y: 50, duration: 1.2, ease: "power4.out", delay: 0.2 });
+        gsap.from(".reveal-cert-sub", { y: 20, duration: 1, ease: "power3.out", delay: 0.4 });
+
+        // ROCKSTAR AWARD SECTION (Smooth slide in)
+        gsap.from(".block.group", {
+            y: 80,
+            duration: 1.2,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: ".block.group",
+                start: "top 95%"
+            }
+        });
+
+        // PROFESSIONAL CERTIFICATION CARDS (Everything visible, just sliding up smoothly)
+        gsap.from(".cert-card", {
+            y: 100,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".cert-card",
+                start: "top 90%"
+            }
+        });
+
+        // PHILOSOPHY & TECH DASHBOARD
+        gsap.from(".glass.p-12", {
+            y: 50,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".glass.p-12",
+                start: "top 90%"
+            }
+        });
+
+        // STAT CARDS
+        gsap.from(".stat-card", {
+            scale: 0.95,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+                trigger: ".stat-card",
+                start: "top 95%"
+            }
+        });
+
+        // BOTTOM QUOTE
+        gsap.from(".cert-quote", {
+            y: 40,
+            duration: 1.5,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".cert-quote",
+                start: "top 95%"
+            }
+        });
+    }
+
+    // 6. INITIALIZATION
+    window.onload = () => {
+        ensureModalExists();
+        runCertificationsAnimations();
+        window.scrollTo(0, 0);
+    };
+</script>
+	
 </body>
 </html>
 
