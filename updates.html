@@ -46,10 +46,6 @@
         .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
         .glass-card:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--electric-blue); }
 
-        /* Page System */
-        .page { display: none; opacity: 0; transform: translateY(20px); padding-top: 140px; padding-bottom: 100px; min-height: 100vh; }
-        .active-page { display: block; opacity: 1; transform: translateY(0); }
-
         /* Nav Links */
         .nav-link { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.4); transition: 0.3s; white-space: nowrap; }
         .nav-link:hover, .nav-link.active { color: var(--electric-blue); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
@@ -385,7 +381,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <!-- =========================================================
          12. BLOG & LATEST UPDATES PAGE (RE-ENGINEERED)
          ========================================================= -->
-    <section id="blog" class="page px-6 lg:px-20 overflow-hidden relative">
+	<section id="blog" class="page pt-[140px] pb-[100px] min-h-screen px-6 lg:px-20 overflow-hidden relative">
         <!-- Cinematic Hero Section -->
         <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
             <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
@@ -611,14 +607,141 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </footer>
 
 <script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if(menu){
-        menu.classList.toggle('hidden');
-    }
-}
-</script>
+    // Register GSAP Plugins
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
+    // 1. INITIAL PAGE LOAD & VISIBILITY
+    // Ensures the "page" div is visible since the CSS has display:none
+    window.addEventListener('load', () => {
+        gsap.to('#blog', {
+            display: 'block',
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            ease: "expo.out"
+        });
+        initCinematicAnimations();
+    });
+
+    // 2. CURSOR LIGHT FOLLOW EFFECT
+    const cursorLight = document.getElementById('cursor-light');
+    document.addEventListener('mousemove', (e) => {
+        gsap.to(cursorLight, {
+            x: e.clientX - 400, // Centers the 800px glow
+            y: e.clientY - 400,
+            duration: 1.5,
+            ease: 'power3.out'
+        });
+    });
+
+    function initCinematicAnimations() {
+        // 3. HERO SECTION ENTRANCE
+        const tl = gsap.timeline();
+        
+        tl.from(".blog-hero-badge", {
+            y: -30,
+            opacity: 0,
+            duration: 1,
+            ease: "back.out(1.7)"
+        })
+        .from(".blog-hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "expo.out"
+        }, "-=0.6")
+        .from(".reveal-blog-sub", {
+            y: 20,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        }, "-=0.8")
+        .from(".max-w-7xl button", {
+            scale: 0.8,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "back.out(1.2)"
+        }, "-=0.6");
+
+        // 4. FEATURED ARTICLES REVEAL (ScrollTrigger)
+        gsap.from(".grid-cols-1.lg\\:grid-cols-2 > div", {
+            scrollTrigger: {
+                trigger: ".grid-cols-1.lg\\:grid-cols-2",
+                start: "top 80%",
+            },
+            y: 60,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.3,
+            ease: "power4.out"
+        });
+
+        // 5. SMALL INSIGHT CARDS REVEAL
+        gsap.from(".grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3 > div", {
+            scrollTrigger: {
+                trigger: ".grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-3",
+                start: "top 85%",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power2.out"
+        });
+
+        // 6. CATEGORY CARDS STAGGER
+        gsap.from(".category-card", {
+            scrollTrigger: {
+                trigger: ".category-card",
+                start: "top 90%",
+            },
+            scale: 0.5,
+            opacity: 0,
+            duration: 0.8,
+            stagger: {
+                amount: 1,
+                grid: "auto",
+                from: "start"
+            },
+            ease: "back.out(1.4)"
+        });
+
+        // 7. THOUGHT LEADERSHIP STATS COUNTER
+        gsap.from(".stat-card h4", {
+            scrollTrigger: {
+                trigger: ".stat-card",
+                start: "top 85%",
+            },
+            textContent: 0,
+            duration: 2,
+            ease: "power1.inOut",
+            snap: { textContent: 1 },
+            stagger: 0.2
+        });
+
+        // 8. CINEMATIC QUOTE REVEAL
+        gsap.from(".blog-quote", {
+            scrollTrigger: {
+                trigger: ".blog-quote",
+                start: "top 90%",
+            },
+            opacity: 0,
+            y: 50,
+            filter: "blur(10px)",
+            duration: 2,
+            ease: "power4.out"
+        });
+    }
+
+    // 9. KEEP EXISTING TOGGLE FUNCTION
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if(menu){
+            menu.classList.toggle('hidden');
+        }
+    }
+</script>
 </body>
 </html>
 
