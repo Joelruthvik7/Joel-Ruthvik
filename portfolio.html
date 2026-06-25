@@ -682,6 +682,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <script>
 
+	function runProjectsAnimations() {
+            gsap.from(".achievement-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+            gsap.from(".reveal-achievement-sub", { opacity: 0, y: 40, duration: 1, delay: 0.5 });
+            gsap.from(".glass", {
+                opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out"
+            });
+            gsap.from(".achievement-quote", {
+                opacity: 0, scale: 0.9, duration: 2, ease: "power2.out"
+            });
+            gsap.from(".stat-card", {
+                scale: 0.5, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
+            });
+        }
+function runProjectsAnimations() { gsap.from(".animated-skill-border", { opacity: 0, scale: 0.9 }); }
+
 /* GAMIFIED WEB PORTFOLIO ANIMATIONS */
 function runWebPortfolioAnimations() {
     gsap.from(".wp-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
