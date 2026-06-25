@@ -8,12 +8,13 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Plus+Jakarta+Sans:wght@300;400;700&family=Inter:wght@400;600;800&family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
     
-    <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Scripts --> 
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <style>
         :root {
@@ -679,89 +680,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
-
-<script>
-
-	function runProjectsAnimations() {
-            gsap.from(".achievement-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
-            gsap.from(".reveal-achievement-sub", { opacity: 0, y: 40, duration: 1, delay: 0.5 });
-            gsap.from(".glass", {
-                opacity: 0, y: 50, duration: 1, stagger: 0.1, ease: "power3.out"
-            });
-            gsap.from(".achievement-quote", {
-                opacity: 0, scale: 0.9, duration: 2, ease: "power2.out"
-            });
-            gsap.from(".stat-card", {
-                scale: 0.5, opacity: 0, duration: 1, stagger: 0.2, ease: "power4.out"
-            });
-        }
-function runProjectsAnimations() { gsap.from(".animated-skill-border", { opacity: 0, scale: 0.9 }); }
-
-/* GAMIFIED WEB PORTFOLIO ANIMATIONS */
-function runWebPortfolioAnimations() {
-    gsap.from(".wp-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
-    gsap.from(".reveal-wp-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
-
-    // Handle Scroll Tracking for Missions
-    gsap.utils.toArray('.wp-card').forEach((card, i) => {
-        const lvl = card.getAttribute('data-lvl');
-        const xp = card.getAttribute('data-xp');
-        
-        ScrollTrigger.create({
-            trigger: card,
-            start: "top center",
-            onEnter: () => {
-                // Update Progress Header
-                document.getElementById('global-xp-bar').style.width = xp + '%';
-                document.getElementById('xp-counter').innerText = (xp * 90) + ' / 9000 XP';
-                document.getElementById('current-lvl-text').innerText = 'LVL 0' + lvl;
-                
-                // Highlight Nodes
-                document.querySelectorAll('.progress-indicator-node').forEach(node => {
-                    if(node.getAttribute('data-node') <= lvl) node.classList.add('active');
-                });
-
-                // Animate Mission Stats
-                const fills = card.querySelectorAll('.mission-stat-fill');
-                fills.forEach(fill => {
-                    const w = fill.style.width;
-                    fill.style.width = '0%';
-                    gsap.to(fill, { width: w, duration: 1.5, delay: 0.3, ease: "power4.out" });
-                });
-            }
-        });
-
-        // Entrance animation
-        gsap.from(card, {
-            scrollTrigger: { trigger: card, start: "top 80%" },
-            opacity: 0,
-            x: i % 2 === 0 ? -100 : 100,
-            duration: 1.2,
-            ease: "power3.out"
-        });
-    });
-
-    // Achievement Badges Animation
-    gsap.from(".wp-achievement", {
-        scrollTrigger: { trigger: ".wp-achievement", start: "top 90%" },
-        opacity: 0,
-        scale: 0.5,
-        stagger: 0.1,
-        duration: 1,
-        ease: "back.out(1.7)"
-    });
-
-    gsap.from(".wp-cta", {
-        scrollTrigger: { trigger: ".wp-cta", start: "top 85%" },
-        opacity: 0,
-        y: 100,
-        duration: 1.5,
-        ease: "power4.out"
-    });
-}
-	
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>
 
