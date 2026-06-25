@@ -1,7 +1,3 @@
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-
-    <script>
         gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
         function showPage(pageId) {
@@ -524,5 +520,3 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
         }, 3000);
     });
 });
-</script>
-
