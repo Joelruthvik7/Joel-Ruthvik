@@ -46,10 +46,6 @@
         .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
         .glass-card:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--electric-blue); }
 
-        /* Page System */
-        .page { display: none; opacity: 0; transform: translateY(20px); padding-top: 140px; padding-bottom: 100px; min-height: 100vh; }
-        .active-page { display: block; opacity: 1; transform: translateY(0); }
-
         /* Nav Links */
         .nav-link { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.4); transition: 0.3s; white-space: nowrap; }
         .nav-link:hover, .nav-link.active { color: var(--electric-blue); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
@@ -346,12 +342,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
 <div class="flex px-8 py-3 space-x-10 min-w-max">
 <a href="index.html" class="nav-link">Home</a>
-<a href="about.html" class="nav-link active">About Me</a>
+<a href="about.html" class="nav-link">About Me</a>
 <a href="experience.html" class="nav-link">Experience</a>
 <a href="skills.html" class="nav-link">Skills</a>
 <a href="clients.html" class="nav-link">Clients & Domains</a>
 <a href="services.html" class="nav-link">Services</a>
-<a href="portfolio.html" class="nav-link">Web Portfolio</a>
+<a href="portfolio.html" class="nav-link active">Web Portfolio</a>
 <a href="certifications.html" class="nav-link">Certifications</a>
 <a href="education.html" class="nav-link">Education</a>
 <a href="achievements.html" class="nav-link">Achievements</a>
@@ -384,7 +380,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <!-- =========================================================
          7. GAMIFIED WEB PORTFOLIO PAGE
          ========================================================= -->
-    <section id="web-portfolio" class="page px-6 lg:px-20 relative">
+    <section id="web-portfolio" class="pt-[140px] pb-[100px] min-h-screen px-6 lg:px-20 overflow-hidden relative">
         <!-- Level Progress Top Bar -->
         <div class="xp-header-bar flex items-center justify-between px-8">
             <div class="flex items-center gap-4">
@@ -685,12 +681,70 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </footer>
 
 <script>
-function toggleMobileMenu() {
-    const menu = document.getElementById('mobile-menu');
-    if(menu){
-        menu.classList.toggle('hidden');
-    }
+
+/* GAMIFIED WEB PORTFOLIO ANIMATIONS */
+function runWebPortfolioAnimations() {
+    gsap.from(".wp-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" });
+    gsap.from(".reveal-wp-sub", { opacity: 0, y: 40, duration: 1.2, delay: 0.4 });
+
+    // Handle Scroll Tracking for Missions
+    gsap.utils.toArray('.wp-card').forEach((card, i) => {
+        const lvl = card.getAttribute('data-lvl');
+        const xp = card.getAttribute('data-xp');
+        
+        ScrollTrigger.create({
+            trigger: card,
+            start: "top center",
+            onEnter: () => {
+                // Update Progress Header
+                document.getElementById('global-xp-bar').style.width = xp + '%';
+                document.getElementById('xp-counter').innerText = (xp * 90) + ' / 9000 XP';
+                document.getElementById('current-lvl-text').innerText = 'LVL 0' + lvl;
+                
+                // Highlight Nodes
+                document.querySelectorAll('.progress-indicator-node').forEach(node => {
+                    if(node.getAttribute('data-node') <= lvl) node.classList.add('active');
+                });
+
+                // Animate Mission Stats
+                const fills = card.querySelectorAll('.mission-stat-fill');
+                fills.forEach(fill => {
+                    const w = fill.style.width;
+                    fill.style.width = '0%';
+                    gsap.to(fill, { width: w, duration: 1.5, delay: 0.3, ease: "power4.out" });
+                });
+            }
+        });
+
+        // Entrance animation
+        gsap.from(card, {
+            scrollTrigger: { trigger: card, start: "top 80%" },
+            opacity: 0,
+            x: i % 2 === 0 ? -100 : 100,
+            duration: 1.2,
+            ease: "power3.out"
+        });
+    });
+
+    // Achievement Badges Animation
+    gsap.from(".wp-achievement", {
+        scrollTrigger: { trigger: ".wp-achievement", start: "top 90%" },
+        opacity: 0,
+        scale: 0.5,
+        stagger: 0.1,
+        duration: 1,
+        ease: "back.out(1.7)"
+    });
+
+    gsap.from(".wp-cta", {
+        scrollTrigger: { trigger: ".wp-cta", start: "top 85%" },
+        opacity: 0,
+        y: 100,
+        duration: 1.5,
+        ease: "power4.out"
+    });
 }
+	
 </script>
 
 </body>
