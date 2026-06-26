@@ -680,7 +680,200 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
-<script src="main.js"></script>
+
+<!-- =========================================================
+     RESTORED ANIMATION & INTERACTION ENGINE (FIXED)
+     ========================================================= -->
+<script>
+    // 1. REGISTER PLUGINS
+    gsap.registerPlugin(TextPlugin, ScrollTrigger);
+
+    // 2. GLOBAL UI COMPONENTS
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        if (!menu.classList.contains('hidden')) {
+            gsap.from("#mobile-menu a", {
+                opacity: 0,
+                y: 20,
+                stagger: 0.1,
+                duration: 0.5,
+                ease: "power3.out"
+            });
+        }
+    }
+
+    // 3. CURSOR LIGHT TRACKING
+    document.addEventListener('mousemove', (e) => {
+        gsap.to('#cursor-light', { 
+            x: e.clientX - 400, 
+            y: e.clientY - 400, 
+            duration: 1.5,
+            ease: "power2.out"
+        });
+    });
+
+    // 4. WEB PORTFOLIO MISSION ENGINE
+    function runWebPortfolioAnimations() {
+        // Initial Hero Reveal
+        const heroTL = gsap.timeline();
+        heroTL.from(".wp-hero-badge", { opacity: 0, y: -20, duration: 1, ease: "power3.out" })
+              .from(".wp-hero-title", { y: 100, opacity: 0, duration: 1.5, ease: "power4.out" }, "-=0.7")
+              .from(".reveal-wp-sub", { opacity: 0, y: 40, duration: 1.2, ease: "power3.out" }, "-=1");
+
+        // XP Header Bar Entrance
+        gsap.from(".xp-header-bar", {
+            y: -100,
+            opacity: 0,
+            duration: 1,
+            delay: 1,
+            ease: "power4.out"
+        });
+
+        // MISSION CARDS (Left/Right Alternating Logic)
+        gsap.utils.toArray('.wp-card').forEach((card, i) => {
+            const lvl = card.getAttribute('data-lvl');
+            const xp = card.getAttribute('data-xp');
+            
+            // Logic for XP Progression Tracking
+            ScrollTrigger.create({
+                trigger: card,
+                start: "top center",
+                onEnter: () => updateXPHeader(lvl, xp),
+                onEnterBack: () => updateXPHeader(lvl, xp)
+            });
+
+            // SMOOTH LEFT/RIGHT REVEAL
+            // Evens come from Left, Odds come from Right
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                x: i % 2 === 0 ? -150 : 150, 
+                duration: 1.5,
+                ease: "power4.out",
+                clearProps: "transform" // Ensures responsiveness after animation
+            });
+
+            // Internal Stat Bar Animations (Complexity/Performance/etc)
+            const fills = card.querySelectorAll('.mission-stat-fill');
+            fills.forEach(fill => {
+                const targetWidth = fill.style.width;
+                gsap.set(fill, { width: "0%" });
+                gsap.to(fill, {
+                    width: targetWidth,
+                    duration: 2,
+                    ease: "power2.inOut",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 75%"
+                    }
+                });
+            });
+        });
+
+        // UNLOCKS & BADGES REVEAL (Fixed Visibility Logic)
+        // We trigger the whole group once the title comes into view
+        gsap.from(".wp-achievement", {
+            scrollTrigger: {
+                trigger: ".wp-achievement", // Targets the first badge
+                start: "top 95%", // Trigger earlier so they aren't hidden
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            scale: 0.2,
+            y: 50,
+            stagger: {
+                amount: 0.8,
+                grid: "auto",
+                from: "start"
+            },
+            duration: 1.2,
+            ease: "back.out(1.7)",
+            clearProps: "all" // CRITICAL: Removes GSAP styles after finish so content is never stuck at opacity 0
+        });
+
+        // Final Quest CTA Section
+        gsap.from(".wp-cta", {
+            scrollTrigger: {
+                trigger: ".wp-cta",
+                start: "top 90%"
+            },
+            opacity: 0,
+            y: 100,
+            scale: 0.95,
+            duration: 1.5,
+            ease: "power4.out",
+            clearProps: "all"
+        });
+    }
+
+    // Helper: Update the XP Header UI based on scroll
+    function updateXPHeader(lvl, xp) {
+        gsap.to("#global-xp-bar", { width: xp + "%", duration: 1, ease: "power2.out" });
+        document.getElementById('xp-counter').innerText = (xp * 90) + ' / 9000 XP';
+        document.getElementById('current-lvl-text').innerText = 'LVL 0' + lvl;
+        
+        document.querySelectorAll('.progress-indicator-node').forEach(node => {
+            const nodeVal = parseInt(node.getAttribute('data-node'));
+            if(nodeVal <= parseInt(lvl)) {
+                node.classList.add('active');
+            } else {
+                node.classList.remove('active');
+            }
+        });
+    }
+
+    // 5. GLOBAL FUNCTIONALITY (Modals)
+    function openCertificate(src) {
+        if (src.toLowerCase().endsWith('.pdf')) {
+            window.open(src, '_blank');
+            return;
+        }
+        const modal = document.getElementById('certificateModal');
+        const img = document.getElementById('certificateImage');
+        if(modal && img) {
+            img.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+    }
+
+    function closeCertificate() {
+        const modal = document.getElementById('certificateModal');
+        if(modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    }
+
+    // Close modal if user clicks background
+    window.onclick = function(event) {
+        const certModal = document.getElementById('certificateModal');
+        if (event.target == certModal) closeCertificate();
+    }
+
+    // 6. INITIALIZATION
+    window.onload = () => {
+        // Run all portfolio animations
+        runWebPortfolioAnimations();
+        
+        // Refresh ScrollTrigger to ensure height calculations are correct
+        ScrollTrigger.refresh();
+        
+        // Start from top
+        window.scrollTo(0, 0);
+    };
+</script>
+
+<!-- Add this invisible container for Cert/Image viewing parity with Index -->
+<div id="certificateModal" class="fixed inset-0 bg-black/90 z-[9999] hidden items-center justify-center p-6">
+    <button onclick="closeCertificate()" class="absolute top-6 right-6 text-white text-5xl">×</button>
+    <img id="certificateImage" src="" class="max-w-full max-h-full rounded-2xl shadow-2xl">
+</div>
 </body>
 </html>
 
