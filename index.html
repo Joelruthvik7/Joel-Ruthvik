@@ -283,6 +283,166 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+:root {
+    --hacker-green: #00ff41;
+    --hacker-cyan: #00e5ff;
+    --bg-black: #000000;
+}
+
+#intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-black);
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    overflow: hidden;
+    color: var(--hacker-green);
+}
+
+/* Scanline Effect */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    ), linear-gradient(
+        90deg, 
+        rgba(255, 0, 0, 0.06), 
+        rgba(0, 255, 0, 0.02), 
+        rgba(0, 0, 255, 0.06)
+    );
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Terminal Styles */
+.terminal-container {
+    max-width: 800px;
+    width: 90%;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-shadow: 0 0 5px var(--hacker-green);
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    background: var(--hacker-green);
+    margin-left: 5px;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Main Display Styles */
+.main-display {
+    display: none;
+    text-align: center;
+    opacity: 0;
+    width: 90%;
+}
+
+.welcome-text {
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    color: var(--hacker-cyan);
+    margin-bottom: 10px;
+}
+
+.glitch-title {
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.sub-roles {
+    font-size: clamp(0.7rem, 2vw, 1.1rem);
+    color: var(--hacker-cyan);
+    opacity: 0.8;
+    margin-bottom: 40px;
+}
+
+.separator {
+    margin: 0 10px;
+    color: var(--hacker-green);
+}
+
+/* Progress Bar */
+.loader-wrapper {
+    width: 300px;
+    margin: 0 auto;
+}
+
+.loader-status {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--hacker-cyan);
+    box-shadow: 0 0 10px var(--hacker-cyan);
+}
+
+.access-complete {
+    margin-top: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: none;
+    color: var(--hacker-green);
+}
+
+/* Particles */
+.particles-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    background: var(--hacker-cyan);
+    border-radius: 50%;
+    opacity: 0.3;
+}
+
+/* Hide body scroll while loading */
+body.intro-active {
+    overflow: hidden;
+}
+
 </style>
 
 
@@ -310,22 +470,63 @@ content="Joel Ruthvik, Talent Acquisition Manager, IT Staffing, Technical Recrui
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
 <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png">
-<!-- LinkedIn Image -->
-<meta property="og:image" content="https://joelruthvik.com/images/Linkpreview.jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:type" content="image/jpeg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://joelruthvik.com/images/Linkpreview.jpeg"></head>
+</head>
 <body>
 
-    <div id="bg-canvas"></div>
-    <div id="cursor-light" class="ambient-light"></div>
 
-    <!-- MAIN NAVIGATION -->
-    <nav class="fixed top-0 w-full z-[1000] glass border-b border-white/5">
-        <div class="px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-4">
+    <body>
+
+<!-- START CINEMATIC INTRO -->
+<div id="intro-overlay">
+    <!-- Background FX -->
+    <div class="scanlines"></div>
+    <div class="particles-container" id="particles"></div>
+
+    <!-- Terminal Sequence -->
+    <div class="terminal-container">
+        <div id="terminal-text"></div>
+        <span class="cursor">_</span>
+    </div>
+
+    <!-- Main Title Sequence -->
+    <div class="main-display">
+        <h2 class="welcome-text">WELCOME TO THE WORLD OF</h2>
+        <h1 class="glitch-title" data-text="Thummala Joel Ruthvik">
+            Thummala Joel Ruthvik
+        </h1>
+
+        <div class="sub-roles">
+            <span>Talent Acquisition Manager</span>
+            <span class="separator">|</span>
+            <span>Web Designer</span>
+            <span class="separator">|</span>
+            <span>IT Staffing Specialist</span>
+        </div>
+
+        <div class="loader-wrapper">
+            <div class="loader-status">
+                <span class="status-label">Loading Portfolio...</span>
+                <span class="percentage">0%</span>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill"></div>
+            </div>
+
+            <div class="access-complete">
+                ACCESS COMPLETE
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END CINEMATIC INTRO -->
+
+<div id="bg-canvas"></div>
+<div id="cursor-light" class="ambient-light"></div>
+
+<!-- MAIN NAVIGATION -->
+<nav class="fixed top-0 w-full z-[1000] glass border-b border-white/5">
+    <div class="px-8 py-4 flex justify-between items-center">
 
    
  
@@ -351,7 +552,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         </div>
         <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
 <div class="flex px-8 py-3 space-x-10 min-w-max">
-<a href="index.html" class="nav-link active">Home</a>
+<a href="index.html" class="nav-link">Home</a>
 <a href="about.html" class="nav-link">About Me</a>
 <a href="experience.html" class="nav-link">Experience</a>
 <a href="skills.html" class="nav-link">Skills</a>
@@ -1193,5 +1394,127 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
          src=""
          class="max-w-full max-h-full rounded-2xl shadow-2xl">
 </div>
+
+<!-- Load GSAP via CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const introOverlay = document.getElementById('intro-overlay');
+    
+    // 1. Session Storage Check
+    if (sessionStorage.getItem('introPlayed')) {
+        introOverlay.style.display = 'none';
+        return;
+    }
+
+    // Prepare UI
+    document.body.classList.add('intro-active');
+    const terminalText = document.getElementById('terminal-text');
+    const lines = [
+        "Initializing Secure Portfolio...",
+        "Verifying Identity...",
+        "Access Granted",
+        "Welcome to the World of Joel Ruthvik",
+        "Loading Experience...",
+        "Loading Projects...",
+        "Loading Certifications...",
+        "Access Complete"
+    ];
+
+    // Create Particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 3 + 1;
+        p.style.width = `${size}px`;
+        p.style.height = `${size}px`;
+        p.style.left = `${Math.random() * 100}%`;
+        p.style.top = `${Math.random() * 100}%`;
+        particlesContainer.appendChild(p);
+        
+        gsap.to(p, {
+            y: -100,
+            opacity: 0,
+            duration: Math.random() * 2 + 1,
+            repeat: -1,
+            ease: "none",
+            delay: Math.random() * 2
+        });
+    }
+
+    // 2. GSAP Sequence Timeline
+    const tl = gsap.timeline({
+        onComplete: () => {
+            sessionStorage.setItem('introPlayed', 'true');
+            document.body.classList.remove('intro-active');
+            gsap.to(introOverlay, {
+                opacity: 0,
+                duration: 0.8,
+                ease: "power4.inOut",
+                onComplete: () => introOverlay.remove()
+            });
+        }
+    });
+
+    // Typewriter effect logic
+    lines.forEach((line, index) => {
+        tl.to({}, {
+            duration: 0.15,
+            onStart: () => {
+                const p = document.createElement('div');
+                p.textContent = `> ${line}`;
+                terminalText.appendChild(p);
+            }
+        });
+    });
+
+    // Transition to Main Display
+    tl.to(".terminal-container", { opacity: 0, duration: 0.3, delay: 0.2 });
+    tl.set(".terminal-container", { display: "none" });
+    tl.set(".main-display", { display: "block" });
+
+    tl.to(".main-display", { opacity: 1, duration: 0.5 });
+    
+    // Animate Title & Subtitles
+    tl.from(".glitch-title", { y: 20, opacity: 0, duration: 0.6, ease: "back.out" }, "-=0.3");
+    tl.from(".sub-roles span", { 
+        opacity: 0, 
+        y: 10, 
+        stagger: 0.1, 
+        duration: 0.4 
+    }, "-=0.2");
+
+    // Progress Bar Animation (Simulating Load)
+    tl.to(".progress-bar-fill", {
+        width: "100%",
+        duration: 1.2,
+        ease: "power2.inOut",
+        onUpdate: function() {
+            const progress = Math.round(this.progress() * 100);
+            document.querySelector(".percentage").textContent = `${progress}%`;
+        }
+    });
+
+    // Access Complete & Glitch
+    tl.set(".access-complete", { display: "block" });
+    tl.fromTo(".access-complete", { opacity: 0 }, { opacity: 1, duration: 0.2, repeat: 3, yoyo: true });
+    
+    // Final Glitch Effect
+    tl.to(".main-display", {
+        skewX: 20,
+        duration: 0.1,
+        ease: "power4.inOut",
+    }).to(".main-display", {
+        skewX: 0,
+        duration: 0.05
+    });
+
+    tl.to(".main-display", { scale: 1.1, opacity: 0, duration: 0.4, ease: "power2.in" });
+
+});
+</script>
+
 </body>
 </html>
