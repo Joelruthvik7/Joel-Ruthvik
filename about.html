@@ -705,11 +705,150 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
 
-<script>
-    function toggleMobileMenu() {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    }
-</script>
+<!-- 1. LOAD REQUIRED LIBRARIES -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
 
+<script>
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        if (menu) menu.classList.toggle('hidden');
+    }
+
+    // AMBIENT CURSOR LIGHTING (Optimized for speed)
+    document.addEventListener('mousemove', (e) => {
+        const light = document.getElementById('cursor-light');
+        if (light) {
+            gsap.to(light, { 
+                x: e.clientX - 400, 
+                y: e.clientY - 400, 
+                duration: 0.8, // Faster cursor response
+                ease: "power2.out"
+            });
+        }
+    });
+
+    function runAboutPageAnimations() {
+        ScrollTrigger.refresh();
+
+        // 1. MAIN TITLE (Faster reveal)
+        gsap.from("#about h1", {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        // 2. LEFT REVEAL (Triggered exactly when visible)
+        gsap.from(".portrait-frame", {
+            x: -80,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".portrait-frame",
+                start: "top 100%" // Triggers immediately
+            }
+        });
+
+        // 3. RIGHT REVEAL
+        gsap.from(".space-y-12", {
+            x: 80,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".space-y-12",
+                start: "top 100%"
+            }
+        });
+
+        // 4. MARQUEE CARDS (Rapid Stagger)
+        gsap.utils.toArray('.marquee-card').forEach((card, i) => {
+            gsap.from(card, {
+                y: 40,
+                opacity: 0,
+                duration: 0.6,
+                delay: i * 0.05, // Faster stagger
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 100%", // Start immediately on scroll enter
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+
+        // 5. CORE COMPETENCIES (Snap in)
+        gsap.from(".marquee-fast .glass", {
+            scale: 0.9,
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.03,
+            ease: "back.out(1.2)",
+            scrollTrigger: {
+                trigger: ".marquee-fast",
+                start: "top 100%"
+            }
+        });
+
+        // 6. IMPACT NUMBERS (Faster Count)
+        gsap.utils.toArray('.impact-number').forEach(number => {
+            const targetValue = parseInt(number.innerText);
+            gsap.from(number, {
+                innerText: 0,
+                duration: 1.5, // Faster counting
+                snap: { innerText: 1 },
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: number,
+                    start: "top 100%",
+                }
+            });
+        });
+
+        // 7. TWITTER AI CARD
+        gsap.from(".animated-skill-border", {
+            scale: 0.95,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".animated-skill-border",
+                start: "top 100%"
+            }
+        });
+    }
+
+    // --- QUICK START HANDLER ---
+    document.addEventListener("DOMContentLoaded", () => {
+        const introOverlay = document.getElementById('intro-overlay');
+        
+        if (introOverlay) {
+            // Force skip intro if already played or if user is navigating around
+            if (sessionStorage.getItem('introPlayed')) {
+                introOverlay.style.display = 'none';
+                runAboutPageAnimations();
+            } else {
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        sessionStorage.setItem('introPlayed', 'true');
+                        runAboutPageAnimations();
+                        gsap.to(introOverlay, { opacity: 0, duration: 0.4, onComplete: () => introOverlay.remove() });
+                    }
+                });
+                // Accelerated Intro sequence (2x speed)
+                tl.to(".main-display", { opacity: 1, duration: 0.5 })
+                  .to(".progress-bar-fill", { width: "100%", duration: 0.8 })
+                  .to(".main-display", { scale: 1.05, opacity: 0, duration: 0.3 });
+            }
+        } else {
+            runAboutPageAnimations();
+        }
+    });
+</script>
 </body>
 </html>
