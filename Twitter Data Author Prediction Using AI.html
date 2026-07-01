@@ -210,9 +210,103 @@
             pointer-events: none;
         }
 
+/* ===== SYSTEM PANEL ===== */
+
+#system-panel{
+position:fixed;
+bottom:25px;
+left:25px;
+width:260px;
+padding:18px;
+background:rgba(5,15,25,.85);
+border:1px solid rgba(0,242,255,.25);
+backdrop-filter:blur(15px);
+border-radius:12px;
+z-index:999999;
+font-family:"Courier New",monospace;
+box-shadow:0 0 25px rgba(0,242,255,.15);
+}
+
+.panel-title{
+color:#00f2ff;
+font-size:14px;
+font-weight:bold;
+letter-spacing:3px;
+margin-bottom:18px;
+}
+
+.status-item{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:12px;
+font-size:12px;
+color:#d6d6d6;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:#00ff88;
+border-radius:50%;
+box-shadow:0 0 10px #00ff88;
+animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:.5;transform:scale(.8);}
+50%{opacity:1;transform:scale(1.2);}
+100%{opacity:.5;transform:scale(.8);}
+}
+
+#exit-terminal{
+display:block;
+margin-top:20px;
+padding:10px;
+text-align:center;
+text-decoration:none;
+color:#00f2ff;
+border:1px solid #00f2ff;
+border-radius:6px;
+transition:.3s;
+letter-spacing:2px;
+}
+
+#exit-terminal:hover{
+background:#00f2ff;
+color:#000;
+box-shadow:0 0 20px #00f2ff;
+}
     </style>
 </head>
 <body>
+
+<div id="system-panel">
+
+    <div class="panel-title">
+        SYSTEM STATUS
+    </div>
+
+    <div class="status-item">
+        <span class="dot"></span>
+        AI CORE ONLINE
+    </div>
+
+    <div class="status-item">
+        <span class="dot"></span>
+        FORENSIC ENGINE ACTIVE
+    </div>
+
+    <div class="status-item">
+        <span class="dot"></span>
+        SECURE CONNECTION
+    </div>
+
+    <a href="https://joelruthvik.com" id="exit-terminal">
+        > EXIT TERMINAL
+    </a>
+
+</div>
 
     <div id="particles-js"></div>
     <canvas id="three-canvas"></canvas>
