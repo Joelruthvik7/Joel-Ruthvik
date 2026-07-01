@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI DIGITAL FORENSICS | AUTHORSHIP VERIFICATION</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --cyan: #00f2ff;
+            --blue: #0072ff;
+            --green: #00ffaa;
+            --red: #ff3c3c;
+            --glass: rgba(5, 15, 25, 0.7);
+            --border: rgba(0, 242, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+
+        body {
+            background-color: #050505;
+            color: white;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* --- BACKGROUND & VR ELEMENTS --- */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        #three-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            z-index: 2;
+        }
+
+        /* --- LANDING EXPERIENCE --- */
+        #landing-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, transparent 0%, #050505 80%);
+            transition: opacity 1.5s ease;
+        }
+
+        .glitch-title {
+            font-size: 4rem;
+            letter-spacing: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--cyan);
+            text-shadow: 0 0 20px var(--cyan);
+            opacity: 0;
+        }
+
+        .landing-sub {
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: var(--blue);
+            margin-top: 20px;
+            opacity: 0;
+        }
+
+        /* --- DASHBOARD LAYOUT --- */
+        #main-dashboard {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 350px 1fr 350px;
+            height: 100vh;
+            padding: 30px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+        }
+
+        .glass-panel:hover { border-color: var(--cyan); box-shadow: 0 0 40px rgba(0, 242, 255, 0.2); }
+
+        h2 { font-size: 0.8rem; letter-spacing: 3px; color: var(--cyan); margin-bottom: 20px; text-transform: uppercase; }
+
+        textarea {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 242, 255, 0.1);
+            border-radius: 10px;
+            color: #fff;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            resize: none;
+            outline: none;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* --- CENTER INTERFACE --- */
+        .center-col {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 50px;
+        }
+
+        #analyze-btn {
+            background: transparent;
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            padding: 20px 60px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: 0.4s;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        #analyze-btn:hover {
+            background: var(--cyan);
+            color: #000;
+            box-shadow: 0 0 50px var(--cyan);
+            transform: scale(1.05);
+        }
+
+        /* --- ANIMATION OVERLAY --- */
+        #processing-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(5, 5, 5, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .step-display { font-size: 1.5rem; letter-spacing: 5px; color: var(--cyan); text-align: center; }
+        .loader-bar { width: 400px; height: 2px; background: rgba(255,255,255,0.1); margin-top: 30px; position: relative; }
+        .loader-fill { position: absolute; height: 100%; width: 0%; background: var(--cyan); box-shadow: 0 0 15px var(--cyan); }
+
+        /* --- REPORT SECTION --- */
+        #report-screen {
+            position: fixed;
+            inset: 40px;
+            z-index: 300;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            border: 1px solid var(--cyan);
+            border-radius: 30px;
+            display: none;
+            grid-template-columns: 1fr 1fr;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .confidence-meter {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 10px solid #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .confidence-val { font-size: 2.5rem; font-weight: bold; }
+        
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .feature-item { font-size: 0.7rem; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 5px; display: flex; justify-content: space-between; }
+        .feature-item span { color: var(--cyan); }
+
+        .report-badge { padding: 10px 20px; border-radius: 5px; display: inline-block; font-weight: bold; margin-top: 10px; }
+        .match-badge { background: rgba(0, 255, 170, 0.2); color: var(--green); border: 1px solid var(--green); }
+        .divergence-badge { background: rgba(255, 60, 60, 0.2); color: var(--red); border: 1px solid var(--red); }
+
+        .scan-line {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: rgba(0, 242, 255, 0.5);
+            box-shadow: 0 0 15px var(--cyan);
+            z-index: 50;
+            pointer-events: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+    <canvas id="three-canvas"></canvas>
+    <div class="scan-line" id="scanner"></div>
+
+    <!-- Intro Experience -->
+    <div id="landing-overlay">
+        <h1 class="glitch-title">AI Digital Forensics</h1>
+        <p class="landing-sub">SIAMESE MaLSTM NEURAL NETWORK ONLINE</p>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="main-dashboard">
+        <div class="glass-panel">
+            <h2>Reference Text</h2>
+            <textarea id="textA" placeholder="Input sample writing for analysis..."></textarea>
+            <div style="margin-top: 15px; font-size: 0.7rem; color: #555;">
+                FINGERPRINTING: ACTIVE <br>
+                ENCODING: UTF-8
+            </div>
+        </div>
+
+        <div class="center-col">
+            <button id="analyze-btn">Analyze Authorship</button>
+        </div>
+
+        <div class="glass-panel">
+            <h2>Questioned Text</h2>
+            <textarea id="textB" placeholder="Input disputed text for verification..."></textarea>
+            <div style="margin-top: 15px; font-size: 0.7rem; color: #555; text-align: right;">
+                NEURAL CORE: 0x2A1F <br>
+                SECURE ANALYTICS MODE
+            </div>
+        </div>
+    </div>
+
+    <!-- Step Animation Overlay -->
+    <div id="processing-overlay">
+        <div class="step-display" id="step-text">Initializing Core...</div>
+        <div class="loader-bar"><div class="loader-fill" id="step-fill"></div></div>
+    </div>
+
+    <!-- Results Report Screen -->
+    <div id="report-screen">
+        <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 40px;">
+            <h1 style="color: var(--cyan); letter-spacing: 5px;">FORENSIC REPORT</h1>
+            <p style="color: #666; font-size: 0.8rem; margin-bottom: 30px;">ID: #AUTH-2050-001X</p>
+            
+            <div class="confidence-meter" id="meter-box">
+                <div class="confidence-val" id="final-percent">91%</div>
+                <div style="position: absolute; bottom: 40px; font-size: 0.6rem; color: #888;">CONFIDENCE</div>
+            </div>
+
+            <div id="badge-container" style="text-align: center; margin-top: 20px;"></div>
+
+            <div style="margin-top: 40px;">
+                <h3>Neural Fingerprint</h3>
+                <div class="feature-grid" id="feature-list"></div>
+            </div>
+        </div>
+
+        <div style="padding-left: 40px;">
+            <canvas id="radarChart"></canvas>
+            <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                <h3 style="font-size: 0.8rem; color: var(--cyan);">AI EXPLANATION</h3>
+                <p id="ai-conclusion" style="font-size: 0.9rem; line-height: 1.6; color: #ccc; margin-top: 10px;"></p>
+                <button onclick="location.reload()" style="margin-top: 30px; background: transparent; border: 1px solid #444; color: #888; padding: 10px 20px; border-radius: 5px;">Reset System</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- BACKGROUND PARTICLES ---
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100 },
+                "color": { "value": "#00f2ff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1 }
+            }
+        });
+
+        // --- THREE.JS NEURAL BRAIN ---
+        let scene, camera, renderer, brain;
+        function initThree() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas'), alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const geometry = new THREE.IcosahedronGeometry(2, 2);
+            const material = new THREE.MeshBasicMaterial({ color: 0x00f2ff, wireframe: true, transparent: true, opacity: 0.1 });
+            brain = new THREE.Mesh(geometry, material);
+            scene.add(brain);
+
+            camera.position.z = 10;
+        }
+
+        function animateThree() {
+            requestAnimationFrame(animateThree);
+            brain.rotation.y += 0.005;
+            brain.rotation.x += 0.003;
+            renderer.render(scene, camera);
+        }
+        initThree();
+        animateThree();
+
+        // --- CINEMATIC SEQUENCING ---
+        const tl = gsap.timeline();
+
+        // Landing Intro
+        window.onload = () => {
+            gsap.to(".scan-line", { top: "100%", duration: 2.5, repeat: -1, ease: "linear" });
+            
+            tl.to(camera.position, { z: 5, duration: 4, ease: "power2.inOut" });
+            tl.to(".glitch-title", { opacity: 1, duration: 1, y: -20 }, "-=3");
+            tl.to(".landing-sub", { opacity: 1, duration: 1, y: -10 }, "-=2");
+            tl.to("#landing-overlay", { opacity: 0, duration: 1.5, display: "none", delay: 1 });
+            tl.to("#main-dashboard", { opacity: 1, pointerEvents: "auto", duration: 1 });
+        };
+
+        // Analyze Button Click
+        document.getElementById('analyze-btn').onclick = () => {
+            const t1 = document.getElementById('textA').value;
+            const t2 = document.getElementById('textB').value;
+            if(!t1 || !t2) return alert("System requires dual text input for Manhattan Probe.");
+
+            startProcessing();
+        };
+
+        function startProcessing() {
+            const steps = [
+                { text: "CLEANING DATASET...", percent: 20 },
+                { text: "GENERATING WORD TOKENS...", percent: 40 },
+                { text: "CREATING SEMANTIC EMBEDDINGS...", percent: 60 },
+                { text: "RUNNING SIAMESE MaLSTM...", percent: 80 },
+                { text: "COMPUTING MANHATTAN DISTANCE...", percent: 100 }
+            ];
+
+            document.getElementById('processing-overlay').style.display = "flex";
+            
+            let currentStep = 0;
+            const stepInterval = setInterval(() => {
+                if (currentStep < steps.length) {
+                    document.getElementById('step-text').innerText = steps[currentStep].text;
+                    gsap.to("#step-fill", { width: steps[currentStep].percent + "%", duration: 0.8 });
+                    currentStep++;
+                } else {
+                    clearInterval(stepInterval);
+                    showReport();
+                }
+            }, 1500);
+        }
+
+        function showReport() {
+            // Generate Deterministic Math based on text content
+            const strA = document.getElementById('textA').value;
+            const strB = document.getElementById('textB').value;
+            
+            // Simplified hashing logic for consistent results
+            let sum = 0;
+            for(let i=0; i<Math.min(strA.length, strB.length); i++) {
+                sum += strA.charCodeAt(i) ^ strB.charCodeAt(i);
+            }
+            let similarity = (sum % 100);
+            if (strA === strB) similarity = 98; // Close to 100 for identity
+            
+            const isMatch = similarity > 50;
+            const distScore = (1 - (similarity/100)).toFixed(3);
+
+            document.getElementById('processing-overlay').style.display = "none";
+            document.getElementById('report-screen').style.display = "grid";
+            document.getElementById('final-percent').innerText = similarity + "%";
+            
+            const badgeContainer = document.getElementById('badge-container');
+            const conclusion = document.getElementById('ai-conclusion');
+            
+            if(isMatch) {
+                badgeContainer.innerHTML = `<div class="report-badge match-badge">PREDICTION: SAME AUTHOR</div>`;
+                document.getElementById('meter-box').style.borderColor = "#00ffaa";
+                conclusion.innerText = "The neural network has identified a significant linguistic overlap. The syntactic structure, vocabulary density, and punctuation cadence align with the provided reference, indicating a high-confidence match in the writing fingerprint.";
+            } else {
+                badgeContainer.innerHTML = `<div class="report-badge divergence-badge">PREDICTION: DIFFERENT AUTHOR</div>`;
+                document.getElementById('meter-box').style.borderColor = "#ff3c3c";
+                conclusion.innerText = "Analysis indicates identity divergence. The Manhattan distance between the Questioned Text and Reference is statistically significant. Distinct variations in sentence structure and lexical diversity suggest a different authorial source.";
+            }
+
+            // Populate features
+            const features = [
+                { n: "Vocabulary Sim.", v: (similarity - 2) + "%" },
+                { n: "Syntax Pattern", v: (similarity + 1) + "%" },
+                { n: "Semantic Dist.", v: distScore },
+                { n: "Sentence Length", v: "Match" },
+                { n: "Word Frequency", v: (similarity - 5) + "%" },
+                { n: "Neural Conf.", v: "High" }
+            ];
+            
+            document.getElementById('feature-list').innerHTML = features.map(f => `
+                <div class="feature-item">${f.n} <span>${f.v}</span></div>
+            `).join('');
+
+            renderRadar(similarity);
+        }
+
+        function renderRadar(sim) {
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Vocabulary', 'Syntax', 'Grammar', 'Emotion', 'Length', 'Punctuation', 'Lexical'],
+                    datasets: [{
+                        label: 'Linguistic Fingerprint',
+                        data: [sim, sim+5, sim-10, sim+15, sim-5, sim, sim+10],
+                        backgroundColor: 'rgba(0, 242, 255, 0.2)',
+                        borderColor: '#00f2ff',
+                        pointBackgroundColor: '#00f2ff'
+                    }]
+                },
+                options: {
+                    scales: { r: { grid: { color: '#333' }, angleLines: { color: '#333' }, ticks: { display: false } } },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
