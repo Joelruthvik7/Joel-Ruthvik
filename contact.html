@@ -279,6 +279,317 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* =========================================================
+   CONTACT PAGE | COMPLETE RESPONSIVE OPTIMIZATION
+   ========================================================= */
+
+/* ---------- Global ---------- */
+
+html,
+body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+    position:relative;
+    -webkit-text-size-adjust:100%;
+    touch-action:manipulation;
+}
+
+#contact{
+    overflow:hidden;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width:1024px){
+
+    /* Layout */
+
+    #contact{
+        padding-top:120px !important;
+        padding-bottom:80px !important;
+    }
+
+    #contact .px-6,
+    #contact .lg\:px-20{
+        padding-left:1.5rem !important;
+        padding-right:1.5rem !important;
+    }
+
+    #contact .py-32,
+    #contact .py-40{
+        padding-top:5rem !important;
+        padding-bottom:5rem !important;
+    }
+
+    /* Hero */
+
+    .contact-hero-title{
+        font-size:clamp(4rem,11vw,7rem)!important;
+        line-height:.95!important;
+    }
+
+    .contact-quote{
+        font-size:3rem!important;
+        line-height:1.2!important;
+    }
+
+    .reveal-contact-sub{
+        font-size:1.15rem!important;
+        line-height:1.7!important;
+    }
+
+    .luxury-beam{
+        display:none!important;
+    }
+
+    /* Contact Matrix */
+
+    #contact-matrix .grid.lg\:grid-cols-2{
+        grid-template-columns:1fr!important;
+        gap:4rem!important;
+    }
+
+    .contact-card-premium{
+        padding:2rem!important;
+        border-radius:2rem!important;
+    }
+
+    /* Form */
+
+    .animated-skill-border-inner{
+        padding:2.5rem 2rem!important;
+    }
+
+    /* Collaboration */
+
+    #collaboration-grid .grid{
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:1.25rem!important;
+    }
+
+    #collaboration-grid .glass{
+        padding:2rem!important;
+        border-radius:2rem!important;
+    }
+
+    /* Philosophy */
+
+    #communication-philosophy .lg\:grid-cols-2{
+        grid-template-columns:1fr!important;
+        gap:4rem!important;
+    }
+
+    #communication-philosophy .h-\[400px\]{
+        height:280px!important;
+    }
+
+    #communication-philosophy i.fa-earth-americas{
+        font-size:13rem!important;
+    }
+
+    /* Stats */
+
+    #contact-stats{
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:2rem!important;
+        padding:4rem 0!important;
+    }
+
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width:768px){
+
+    #contact{
+        padding-top:105px!important;
+    }
+
+    /* Hero */
+
+    .contact-hero-title{
+        font-size:clamp(3rem,15vw,4.8rem)!important;
+    }
+
+    .reveal-contact-sub{
+        font-size:1rem!important;
+        padding:0 .5rem!important;
+    }
+
+    .contact-quote{
+        font-size:1.8rem!important;
+        padding:0 1rem!important;
+    }
+
+    /* Hero Buttons */
+
+    #contact .flex.flex-wrap.justify-center.gap-6{
+        flex-direction:column!important;
+        align-items:stretch!important;
+        gap:1rem!important;
+    }
+
+    #contact .flex.flex-wrap.justify-center.gap-6 button{
+        width:100%!important;
+        justify-content:center!important;
+    }
+
+    /* Contact Cards */
+
+    #contact-matrix .grid.grid-cols-1.md\:grid-cols-2{
+        grid-template-columns:1fr!important;
+    }
+
+    .contact-card-premium{
+        padding:1.75rem!important;
+        border-radius:1.8rem!important;
+    }
+
+    /* Form */
+
+    #contactForm .grid{
+        grid-template-columns:1fr!important;
+        gap:2rem!important;
+    }
+
+    .contact-input{
+        font-size:16px!important;
+        padding:1.1rem!important;
+        border-radius:1.2rem!important;
+    }
+
+    .contact-label{
+        font-size:.72rem!important;
+    }
+
+    .char-counter{
+        right:15px!important;
+        bottom:12px!important;
+        font-size:8px!important;
+    }
+
+    .animated-skill-border-inner{
+        padding:2rem 1.5rem!important;
+    }
+
+    /* Philosophy */
+
+    #communication-philosophy .p-16{
+        padding:2.5rem 1.5rem!important;
+    }
+
+    #communication-philosophy h2{
+        text-align:center!important;
+        font-size:2.4rem!important;
+    }
+
+    /* Social */
+
+    #social-connectivity .flex{
+        flex-wrap:wrap!important;
+        justify-content:center!important;
+        gap:2rem!important;
+    }
+
+    .social-link-magnetic{
+        transform:none!important;
+    }
+
+    .social-tooltip{
+        display:none!important;
+    }
+
+    /* Navigation */
+
+    nav .px-8{
+        padding-left:1rem!important;
+        padding-right:1rem!important;
+    }
+
+    nav img{
+        height:42px!important;
+    }
+
+    .nav-link{
+        font-size:.55rem!important;
+    }
+
+    /* Cursor */
+
+    #cursor-light{
+        display:none!important;
+    }
+
+    /* Glass */
+
+    .glass{
+        -webkit-backdrop-filter:blur(15px);
+        backdrop-filter:blur(15px);
+    }
+
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width:480px){
+
+    .contact-hero-title{
+        font-size:2.7rem!important;
+    }
+
+    #collaboration-grid .grid{
+        grid-template-columns:1fr!important;
+    }
+
+    #contact-stats{
+        grid-template-columns:1fr!important;
+        gap:2rem!important;
+    }
+
+    #communication-philosophy i.fa-earth-americas{
+        font-size:9rem!important;
+    }
+
+    #communication-philosophy .h-\[400px\]{
+        height:200px!important;
+    }
+
+}
+
+/* =========================================================
+   TOUCH DEVICES
+   ========================================================= */
+
+@media (hover:none){
+
+    .contact-card-premium:hover,
+    .glass:hover,
+    .social-link-magnetic:hover{
+        transform:none!important;
+        box-shadow:none!important;
+    }
+
+}
+
+/* =========================================================
+   SAFARI FIX
+   ========================================================= */
+
+@supports (-webkit-backdrop-filter:blur(10px)){
+
+    .glass{
+        background:rgba(255,255,255,.03)!important;
+    }
+
+}
 </style>
 
 
@@ -765,6 +1076,210 @@ emailjs.sendForm(
     window.onload = runContactAnimations;
 </script>
 <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+
+<script>
+/* ==========================================================
+   CONTACT PAGE RESPONSIVE ENGINE
+   Desktop Safe
+========================================================== */
+
+(function () {
+
+    const ResponsiveEngine = {
+
+        isTouch: ('ontouchstart' in window) || (navigator.maxTouchPoints > 0),
+
+        init() {
+
+            this.setupScrollRefresh();
+            this.setupTouch();
+            this.bindResize();
+            this.bindMouse();
+
+        },
+
+        setupScrollRefresh() {
+
+            const refresh = () => {
+
+                if (typeof ScrollTrigger !== "undefined") {
+
+                    ScrollTrigger.refresh(true);
+
+                }
+
+            };
+
+            window.addEventListener("load", () => {
+
+                setTimeout(refresh, 400);
+
+            });
+
+            window.addEventListener("pageshow", refresh);
+
+            window.addEventListener("orientationchange", () => {
+
+                requestAnimationFrame(refresh);
+
+            });
+
+        },
+
+        bindResize() {
+
+            let timer;
+
+            window.addEventListener("resize", () => {
+
+                clearTimeout(timer);
+
+                timer = setTimeout(() => {
+
+                    if (typeof ScrollTrigger !== "undefined") {
+
+                        ScrollTrigger.refresh(true);
+
+                    }
+
+                },300);
+
+            });
+
+        },
+
+        setupTouch() {
+
+            if (!this.isTouch) return;
+
+            const cursor = document.getElementById("cursor-light");
+
+            if(cursor){
+
+                cursor.style.opacity="0";
+                cursor.style.pointerEvents="none";
+
+            }
+
+            document.querySelectorAll(".social-link-magnetic").forEach(btn=>{
+
+                btn.style.transform="none";
+
+            });
+
+            document.querySelectorAll(".proximity-glow").forEach(card=>{
+
+                card.style.filter="brightness(1)";
+
+            });
+
+        },
+
+        bindMouse(){
+
+            if(this.isTouch) return;
+
+            const cursor=document.getElementById("cursor-light");
+
+            if(!cursor) return;
+
+            let raf;
+
+            document.addEventListener("mousemove",(e)=>{
+
+                cancelAnimationFrame(raf);
+
+                raf=requestAnimationFrame(()=>{
+
+                    gsap.to(cursor,{
+                        x:e.clientX-400,
+                        y:e.clientY-400,
+                        duration:.6,
+                        overwrite:"auto"
+                    });
+
+                });
+
+            });
+
+        }
+
+    };
+
+    if(document.readyState==="loading"){
+
+        document.addEventListener("DOMContentLoaded",()=>{
+
+            ResponsiveEngine.init();
+
+        });
+
+    }else{
+
+        ResponsiveEngine.init();
+
+    }
+
+})();
+
+/* ==========================================================
+   Character Counter
+========================================================== */
+
+window.updateCharCount=function(textarea){
+
+    const current=textarea.value.length;
+
+    const display=document.getElementById("char-current");
+
+    if(display){
+
+        display.textContent=current;
+
+    }
+
+    const counter=document.querySelector(".char-counter");
+
+    if(counter){
+
+        counter.style.color=current>900?"#3b82f6":"";
+
+    }
+
+};
+
+/* ==========================================================
+   Mobile Submit Button Blur
+========================================================== */
+
+const form=document.getElementById("contactForm");
+
+if(form){
+
+    form.addEventListener("submit",function(){
+
+        if(window.innerWidth<=1024){
+
+            const btn=this.querySelector('button[type="submit"]');
+
+            if(btn){
+
+                setTimeout(()=>{
+
+                    btn.blur();
+
+                },100);
+
+            }
+
+        }
+
+    });
+
+}
+</script>
+
 </body>
 </html>
 
