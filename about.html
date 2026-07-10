@@ -283,6 +283,70 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* --- RESPONSIVE OPTIMIZATION LAYER --- */
+
+@media (max-width: 1024px) {
+    /* Global Container Adjustments */
+    #about { padding-top: 140px !important; }
+    .page { padding-top: 120px; }
+    
+    /* Typography Scaling */
+    #about h1 { font-size: clamp(3.5rem, 12vw, 6rem) !important; line-height: 0.9; margin-bottom: 2rem !important; }
+    #about h2 { font-size: 1.75rem !important; }
+    
+    /* Portrait Scaling & Stack Fix */
+    .portrait-frame { max-width: 320px !important; margin: 0 auto; }
+    #about .sticky { position: relative !important; top: 0 !important; margin-bottom: 3rem; }
+    
+    /* Layout Stacking */
+    #about .grid-cols-2, 
+    #about .lg\:grid-cols-2 { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    
+    /* Marquee Engine Mobile Optimization */
+    .marquee-card { 
+        width: 280px !important; 
+        padding: 1.5rem !important; 
+        border-radius: 24px !important; 
+    }
+    .marquee-content { gap: 1rem !important; }
+    
+    /* Animation speed adjustment for mobile */
+    .marquee-content { animation-duration: 25s !important; }
+    .marquee-fast .marquee-content { animation-duration: 15s !important; }
+
+    /* Fix Page Spacing */
+    .px-6.lg\:px-20 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    
+    /* Navigation Refinement */
+    nav .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+    nav img { height: 40px !important; }
+    nav h2 { font-size: 0.75rem !important; }
+    
+    /* Button Optimization */
+    .px-6.py-3 { width: 100%; text-align: center; }
+}
+
+@media (max-width: 768px) {
+    /* Prevent horizontal scroll from ambient light */
+    #cursor-light { display: none !important; } 
+    
+    /* Adjust Capstone Card for Mobile */
+    .animated-skill-border-inner { padding: 2rem 1.5rem !important; }
+    .animated-skill-border h3 { font-size: 1.75rem !important; }
+    
+    /* Roadmap stack fix */
+    #about .flex.items-center.gap-4.flex-wrap { justify-content: center; }
+    #about .fa-chevron-right { transform: rotate(90deg); margin: 0.5rem 0; }
+}
+
+/* Fix for iOS momentum scrolling and horizontal overflow */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
 </style>
 
 
@@ -867,5 +931,46 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         }
     });
 </script>
+
+<script>
+/* ===== MOBILE RESPONSIVE OPTIMIZATION ===== */
+
+if (window.innerWidth <= 1024) {
+
+    let resizeTimer;
+
+    window.addEventListener("resize", function () {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(function () {
+
+            if (typeof ScrollTrigger !== "undefined") {
+                ScrollTrigger.refresh();
+            }
+
+        }, 250);
+
+    });
+
+    document.querySelectorAll(".marquee-container").forEach(container => {
+
+        const marquee = container.querySelector(".marquee-content");
+
+        if (!marquee) return;
+
+        container.addEventListener("touchstart", function () {
+            marquee.style.animationPlayState = "paused";
+        }, { passive: true });
+
+        container.addEventListener("touchend", function () {
+            marquee.style.animationPlayState = "running";
+        }, { passive: true });
+
+    });
+
+}
+</script>
+
 </body>
 </html>
