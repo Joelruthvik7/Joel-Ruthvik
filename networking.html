@@ -1,3 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Joel Ruthvik | Talent Acquisition Manager & Web Designer </title>    
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;600;900&family=Plus+Jakarta+Sans:wght@300;400;700&family=Inter:wght@400;600;800&family=Poppins:wght@300;400;600;900&display=swap" rel="stylesheet">
+    
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --matte-black: #05070a;
+            --deep-navy: #0a101f;
+            --electric-blue: #3b82f6;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- GLOBAL PREMIUM SCROLLBAR --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--matte-black); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--electric-blue), #8b5cf6); 
+            border-radius: 10px;
+            border: 2px solid var(--matte-black);
+        }
+
+        body { background-color: var(--matte-black); color: #ffffff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        h1, h2, h3, .font-heading { font-family: 'Outfit', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+
+        /* Global Background */
+        #bg-canvas { position: fixed; top: 0; left: 0; z-index: -1; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, var(--deep-navy) 0%, var(--matte-black) 100%); }
+        .ambient-light { position: absolute; width: 800px; height: 800px; background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: 0; }
+
+        /* Glassmorphism */
+        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
+        .glass-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+        .glass-card:hover { background: rgba(59, 130, 246, 0.05); border-color: var(--electric-blue); }
+        
+        /* Nav Links */
+        .nav-link { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; color: rgba(255,255,255,0.4); transition: 0.3s; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: var(--electric-blue); text-shadow: 0 0 10px rgba(59, 130, 246, 0.5); }
+
+        /* Global Floating Portrait Style */
+        .portrait-frame { position: relative; width: 100%; max-width: 410px; border-radius: 40px; padding: 10px; background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 50px 100px rgba(0,0,0,0.5); animation: float 6s ease-in-out infinite; }
+        .portrait-frame img { width: 100%; border-radius: 32px; filter: contrast(1.05) brightness(1.1); }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        .gradient-text { background: linear-gradient(to right, #fff, var(--electric-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+/* NEWLY ADDED CODE 22ND MAY 2024 */
+/* MARQUEE ENGINE STYLES */
+
+.marquee-container {
+            overflow: hidden;
+            display: flex;
+            user-select: none;
+            gap: 2rem;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-around;
+            min-width: 100%;
+            gap: 2rem;
+            animation: scroll-marquee 40s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100% - 2rem)); }
+        }
+
+        .marquee-card {
+            width: 380px;
+            flex-shrink: 0;
+            border-radius: 32px;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marquee-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--electric-blue), transparent);
+            opacity: 0;
+            transition: 0.5s;
+            z-index: 0;
+        }
+
+        .marquee-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--electric-blue);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3);
+        }
+
+        .marquee-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .marquee-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fast Marquee for Skills */
+        .marquee-fast .marquee-content { animation-duration: 25s; }
+        /* Reverse Marquee */
+        .marquee-reverse .marquee-content { animation-direction: reverse; }
+
+/* NEWLY ADDED CODE ENDED HERE */
+
+        /* Experience Timeline Elements */
+        .timeline-container { position: relative; max-width: 1200px; margin: 0 auto; }
+        .timeline-line-v { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0.3; }
+        .exp-section { position: relative; margin-bottom: 100px; width: 100%; display: flex; justify-content: space-between; align-items: flex-start; }
+        .exp-dot { position: absolute; left: 50%; transform: translateX(-50%); width: 24px; height: 24px; background: var(--matte-black); border: 4px solid var(--electric-blue); border-radius: 50%; z-index: 10; box-shadow: 0 0 20px var(--electric-blue); }
+        .exp-content { width: 45%; }
+        .exp-right { margin-left: auto; }
+        .exp-left { margin-right: auto; text-align: right; }
+        .metric-badge { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.2); padding: 5px 12px; border-radius: 8px; font-size: 10px; font-weight: 700; color: var(--electric-blue); text-transform: uppercase; }
+
+
+/* --- NEW CINEMATIC SYSTEM --- */
+        /* NEWLY ADDED CODE 11th June 2026 */
+        .experience-section-container { margin-bottom: 0 !important; padding-bottom: 80px; }
+        
+        .premium-glow-card { position: relative; overflow: hidden; transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease; border: 1px solid rgba(255,255,255,0.06); }
+        .premium-glow-card:hover { border-color: var(--electric-blue); box-shadow: 0 0 30px rgba(59, 130, 246, 0.15); background: rgba(59, 130, 246, 0.02); }
+
+        .light-sweep { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent); transition: 0.8s; pointer-events: none; }
+        .premium-glow-card:hover .light-sweep { left: 100%; }
+
+        .career-journey-card { opacity: 0; }
+
+        .glass-panel-luxury { background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px); }
+
+        .proximity-glow { transition: filter 0.3s ease; }
+
+        /* Fix spacing gaps between sections */
+        #experience .py-40, #experience .mb-40 { padding-top: 5rem; padding-bottom: 5rem; margin-bottom: 2rem; }
+        
+        /* Entrance animation helpers */
+        .reveal-left { transform: translateX(-50px); }
+        .reveal-right { transform: translateX(50px); }
+        .reveal-bottom { transform: translateY(50px); }
+        
+        .museum-counter { font-variant-numeric: tabular-nums; }
+/* NEWLY ADDED CODE ENDED HERE 11th June 2026 */
+
+
+        /* Skills Page Specific Styles */
+        .skill-progress-bg { background: rgba(255,255,255,0.05); height: 4px; width: 100%; border-radius: 10px; overflow: hidden; margin-top: 10px; }
+        .skill-progress-fill { background: linear-gradient(90deg, var(--electric-blue), #a855f7); height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .domain-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); transition: all 0.4s ease; cursor: pointer; }
+        .domain-card:hover { transform: translateY(-10px); background: rgba(59, 130, 246, 0.1); border-color: var(--electric-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .skill-circle { transition: 0.5s; stroke-dasharray: 283; stroke-dashoffset: 283; }
+        
+        .floating-ui-item { position: absolute; background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 15px; padding: 12px; animation: floatUI 8s infinite ease-in-out; pointer-events: none; }
+        @keyframes floatUI { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(15px, -20px); } }
+        
+        .animated-skill-border { position: relative; overflow: hidden; }
+        .animated-skill-border::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, transparent, transparent, var(--electric-blue)); animation: rotateBorder 4s linear infinite; opacity: 0; transition: 0.3s; }
+        .animated-skill-border:hover::before { opacity: 1; }
+        .animated-skill-border-inner { position: relative; z-index: 1; background: #05070a; margin: 1px; border-radius: inherit; height: calc(100% - 2px); width: calc(100% - 2px); }
+        @keyframes rotateBorder { 100% { transform: rotate(360deg); } }
+
+        @media (max-width: 1024px) {
+            .timeline-line-v { left: 20px; transform: none; }
+            .exp-dot { left: 20px; transform: none; }
+            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
+        }
+        
+/* Clients Page Custom Enhancements */
+        .client-reveal-card { transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease; border: 1px solid rgba(255,255,255,0.05); }
+        .client-reveal-card:hover { transform: scale(1.05) translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(59, 130, 246, 0.3); border-color: var(--electric-blue); }
+        .client-logo-container { width: 64px; height: 64px; background: rgba(59, 130, 246, 0.1); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; border: 1px solid rgba(59, 130, 246, 0.2); transition: 0.3s; }
+        .client-reveal-card:hover .client-logo-container { background: var(--electric-blue); color: white; transform: rotate(10deg); }
+        
+        .domain-grid-card { position: relative; overflow: hidden; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
+        .domain-grid-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.05), transparent); transform: translateX(-100%); transition: 0.5s; }
+        .domain-grid-card:hover::after { transform: translateX(100%); }
+
+/* Recruitment Services Specific Enhanced Styles */
+        .service-icon-box { width: 60px; height: 60px; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--electric-blue); font-size: 1.5rem; margin-bottom: 1.5rem; transition: 0.5s; }
+        .service-reveal-card:hover .service-icon-box { background: var(--electric-blue); color: white; transform: scale(1.1) rotate(15deg); }
+        .workflow-line { position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: linear-gradient(to right, transparent, var(--electric-blue), transparent); opacity: 0.2; z-index: 0; }
+        .glow-pulse { animation: pulseGlow 2s infinite alternate; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.2); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.5); } }
+        
+        .stat-card { position: relative; overflow: hidden; background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); }
+        .stat-card::after { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59,130,246,0.1), transparent); transition: 0.5s; }
+        .stat-card:hover::after { left: 100%; }
+
+
+/* Academic Specific */
+        .edu-card { transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); border: 1px solid rgba(255,255,255,0.05); }
+        .edu-card:hover { transform: translateY(-10px) scale(1.02); border-color: var(--electric-blue); background: rgba(59,130,246,0.05); }
+        .connector-line { width: 2px; height: 100%; background: linear-gradient(to bottom, var(--electric-blue), transparent); position: absolute; left: 50%; transform: translateX(-50%); z-index: 0; opacity: 0.3; }
+
+ @media (max-width: 1024px) {
+            .timeline-line-v { left: 20px; transform: none; }
+            .exp-dot { left: 20px; transform: none; }
+            .exp-content { width: 100%; padding-left: 60px !important; text-align: left !important; }
+            }
+
+/* Animated Category Grid */
+        .category-card { transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .category-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.08); }
+
+        .glow-pulse { animation: pulseGlow 2s infinite alternate; }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px rgba(59, 130, 246, 0.1); } to { box-shadow: 0 0 25px rgba(59, 130, 246, 0.3); } }       
+
+ /* News Ticker */
+        .ticker-container { overflow: hidden; white-space: nowrap; }
+        .ticker-text { display: inline-block; animation: ticker 40s linear infinite; }
+        @keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+ /* Contact Page Custom Components */
+        .contact-input { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 1.25rem; border-radius: 1.5rem; width: 100%; outline: none; transition: 0.4s; }
+        .contact-input:focus { border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
+        .contact-label { position: absolute; left: 1.25rem; top: 1.25rem; pointer-events: none; transition: 0.3s; color: rgba(255,255,255,0.3); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; }
+        .contact-input:focus ~ .contact-label, .contact-input:not(:placeholder-shown) ~ .contact-label { transform: translateY(-2.2rem) scale(0.8); color: var(--electric-blue); }
+
+/* testimonial */
+		.testimonial-card { transition: 0.4s ease; }
+        .testimonial-card:hover { transform: translateY(-10px); border-color: var(--electric-blue); background: rgba(59, 130, 246, 0.05); }
+
+/* NEWLY ADDED CODE 13th June 2026 */
+        .luxury-beam { position: absolute; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, var(--electric-blue), transparent); opacity: 0; pointer-events: none; }
+        .contact-card-premium { transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .contact-card-premium:hover { box-shadow: 0 0 40px rgba(59, 130, 246, 0.15); }
+        .social-link-magnetic { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: inline-flex; position: relative; }
+        .social-tooltip { position: absolute; bottom: -35px; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--electric-blue); color: white; padding: 4px 12px; border-radius: 6px; font-size: 10px; opacity: 0; transition: 0.3s; pointer-events: none; white-space: nowrap; }
+        .social-link-magnetic:hover .social-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .char-counter { font-size: 9px; color: rgba(255,255,255,0.2); position: absolute; right: 20px; bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+/* NEWLY ADDED CODE ENDED HERE 13th June 2026 */
+
+
+/* NEWLY ADDED CODE 14th June 2026 */
+        .web-project-card { position: relative; border-radius: 2rem; overflow: hidden; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.5s ease; }
+        .web-project-card:hover { border-color: var(--electric-blue); box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.7), 0 18px 36px -18px rgba(59, 130, 246, 0.4); }
+        .web-project-image-container { position: relative; height: 260px; overflow: hidden; }
+        .web-project-image-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .web-project-card:hover .web-project-image-container img { transform: scale(1.05); }
+        .light-sweep-effect { position: relative; overflow: hidden; }
+        .light-sweep-effect::after { content: ''; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent); transform: rotate(30deg); transition: 0.8s; }
+        .web-project-card:hover .light-sweep-effect::after { left: 150%; }
+        .tech-expertise-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 2rem; border-radius: 1.5rem; text-align: center; transition: 0.4s; }
+        .tech-expertise-card:hover { background: rgba(59, 130, 246, 0.08); border-color: var(--electric-blue); transform: translateY(-5px); }
+
+/* GAMIFIED WEB PORTFOLIO STYLES */
+        .mission-stat-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-top: 6px; }
+        .mission-stat-fill { height: 100%; width: 0%; transition: 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .mission-tag { font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 6px; background: rgba(59, 130, 246, 0.1); color: var(--electric-blue); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .quest-connector { position: absolute; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(to bottom, var(--electric-blue), transparent); opacity: 0.2; z-index: 0; }
+        .mission-level-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--matte-black); border: 1px solid var(--electric-blue); padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 900; color: var(--electric-blue); z-index: 20; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); }
+        .xp-header-bar { position: sticky; top: 110px; z-index: 500; background: rgba(5,7,10,0.8); backdrop-filter: blur(10px); padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .progress-indicator-node { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.1); transition: 0.5s; }
+        .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
+/* END GAMIFIED WEB PORTFOLIO STYLES */
+
+
+/* ==========================================
+   NETWORKING PAGE RESPONSIVE OPTIMIZATION
+========================================== */
+
+@media (max-width:1024px){
+
+    /* ---------- Global Layout ---------- */
+
+    #social{
+        padding-top:120px !important;
+    }
+
+    .px-6.lg\:px-20{
+        padding-left:1.25rem !important;
+        padding-right:1.25rem !important;
+    }
+
+    .py-32,
+    .py-40{
+        padding-top:4rem !important;
+        padding-bottom:4rem !important;
+    }
+
+    nav .px-8{
+        padding-left:1rem !important;
+        padding-right:1rem !important;
+    }
+
+    nav img{
+        height:40px !important;
+    }
+
+    nav h2{
+        font-size:.75rem !important;
+    }
+
+
+    /* ---------- Hero ---------- */
+
+    .social-hero-title{
+        font-size:clamp(2.8rem,10vw,5.5rem)!important;
+        line-height:1!important;
+        margin-bottom:1.5rem!important;
+    }
+
+    .social-hero-badge{
+        font-size:10px!important;
+        letter-spacing:.25em!important;
+    }
+
+    .reveal-social-sub{
+        font-size:1rem!important;
+        line-height:1.6!important;
+    }
+
+    .social-quote{
+        font-size:2.25rem!important;
+        line-height:1.2!important;
+    }
+
+
+    /* ---------- Digital Presence ---------- */
+
+    #social .grid.lg\:grid-cols-2.gap-20{
+        grid-template-columns:1fr!important;
+        gap:3rem!important;
+    }
+
+    #social .glass.p-10{
+        padding:2rem 1.5rem!important;
+        border-radius:2rem!important;
+    }
+
+    .aspect-square{
+        width:min(300px,100%)!important;
+        height:min(300px,100%)!important;
+        margin:auto!important;
+    }
+
+
+    /* ---------- Social Cards ---------- */
+
+    #social .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3{
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:1rem!important;
+    }
+
+    #social .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3>a.glass{
+        padding:2rem 1.5rem!important;
+        border-radius:2rem!important;
+    }
+
+    #social .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3>a.glass h3{
+        font-size:1.6rem!important;
+    }
+
+    #social .absolute.text-\[12rem\]{
+        font-size:8rem!important;
+        right:-1rem!important;
+        top:-1rem!important;
+    }
+
+    .metric-badge{
+        font-size:9px!important;
+        padding:4px 8px!important;
+    }
+
+
+    /* ---------- Philosophy ---------- */
+
+    #social .glass.p-16.lg\:p-24{
+        padding:2.5rem 1.5rem!important;
+        border-radius:3rem!important;
+    }
+
+    #social .grid.grid-cols-2.gap-8{
+        gap:1rem!important;
+    }
+
+    #social .stat-card{
+        padding:1.5rem 1rem!important;
+        border-radius:2rem!important;
+    }
+
+    #social .stat-card h4{
+        font-size:2rem!important;
+    }
+
+
+    /* ---------- Communication ---------- */
+
+    #social .grid.grid-cols-2.lg\:grid-cols-4{
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:1rem!important;
+    }
+
+    #social .glass.p-12.rounded-\[40px\]{
+        padding:2rem 1rem!important;
+    }
+
+
+    /* ---------- Email CTA ---------- */
+
+    #social a.glass.p-10.lg\:p-16{
+        flex-direction:column!important;
+        align-items:center!important;
+        text-align:center!important;
+        padding:2rem 1.5rem!important;
+    }
+
+    #social a.glass.p-10.lg\:p-16 .md\:items-end{
+        align-items:center!important;
+        text-align:center!important;
+    }
+
+    #social a.glass.p-10.lg\:p-16 .text-2xl{
+        font-size:1.25rem!important;
+        word-break:break-word!important;
+    }
+
+    #social a.glass.p-10.lg\:p-16 .flex{
+        justify-content:center!important;
+    }
+
+}
+
+
+/* ---------- Mobile ---------- */
+
+@media(max-width:768px){
+
+    #social .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3{
+        grid-template-columns:1fr!important;
+    }
+
+    #social .grid.grid-cols-2.lg\:grid-cols-4{
+        grid-template-columns:1fr!important;
+    }
+
+    .flex.justify-center.flex-wrap.gap-12{
+        gap:2rem!important;
+    }
+
+    .social-hero-title{
+        font-size:2.7rem!important;
+    }
+
+    .social-quote{
+        font-size:1.8rem!important;
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .social-hero-title{
+        font-size:2.4rem!important;
+    }
+
+    #social .text-5xl{
+        font-size:2rem!important;
+    }
+
+    #social .text-6xl{
+        font-size:2.2rem!important;
+    }
+
+    #social .text-7xl{
+        font-size:2.5rem!important;
+    }
+
+    #social .stat-card h4{
+        font-size:1.6rem!important;
+    }
+
+}
+
+
+/* ---------- Global ---------- */
+
+html,
+body{
+    max-width:100vw;
+    overflow-x:hidden;
+    position:relative;
+    touch-action:manipulation;
+    -webkit-overflow-scrolling:touch;
+}
+
+#social{
+    overflow-x:hidden;
+}
+</style>
+
+
+<meta name="description"
+content="Joel Ruthvik - Talent Acquisition Manager, IT Staffing Specialist, Recruitment Operations, Technical Recruitment and Web Designer.">
+
+
+<meta property="og:title"
+content="Joel Ruthvik | Talent Acquisition Manager & Web Designer">
+
+<meta property="og:description"
+content="IT Staffing Specialist, Technical Recruitment and Web Designer">
+
+<meta property="og:url"
+content="https://joelruthvik.com/">
+
+
+<meta name="keywords"
+content="Joel Ruthvik, Talent Acquisition Manager, IT Staffing, Technical Recruitment, Recruitment Operations, Web Designer">
+
+
+<link rel="canonical" href="https://joelruthvik.com/">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/favicon.png">
+</head>
+<body>
+
+	<div id="bg-canvas"></div>
+    <div id="cursor-light" class="ambient-light"></div>
+
+    <!-- MAIN NAVIGATION -->
+    <nav class="fixed top-0 w-full z-[1000] glass border-b border-white/5">
+        <div class="px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+
+   
+ 
+   <img 
+        src="https://i.pinimg.com/736x/84/d5/d5/84d5d53aa436d932e6ed317d8bffd279.jpg" 
+        alt="Joel Ruthvik Logo"
+        class="h-14 w-auto rounded-xl shadow-lg shadow-blue-600/30"
+    />
+
+    <div>
+        <p class="text-[9px] font-bold tracking-[0.3em] text-blue-500 uppercase">
+            Executive Intelligence
+        </p>
+
+        <h2 class="text-sm font-black uppercase tracking-tighter">
+            THUMMALA Joel Ruthvik
+        </h2>
+    </div>
+
+</div>
+
+            <button onclick="toggleMobileMenu()" class="glass px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border-blue-500/30 text-blue-400"><i class="fa-solid fa-bars-staggered mr-2"></i> Menu</button>
+        </div>
+        <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
+<div class="flex px-8 py-3 space-x-10 min-w-max">
+<a href="index.html" class="nav-link">Home</a>
+<a href="about.html" class="nav-link">About Me</a>
+<a href="experience.html" class="nav-link">Experience</a>
+<a href="skills.html" class="nav-link">Skills</a>
+<a href="clients.html" class="nav-link">Clients & Domains</a>
+<a href="services.html" class="nav-link">Services</a>
+<a href="portfolio.html" class="nav-link">Web Portfolio</a>
+<a href="certifications.html" class="nav-link">Certifications</a>
+<a href="education.html" class="nav-link">Education</a>
+<a href="achievements.html" class="nav-link">Achievements</a>
+<a href="networking.html" class="nav-link active">Networking</a>
+<a href="updates.html" class="nav-link">Updates</a>
+<a href="contact.html" class="nav-link">Contact</a>
+</div>
+</div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/98 z-[2000] hidden flex flex-col items-center justify-center p-10">
+        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-3xl"><i class="fa-solid fa-xmark"></i></button>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-20 text-center">
+<a href="index.html" class="text-2xl font-bold">01. Home</a>
+<a href="about.html" class="text-2xl font-bold">02. About Me</a>
+<a href="experience.html" class="text-2xl font-bold">03. Experience</a>
+<a href="skills.html" class="text-2xl font-bold">04. Skills</a>
+<a href="clients.html" class="text-2xl font-bold">05. Clients</a>
+<a href="services.html" class="text-2xl font-bold">06. Services</a>
+<a href="portfolio.html" class="text-2xl font-bold">07. Web Portfolio</a>
+<a href="certifications.html" class="text-2xl font-bold">08. Certifications</a>
+<a href="education.html" class="text-2xl font-bold">09. Education</a>
+<a href="achievements.html" class="text-2xl font-bold">10. Achievements</a>
+<a href="networking.html" class="text-2xl font-bold">11. Networking</a>
+<a href="updates.html" class="text-2xl font-bold">12. Updates</a>
+<a href="contact.html" class="text-2xl font-bold">13. Contact</a>
+</div>
+</div>
+
+   <!-- =========================================================
+     11. SOCIAL MEDIA & NETWORKING PAGE
+     ========================================================= -->
+     <section id="social" class="page pt-[140px] pb-[100px] min-h-screen px-6 lg:px-20 overflow-hidden relative">
+	    <!-- Cinematic Hero Section -->
+    <div class="max-w-7xl mx-auto py-32 text-center relative z-10">
+        <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/5 blur-[120px] pointer-events-none rounded-full"></div>
+        <div class="inline-block glass px-6 py-2 rounded-full text-[12px] font-black text-blue-500 uppercase tracking-[0.4em] mb-8 social-hero-badge">Digital Identity</div>
+        <h1 class="text-8xl lg:text-[10rem] font-black tracking-tighter mb-8 leading-none social-hero-title">SOCIAL MEDIA & <br><span class="gradient-text italic">NETWORKING</span></h1>
+        <p class="text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed reveal-social-sub font-light">
+            Building meaningful professional connections, expanding digital presence, and creating opportunities through strategic networking.
+        </p>
+    </div>
+
+    <!-- Professional Digital Presence -->
+    <div class="max-w-7xl mx-auto py-40">
+        <div class="flex flex-col items-center mb-24">
+            <h2 class="text-5xl font-black uppercase italic mb-4">Professional <span class="text-blue-500 not-italic uppercase">Digital Presence</span></h2>
+            <div class="w-24 h-1 bg-blue-600 rounded-full"></div>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-blue-500 transition-all hover:translate-x-4">
+                    <h4 class="text-xl font-bold mb-4">Strategic Engagement</h4>
+                    <p class="text-gray-400">Actively engaged in professional networking, sharing recruitment insights and hiring updates to bridge the talent-leader gap.</p>
+                </div>
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-white/10 transition-all hover:translate-x-4">
+                    <h4 class="text-xl font-bold mb-4">Relationship Focused</h4>
+                    <p class="text-gray-400">Leveraging social platforms for talent acquisition and branding to build long-term enterprise partnerships.</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="glass p-12 rounded-full aspect-square flex items-center justify-center glow-pulse">
+                    <div class="text-center">
+                        <i class="fa-solid fa-share-nodes text-8xl text-blue-500/20 mb-8"></i>
+                        <p class="text-[10px] font-black tracking-[0.5em] text-blue-500 uppercase">Networking Pulse</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connect With Joel Ruthvik - Premium Social Cards -->
+    <div class="max-w-7xl mx-auto py-40">
+        <div class="text-center mb-32">
+            <h2 class="text-6xl font-black italic">Connect With <span class="text-blue-500 not-italic uppercase">Joel Ruthvik</span></h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- LinkedIn -->
+            <a href="https://linkedin.com/in/joelruthvik" target="_blank" class="glass p-12 rounded-[4rem] group hover:border-blue-500 transition-all relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-[12rem] text-blue-600/5 group-hover:text-blue-600/10 transition-colors"><i class="fa-brands fa-linkedin"></i></div>
+                <i class="fa-brands fa-linkedin text-5xl text-[#0a66c2] mb-10 block"></i>
+                <h3 class="text-3xl font-black mb-4">LinkedIn</h3>
+                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Professional networking, recruitment updates, and enterprise hiring communication.</p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                    <span class="metric-badge">Networking</span><span class="metric-badge">Talent Acquisition</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-widest text-blue-500 group-hover:underline">Visit Profile <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></span>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/joelruthvik?igsh=cnB6NXNrdWJ2aHIy&utm_source=qr" target="_blank" class="glass p-12 rounded-[4rem] group hover:border-pink-500 transition-all relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-[12rem] text-pink-600/5 group-hover:text-pink-600/10 transition-colors"><i class="fa-brands fa-instagram"></i></div>
+                <i class="fa-brands fa-instagram text-5xl text-[#e4405f] mb-10 block"></i>
+                <h3 class="text-3xl font-black mb-4">Instagram</h3>
+                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Personal branding, visual professional updates, and creative networking engagement.</p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                    <span class="metric-badge">Branding</span><span class="metric-badge">Social Engagement</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-widest text-pink-500 group-hover:underline">Follow Me <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></span>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="https://wa.me/919666889775" target="_blank" class="glass p-12 rounded-[4rem] group hover:border-green-500 transition-all relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-[12rem] text-green-600/5 group-hover:text-green-600/10 transition-colors"><i class="fa-brands fa-whatsapp"></i></div>
+                <i class="fa-brands fa-whatsapp text-5xl text-[#25d366] mb-10 block"></i>
+                <h3 class="text-3xl font-black mb-4">WhatsApp</h3>
+                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Direct recruitment coordination, instant networking, and business inquiry support.</p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                    <span class="metric-badge">Business Comm</span><span class="metric-badge">Coordination</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-widest text-green-500 group-hover:underline">Message Now <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></span>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://youtube.com/@tjrempire-u6v?si=3MOFZR9AMRdyj70f" target="_blank" class="glass p-12 rounded-[4rem] group hover:border-red-600 transition-all relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-[12rem] text-red-600/5 group-hover:text-red-600/10 transition-colors"><i class="fa-brands fa-youtube"></i></div>
+                <i class="fa-brands fa-youtube text-5xl text-[#ff0000] mb-10 block"></i>
+                <h3 class="text-3xl font-black mb-4">YouTube</h3>
+                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Recruitment vlogs, technical insights, and visual storytelling of the TJR Empire.</p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                    <span class="metric-badge">Video Content</span><span class="metric-badge">Insights</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-widest text-red-500 group-hover:underline">Subscribe <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></span>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/share/1D474PdgVJ/?mibextid=wwXIfr" target="_blank" class="glass p-12 rounded-[4rem] group hover:border-blue-400 transition-all relative overflow-hidden">
+                <div class="absolute -right-10 -top-10 text-[12rem] text-blue-400/5 group-hover:text-blue-400/10 transition-colors"><i class="fa-brands fa-facebook"></i></div>
+                <i class="fa-brands fa-facebook text-5xl text-[#1877f2] mb-10 block"></i>
+                <h3 class="text-3xl font-black mb-4">Facebook</h3>
+                <p class="text-sm text-gray-500 mb-8 leading-relaxed">Outreach, community interaction, and digital engagement for professional growth.</p>
+                <div class="flex flex-wrap gap-2 mb-10">
+                    <span class="metric-badge">Community</span><span class="metric-badge">Outreach</span>
+                </div>
+                <span class="text-[10px] font-black uppercase tracking-widest text-blue-400 group-hover:underline">Connect <i class="fa-solid fa-arrow-up-right-from-square ml-2"></i></span>
+            </a>
+
+            <!-- CTA Matrix -->
+            <div class="flex flex-col gap-4">
+                <a href="mailto:hello@joelruthvik.com" class="bg-blue-600 h-1/2 rounded-[3rem] flex items-center justify-center font-black uppercase text-[11px] tracking-widest shadow-2xl shadow-blue-600/30 hover:scale-105 transition-all">Send Official Email</a>
+                <a href="https://linkedin.com/in/joelruthvik" target="_blank" class="glass h-1/2 rounded-[3rem] flex items-center justify-center font-black uppercase text-[11px] tracking-widest hover:bg-white/10 transition-all">Connect on LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Networking Philosophy -->
+    <div class="max-w-7xl mx-auto py-40 border-t border-white/5">
+        <div class="glass p-16 lg:p-24 rounded-[5rem] relative overflow-hidden">
+            <div class="absolute -top-20 -left-20 w-96 h-96 bg-blue-600/10 blur-[100px] rounded-full"></div>
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="text-5xl lg:text-7xl font-black italic mb-10 leading-tight">Networking <br><span class="text-blue-500 not-italic uppercase">Philosophy</span></h2>
+                    <p class="text-xl text-gray-400 leading-relaxed mb-12">Recruitment is built on communication and trust. Joel Ruthvik believes that meaningful professional networks create the bridge to long-term enterprise success.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-6 glass p-6 rounded-3xl border border-blue-500/20"><div class="w-2 h-2 bg-blue-500 rounded-full"></div> <p class="text-xs font-bold uppercase tracking-widest">Trust drives results</p></div>
+                        <div class="flex items-center gap-6 glass p-6 rounded-3xl border border-blue-500/20"><div class="w-2 h-2 bg-blue-500 rounded-full"></div> <p class="text-xs font-bold uppercase tracking-widest">Visibility enhances impact</p></div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-8 border-blue-600">
+                         <h4 class="text-4xl font-black mb-2">7+</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Years Reach</p>
+                    </div>
+                    <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                         <h4 class="text-4xl font-black mb-2">Global</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Connections</p>
+                    </div>
+                    <div class="stat-card glass p-10 rounded-[3rem] text-center">
+                         <h4 class="text-4xl font-black mb-2">Multi</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Platform Presence</p>
+                    </div>
+                    <div class="stat-card glass p-10 rounded-[3rem] text-center border-b-8 border-blue-600">
+                         <h4 class="text-4xl font-black mb-2">Elite</h4><p class="text-[10px] font-bold text-blue-500 uppercase">Engagement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Communication Connectivity Bar -->
+    <div class="max-w-7xl mx-auto py-40">
+        <h2 class="text-center text-[10px] font-black uppercase tracking-[1em] mb-12 text-gray-500">Global Connectivity</h2>
+        <div class="flex justify-center flex-wrap gap-12">
+            <a href="https://linkedin.com/in/joelruthvik" target="_blank" class="text-4xl text-gray-500 hover:text-blue-600 hover:scale-125 transition-all"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/joelruthvik?igsh=cnB6NXNrdWJ2aHIy&utm_source=qr" target="_blank" class="text-4xl text-gray-500 hover:text-pink-500 hover:scale-125 transition-all"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/919666889775" target="_blank" class="text-4xl text-gray-500 hover:text-green-500 hover:scale-125 transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://youtube.com/@tjrempire-u6v?si=3MOFZR9AMRdyj70f" target="_blank" class="text-4xl text-gray-500 hover:text-red-600 hover:scale-125 transition-all"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.facebook.com/share/1D474PdgVJ/?mibextid=wwXIfr" target="_blank" class="text-4xl text-gray-500 hover:text-blue-400 hover:scale-125 transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="mailto:hello@joelruthvik.com" class="text-4xl text-gray-500 hover:text-white hover:scale-125 transition-all"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- COMMUNICATION EXCELLENCE PILLARS -->
+    <div class="max-w-7xl mx-auto py-20 mb-20">
+        <h2 class="text-center text-2xl md:text-4xl font-black uppercase tracking-[0.6em] mb-16">
+            <span class="text-blue-500">COMMUNICATION</span> EXCELLENCE
+        </h2>
+        
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Pillar 1 -->
+            <div class="glass p-12 rounded-[40px] flex flex-col items-center justify-center text-center gap-6 group hover:border-blue-500/50 transition-all duration-500">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+                <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-white">Engagement</h4>
+            </div>
+            <!-- Pillar 2 -->
+            <div class="glass p-12 rounded-[40px] flex flex-col items-center justify-center text-center gap-6 group hover:border-blue-500/50 transition-all duration-500">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-bridge"></i>
+                </div>
+                <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-white">Relationship Mgmt</h4>
+            </div>
+            <!-- Pillar 3 -->
+            <div class="glass p-12 rounded-[40px] flex flex-col items-center justify-center text-center gap-6 group hover:border-blue-500/50 transition-all duration-500">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-white">Leadership</h4>
+            </div>
+            <!-- Pillar 4 -->
+            <div class="glass p-12 rounded-[40px] flex flex-col items-center justify-center text-center gap-6 group hover:border-blue-500/50 transition-all duration-500">
+                <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-500 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <h4 class="text-[10px] font-black uppercase tracking-[0.2em] text-white">Global Reach</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Official Email Section - Updated to Horizontal/Clickable -->
+    <div class="max-w-7xl mx-auto py-10 mb-20">
+        <a href="mailto:hello@joelruthvik.com" class="glass p-10 lg:p-16 rounded-[40px] relative overflow-hidden group hover:border-blue-500/30 transition-all flex flex-col md:flex-row items-center justify-between gap-10 block">
+            <!-- Background Large Icon -->
+            <div class="absolute top-1/2 -translate-y-1/2 right-10 opacity-[0.03] rotate-[-15deg] group-hover:opacity-[0.05] transition-opacity pointer-events-none">
+                <i class="fa-solid fa-envelope text-[220px]"></i>
+            </div>
+
+            <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+                <div class="w-20 h-20 bg-blue-500/10 rounded-3xl flex items-center justify-center text-blue-500 text-3xl shrink-0">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="text-center md:text-left">
+                    <h3 class="text-4xl font-black text-white mb-3">Official Email</h3>
+                    <p class="text-gray-500 text-lg leading-relaxed max-w-xl">
+                        Professional inquiries, client discussions, and enterprise recruitment opportunities. Connect for direct collaboration.
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative z-10 text-center md:text-right flex flex-col items-center md:items-end gap-6">
+                <p class="text-white font-black text-2xl lg:text-3xl tracking-tight group-hover:text-blue-500 transition-colors">
+                    hello@joelruthvik.com
+                </p>
+                <div class="flex gap-3">
+                    <span class="px-5 py-2 border border-blue-600/30 rounded-lg text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-600/5">Enterprise</span>
+                    <span class="px-5 py-2 border border-blue-600/30 rounded-lg text-[10px] font-black text-blue-500 uppercase tracking-widest bg-blue-600/5">Collaboration</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- Cinematic Quote -->
+    <div class="max-w-6xl mx-auto text-center py-48 border-t border-white/5">
+        <h2 class="text-6xl lg:text-7xl font-black italic leading-tight social-quote">
+            “Professional networking is the bridge that transforms connections into <span class="text-blue-500">opportunities</span> and relationships into long-term success.”
+        </h2>
+    </div>
+</section>
+	
+<footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
+    <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
+</footer>
+
+<script>
+/**
+ * JOEL RUTHVIK | ENTERPRISE PORTFOLIO ENGINE
+ * Style: Corporate Minimalist (Apple/Stripe/Linear)
+ * Patterns: Fade + Subtle Directional Slide
+ */
+
+"use strict";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const CorporateUI = (() => {
+    // 1. SELECTOR CACHING
+    const DOM = {
+        page: document.querySelector('.page'),
+        nav: document.querySelector('nav'),
+        heroBadge: document.querySelector('.social-hero-badge'),
+        heroTitle: document.querySelector('.social-hero-title'),
+        heroSub: document.querySelector('.reveal-social-sub'),
+        
+        // Directional Targets
+        leftReveal: gsap.utils.toArray('.border-l-4'),
+        rightReveal: gsap.utils.toArray('.relative .glass.p-12.rounded-full'), // Pulse center
+        
+        // Grid Stagger Targets
+        socialGrid: gsap.utils.toArray('#social .grid-cols-1 > a, #social .grid-cols-1 > div'),
+        statGrid: gsap.utils.toArray('.stat-card'),
+        pillarGrid: gsap.utils.toArray('.glass.p-12.rounded-\\[40px\\]'),
+        
+        // Footer/CTA
+        emailSection: document.querySelector('a[href^="mailto"]'),
+        quote: document.querySelector('.social-quote'),
+        footer: document.querySelector('footer'),
+        
+        // Animated elements to stabilize
+        floatingElements: gsap.utils.toArray('.portrait-frame, .glow-pulse, .ambient-light')
+    };
+
+    // 2. ANIMATION SETTINGS
+    const SETTINGS = {
+        yDist: 30,
+        xDist: 40,
+        duration: 0.8,
+        ease: "power3.out", // Enterprise standard
+        stagger: 0.1
+    };
+
+    /**
+     * CLEANUP: Disable legacy floating animations to ensure a "solid" feel
+     */
+    const stabilizeElements = () => {
+        gsap.set(DOM.floatingElements, { 
+            animation: "none", 
+            boxShadow: "none",
+            opacity: (i, target) => target.classList.contains('ambient-light') ? 0 : 1
+        });
+        
+        if (DOM.page) {
+            gsap.set(DOM.page, { 
+                display: 'block', 
+                opacity: 1, 
+                y: 0, 
+                visibility: 'visible' 
+            });
+        }
+    };
+
+    /**
+     * CORE REVEAL FUNCTIONS
+     */
+    const revealFromBottom = (elements, trigger) => {
+        if (!elements.length) return;
+        gsap.from(elements, {
+            scrollTrigger: {
+                trigger: trigger || elements[0],
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: SETTINGS.yDist,
+            opacity: 0,
+            duration: SETTINGS.duration,
+            ease: SETTINGS.ease,
+            stagger: SETTINGS.stagger,
+            clearProps: "all"
+        });
+    };
+
+    const revealFromLeft = (elements) => {
+        elements.forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%"
+                },
+                x: -SETTINGS.xDist,
+                opacity: 0,
+                duration: SETTINGS.duration,
+                ease: SETTINGS.ease,
+                clearProps: "all"
+            });
+        });
+    };
+
+    const revealFromRight = (elements) => {
+        elements.forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 90%"
+                },
+                x: SETTINGS.xDist,
+                opacity: 0,
+                duration: SETTINGS.duration,
+                ease: SETTINGS.ease,
+                clearProps: "all"
+            });
+        });
+    };
+
+    /**
+     * HERO SEQUENCE
+     */
+    const initHeroReveal = () => {
+        const tl = gsap.timeline({ defaults: { ease: SETTINGS.ease, duration: SETTINGS.duration } });
+        
+        tl.from(DOM.nav, { opacity: 0, y: -20, duration: 1 })
+          .from(DOM.heroBadge, { opacity: 0, y: 10 }, "-=0.6")
+          .from(DOM.heroTitle, { opacity: 0, y: 20 }, "-=0.6")
+          .from(DOM.heroSub, { opacity: 0, y: 20 }, "-=0.6");
+    };
+
+    /**
+     * INITIALIZE SYSTEM
+     */
+    const init = () => {
+        stabilizeElements();
+        initHeroReveal();
+
+        // 1. Pattern: Left slide for Presence sections
+        revealFromLeft(DOM.leftReveal);
+
+        // 2. Pattern: Right slide for Visual Pulse sections
+        revealFromRight(DOM.rightReveal);
+
+        // 3. Pattern: Staggered Bottom reveal for Grids
+        revealFromBottom(DOM.socialGrid, "#social .grid-cols-1");
+        revealFromBottom(DOM.statGrid, ".grid-cols-2.lg\\:grid-cols-2");
+        revealFromBottom(DOM.pillarGrid, ".grid-cols-2.lg\\:grid-cols-4");
+
+        // 4. Pattern: Subtle Fade-up for Footer items
+        revealFromBottom([DOM.emailSection, DOM.quote, DOM.footer]);
+
+        // Global Resize handling (Debounced by ScrollTrigger internal)
+        window.addEventListener("resize", () => ScrollTrigger.refresh());
+    };
+
+    return { start: init };
+})();
+
+// Execution
+document.addEventListener("DOMContentLoaded", CorporateUI.start);
+</script>
+
 <script>
 /* ==========================================
    NETWORKING PAGE RESPONSIVE OPTIMIZATION
@@ -79,3 +1100,6 @@
 
 })();
 </script>
+</body>
+</html>
+
