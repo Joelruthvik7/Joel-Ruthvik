@@ -279,6 +279,260 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* ==========================================================
+   UPDATES PAGE | MOBILE & TABLET RESPONSIVE OPTIMIZATION
+   Safe Version - Desktop Layout Unaffected
+========================================================== */
+
+/* Global Overflow Protection */
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Images */
+img{
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+
+/* Touch Highlight */
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+/* Safari Glass */
+.glass{
+    -webkit-backdrop-filter:blur(20px);
+}
+
+/* Disable Hover on Touch */
+@media (hover:none){
+
+    .glass:hover,
+    .category-card:hover,
+    .stat-card:hover,
+    .client-reveal-card:hover{
+        transform:none !important;
+        box-shadow:none !important;
+    }
+
+    .group:hover img{
+        transform:none !important;
+    }
+
+    .group:hover .grayscale{
+        filter:none !important;
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:1024px){
+
+    /* Page */
+    #blog{
+        padding-top:120px !important;
+        overflow:hidden;
+    }
+
+    #blog *{
+        max-width:100%;
+    }
+
+    .page{
+        padding-top:120px !important;
+    }
+
+    #blog{
+        padding-left:1.25rem !important;
+        padding-right:1.25rem !important;
+    }
+
+    .py-32,
+    .py-40{
+        padding-top:4rem !important;
+        padding-bottom:4rem !important;
+    }
+
+    /* Hero */
+
+    .blog-hero-title{
+        font-size:clamp(3rem,10vw,5rem)!important;
+        line-height:1!important;
+    }
+
+    .reveal-blog-sub{
+        font-size:1.1rem!important;
+        line-height:1.7!important;
+    }
+
+    .blog-quote{
+        font-size:2.5rem!important;
+        line-height:1.3!important;
+    }
+
+    /* Hero Buttons */
+
+    #blog .flex.flex-wrap.justify-center.gap-6{
+        gap:1rem!important;
+    }
+
+    #blog .flex.flex-wrap.justify-center.gap-6 button{
+        width:100%;
+        max-width:340px;
+    }
+
+    /* Featured Articles */
+
+    #blog .grid.lg\:grid-cols-2{
+        grid-template-columns:1fr!important;
+        gap:2rem!important;
+    }
+
+    .h-\[300px\]{
+        height:220px!important;
+    }
+
+    /* Latest Insights */
+
+    #blog .md\:grid-cols-2.lg\:grid-cols-3{
+        grid-template-columns:1fr!important;
+    }
+
+    /* Dashboard */
+
+    #blog .lg\:grid-cols-2{
+        grid-template-columns:1fr!important;
+        gap:3rem!important;
+    }
+
+    .stat-card{
+        padding:1.75rem!important;
+        border-radius:2rem!important;
+    }
+
+    /* Categories */
+
+    #blog .grid.grid-cols-2.md\:grid-cols-4.lg\:grid-cols-6{
+        grid-template-columns:repeat(3,1fr)!important;
+        gap:1rem!important;
+    }
+
+    .category-card{
+        padding:1.5rem!important;
+        border-radius:2rem!important;
+    }
+
+    /* CTA */
+
+    #blog .lg\:grid-cols-5{
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:1rem!important;
+    }
+
+    #blog .lg\:grid-cols-5 a:last-child{
+        grid-column:span 2;
+    }
+
+    /* Navigation */
+
+    nav .px-8{
+        padding-left:1rem!important;
+        padding-right:1rem!important;
+    }
+
+    nav img{
+        height:40px!important;
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    #cursor-light{
+        display:none!important;
+    }
+
+    .blog-hero-title{
+        font-size:2.8rem!important;
+    }
+
+    .blog-quote{
+        font-size:2rem!important;
+        line-height:1.4!important;
+        padding:0 10px;
+    }
+
+    .blog-hero-badge{
+        letter-spacing:.2em!important;
+    }
+
+    #blog .glass.p-8,
+    #blog .glass.p-10,
+    #blog .glass.p-16{
+        padding:2rem 1.5rem!important;
+        border-radius:2rem!important;
+    }
+
+    .ticker-container{
+        padding:.8rem 1rem!important;
+    }
+
+    .ticker-text{
+        font-size:9px!important;
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .blog-hero-title{
+        font-size:2.4rem!important;
+    }
+
+    .blog-quote{
+        font-size:1.6rem!important;
+    }
+
+    #blog .grid.grid-cols-2.md\:grid-cols-4.lg\:grid-cols-6{
+        grid-template-columns:repeat(2,1fr)!important;
+    }
+
+    .category-card{
+        padding:1.25rem!important;
+        border-radius:1.5rem!important;
+    }
+
+    .category-card i{
+        font-size:1.5rem!important;
+        margin-bottom:.75rem!important;
+    }
+
+    footer p{
+        letter-spacing:.2em!important;
+        font-size:8px!important;
+    }
+
+}
 </style>
 
 
@@ -605,7 +859,446 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 <footer class="py-12 text-center text-gray-600 text-[10px] font-bold uppercase tracking-[0.5em] border-t border-white/5">
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
-<script src="main.js"></script>
+
+<script>
+/**
+ * JOEL RUTHVIK | PREMIER ANIMATION ENGINE (v2.0)
+ * Optimized for 60FPS Performance & Corporate UI Style
+ */
+
+// Initialize GSAP Plugins
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+// Global State / Configuration
+const CONFIG = {
+    ease: "power3.out",
+    duration: 1.2,
+    stagger: 0.1,
+    mobileBreakpoint: 1024
+};
+
+/**
+ * 1. HIGH-PERFORMANCE CURSOR ENGINE
+ * Uses quickTo for direct GPU updates bypassing the standard render loop
+ */
+const initCursor = () => {
+    const light = document.querySelector('#cursor-light');
+    if (!light) return;
+
+    const xTo = gsap.quickTo(light, "x", { duration: 0.8, ease: "power3" });
+    const yTo = gsap.quickTo(light, "y", { duration: 0.8, ease: "power3" });
+
+    window.addEventListener("mousemove", e => {
+        xTo(e.clientX - 400);
+        yTo(e.clientY - 400);
+    });
+};
+
+/**
+ * 2. UNIVERSAL ENTRANCE ANIMATION (Individual Trigger System)
+ * Replaces generic selectors with specific scoping
+ */
+const animateSection = (sectionId, itemSelector, type = "up") => {
+    const items = gsap.utils.toArray(`${sectionId} ${itemSelector}`);
+    
+    items.forEach((item) => {
+        let vars = {
+            scrollTrigger: {
+                trigger: item,
+                start: "top 90%",
+                once: true,
+                invalidateOnRefresh: true
+            },
+            autoAlpha: 1,
+            duration: CONFIG.duration,
+            ease: CONFIG.ease,
+            clearProps: "transform,opacity"
+        };
+
+        // Directional Logic (Slide Only)
+        if (type === "up") vars.y = 0;
+        if (type === "left") vars.x = 0;
+        if (type === "right") vars.x = 0;
+
+        // Set initial states via GSAP to prevent flash
+        if (type === "up") gsap.set(item, { y: 40, autoAlpha: 0 });
+        if (type === "left") gsap.set(item, { x: -40, autoAlpha: 0 });
+        if (type === "right") gsap.set(item, { x: 40, autoAlpha: 0 });
+
+        gsap.to(item, vars);
+    });
+};
+
+/**
+ * 3. PAGE-SPECIFIC ENGINES
+ */
+
+// HOME SECTION
+const runHomeAnimations = () => {
+    const tl = gsap.timeline();
+    tl.to("#home .portrait-frame", { autoAlpha: 1, y: 0, duration: 1.5, ease: CONFIG.ease })
+      .to("#home h1", { autoAlpha: 1, y: 0, duration: 1 }, "-=1")
+      .to("#typing-hero", {
+          duration: 2.5,
+          text: "Bridging the gap between top-tier tech talent and industry leaders. 7+ years of expertise in IT Staffing.",
+          ease: "none"
+      }, "-=0.5")
+      .to("#hero-paragraph", { autoAlpha: 1, y: 0, duration: 1 }, "-=1");
+};
+
+// EXPERIENCE SECTION (Museum Style)
+const runExperienceAnimations = () => {
+    // Reveal Cards
+    animateSection("#experience", ".premium-glow-card", "up");
+    
+    // Counters
+    const counters = gsap.utils.toArray('.museum-counter');
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        gsap.to(counter, {
+            innerText: target,
+            duration: 2,
+            snap: { innerText: 1 },
+            scrollTrigger: {
+                trigger: counter,
+                start: "top 90%"
+            }
+        });
+    });
+};
+
+// BLOG / UPDATES SECTION
+const runBlogAnimations = () => {
+    // Hero
+    gsap.to(".blog-hero-title", { autoAlpha: 1, y: 0, duration: 1.2, ease: CONFIG.ease });
+    
+    // Featured Articles (Slide Left/Right)
+    const cards = gsap.utils.toArray("#blog .glass.p-10.group");
+    if(cards[0]) gsap.to(cards[0], { 
+        x: 0, autoAlpha: 1, scrollTrigger: cards[0], duration: 1.2, ease: CONFIG.ease 
+    });
+    if(cards[1]) gsap.to(cards[1], { 
+        x: 0, autoAlpha: 1, scrollTrigger: cards[1], duration: 1.2, ease: CONFIG.ease 
+    });
+
+    // Category Grid (Staggered Fade)
+    animateSection("#blog", ".category-card", "up");
+};
+
+// SERVICES SECTION
+const runServicesAnimations = () => {
+    animateSection("#services", ".service-reveal-card", "up");
+    animateSection("#services", ".stat-card", "up");
+};
+
+// CONTACT SECTION
+const runContactAnimations = () => {
+    const items = ["#contact-matrix", "#contact-form-container", "#collaboration-grid"];
+    items.forEach(id => {
+        const el = document.querySelector(id);
+        if(el) gsap.to(el, {
+            autoAlpha: 1,
+            y: 0,
+            scrollTrigger: { trigger: el, start: "top 85%", once: true },
+            duration: 1.2,
+            ease: CONFIG.ease
+        });
+    });
+};
+
+/**
+ * 4. SYSTEM INITIALIZATION
+ */
+
+// Navigation Logic
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    const targetPage = document.getElementById(pageId);
+    
+    if (!targetPage) return;
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+
+    // Hide all
+    pages.forEach(p => {
+        p.style.display = 'none';
+        p.classList.remove('active-page');
+    });
+
+    // Show target
+    targetPage.style.display = 'block';
+    targetPage.classList.add('active-page');
+
+    // Reset ScrollTriggers for new layout
+    ScrollTrigger.getAll().forEach(t => t.kill());
+    
+    // Initial reveal
+    gsap.fromTo(targetPage, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 });
+
+    // Route animations
+    switch(pageId) {
+        case 'home': runHomeAnimations(); break;
+        case 'experience': runExperienceAnimations(); break;
+        case 'blog': runBlogAnimations(); break;
+        case 'services': runServicesAnimations(); break;
+        case 'contact': runContactAnimations(); break;
+        case 'skills': animateSection("#skills", ".skill-progress-bg", "up"); break;
+    }
+
+    // Recalculate positions
+    setTimeout(() => { ScrollTrigger.refresh(); }, 100);
+}
+
+// Master Load Event
+window.addEventListener("load", () => {
+    initCursor();
+    
+    // Check if we are on a standalone page (like updates.html) or index.html
+    const isStandaloneBlog = document.querySelector('#blog.active-page') || document.body.contains(document.querySelector('#blog'));
+    
+    if (document.querySelector('#home')) {
+        // We are on index.html, initialize default view
+        if(!sessionStorage.getItem('introPlayed')) {
+            // Intro Logic handled by overlay script, otherwise:
+            runHomeAnimations();
+        } else {
+            runHomeAnimations();
+        }
+    } else if (isStandaloneBlog) {
+        // We are on updates.html
+        runBlogAnimations();
+    }
+
+    // Refresh triggers to ensure scroll height is correct
+    ScrollTrigger.refresh();
+});
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if(menu) {
+        const isHidden = menu.classList.contains('hidden');
+        if(isHidden) {
+            menu.classList.remove('hidden');
+            gsap.from("#mobile-menu a", { autoAlpha: 0, y: 20, stagger: 0.05, duration: 0.5 });
+        } else {
+            menu.classList.add('hidden');
+        }
+    }
+}
+
+/**
+ * 5. PERFORMANCE OPTIMIZATION
+ * Resize Throttling
+ */
+let resizeTimer;
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        ScrollTrigger.refresh();
+    }, 250);
+});
+
+// Clean Props Helper
+const clearGSAP = (el) => gsap.set(el, { clearProps: "all" });
+
+</script>
+
+<script>
+/* ==========================================================
+   UPDATES PAGE | RESPONSIVE UI & GSAP OPTIMIZATION
+   Safe Version - Desktop Unaffected
+========================================================== */
+
+(function () {
+
+    function optimizeUpdatesPage() {
+
+        const isMobile = window.innerWidth <= 1024;
+        const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+        if (typeof ScrollTrigger !== "undefined") {
+            ScrollTrigger.refresh(true);
+        }
+
+        if (isMobile) {
+
+            /* Disable cursor light on touch devices */
+            const cursorLight = document.getElementById("cursor-light");
+
+            if (cursorLight) {
+                cursorLight.style.opacity = "0";
+                cursorLight.style.pointerEvents = "none";
+            }
+
+            /* Prevent reveal overflow */
+            if (typeof gsap !== "undefined") {
+                gsap.utils.toArray(".reveal-left, .reveal-right").forEach((el) => {
+                    gsap.set(el, {
+                        clearProps: "transform"
+                    });
+                });
+            }
+
+            /* Mobile Marquee Speed */
+            const marquee = document.querySelector(".marquee-content");
+
+            if (marquee) {
+                marquee.style.animationDuration = "60s";
+            }
+
+        }
+
+        /* Safari Glass Fix */
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        if (isSafari) {
+
+            document.querySelectorAll(".glass").forEach((card) => {
+
+                card.style.backgroundColor = "rgba(10,16,31,.70)";
+
+            });
+
+        }
+
+    }
+
+    /* ---------- Initial Load ---------- */
+
+    window.addEventListener("load", function () {
+
+        setTimeout(function () {
+
+            optimizeUpdatesPage();
+
+        }, 400);
+
+    });
+
+    /* ---------- Resize ---------- */
+
+    let updatesResizeTimer;
+
+    window.addEventListener("resize", function () {
+
+        clearTimeout(updatesResizeTimer);
+
+        updatesResizeTimer = setTimeout(function () {
+
+            optimizeUpdatesPage();
+
+        }, 300);
+
+    });
+
+    /* ---------- Orientation ---------- */
+
+    window.addEventListener("orientationchange", function () {
+
+        requestAnimationFrame(function () {
+
+            optimizeUpdatesPage();
+
+        });
+
+    });
+
+    /* ---------- Browser Back ---------- */
+
+    window.addEventListener("pageshow", function () {
+
+        if (typeof ScrollTrigger !== "undefined") {
+
+            ScrollTrigger.refresh(true);
+
+        }
+
+    });
+
+    /* ---------- Smooth Anchor Scroll ---------- */
+
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+
+        anchor.addEventListener("click",function(e){
+
+            const href=this.getAttribute("href");
+
+            if(href==="#") return;
+
+            const target=document.querySelector(href);
+
+            if(!target) return;
+
+            e.preventDefault();
+
+            const offset=140;
+
+            const top=target.getBoundingClientRect().top+window.pageYOffset-offset;
+
+            window.scrollTo({
+
+                top:top,
+
+                behavior:"smooth"
+
+            });
+
+            const menu=document.getElementById("mobile-menu");
+
+            if(menu && !menu.classList.contains("hidden")){
+
+                if(typeof toggleMobileMenu==="function"){
+
+                    toggleMobileMenu();
+
+                }
+
+            }
+
+        });
+
+    });
+
+})();
+
+/* ==========================================================
+   Mobile Menu Scroll Lock
+========================================================== */
+
+const originalToggleMobileMenu = window.toggleMobileMenu;
+
+window.toggleMobileMenu = function () {
+
+    const menu = document.getElementById("mobile-menu");
+
+    if (menu) {
+
+        const open = menu.classList.contains("hidden");
+
+        if (open) {
+
+            document.documentElement.style.overflow = "hidden";
+            document.body.style.overflow = "hidden";
+
+        } else {
+
+            document.documentElement.style.overflow = "";
+            document.body.style.overflow = "";
+
+        }
+
+    }
+
+    if (typeof originalToggleMobileMenu === "function") {
+
+        originalToggleMobileMenu();
+
+    }
+
+};
+</script>
 </body>
 </html>
 
