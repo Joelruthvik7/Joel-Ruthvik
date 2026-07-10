@@ -443,6 +443,98 @@ body.intro-active {
     overflow: hidden;
 }
 
+
+/* --- RESPONSIVE OPTIMIZATION LAYER --- */
+
+@media (max-width: 1024px) {
+    /* Global Spacing Fixes */
+    .page { padding-top: 120px; padding-bottom: 60px; }
+    section { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+    
+    /* Hero Section Stacking */
+    #home .max-w-\[1600px\] { 
+        display: flex; 
+        flex-direction: column; 
+        text-align: center;
+        gap: 3rem;
+    }
+    #home .order-2 { order: 1 !important; } /* Image on top for mobile */
+    #home .order-1 { order: 2 !important; } /* Text below image */
+    #home h1 { font-size: clamp(3rem, 10vw, 5rem) !important; line-height: 1; }
+    #home .justify-start { justify-content: center !important; }
+    #home .max-w-xl { margin: 0 auto; }
+    
+    /* Stats Grid Stacking */
+    .max-w-7xl.grid-cols-4 { grid-cols-2 !important; gap: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+    /* Intro Overlay Fixes */
+    .glitch-title { font-size: 2.2rem !important; }
+    .loader-wrapper { width: 100% !important; max-width: 260px; }
+    .sub-roles { display: flex; flex-direction: column; gap: 5px; }
+    .sub-roles .separator { display: none; }
+
+    /* Navigation Refinement */
+    nav .px-8 { padding-left: 1rem; padding-right: 1rem; }
+    nav img { height: 40px !important; }
+    nav h2 { font-size: 0.7rem !important; }
+    
+    /* Marquee Engine Reset */
+    .marquee-card { 
+        width: 280px !important; 
+        padding: 1.5rem !important; 
+        border-radius: 24px !important;
+    }
+    .marquee-content { gap: 1rem !important; }
+
+    /* Portrait Frame Scaling */
+    .portrait-frame { 
+        max-width: 280px !important; 
+        margin: 0 auto; 
+    }
+    
+    /* Experience Timeline Fix (Force vertical) */
+    .exp-section { flex-direction: column !important; }
+    .exp-content { width: 100% !important; padding-left: 40px !important; text-align: left !important; }
+    .exp-left { text-align: left !important; }
+    .timeline-line-v { left: 15px !important; }
+    .exp-dot { left: 15px !important; }
+
+    /* Testimonials & Grid Stacking */
+    #testimonials .grid { grid-template-columns: 1fr !important; }
+    .grid.md\:grid-cols-4 { grid-template-columns: 1fr 1fr !important; }
+    
+    /* Contact Form Label Fix */
+    .contact-input:focus ~ .contact-label, 
+    .contact-input:not(:placeholder-shown) ~ .contact-label { 
+        transform: translateY(-2.5rem) scale(0.75) !important; 
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extreme Small Screen Tuning */
+    #home h1 { font-size: 2.8rem !important; }
+    .gradient-text { display: block; margin-top: 5px; }
+    .flex-wrap { justify-content: center; }
+    
+    /* Button Optimization */
+    .px-8.py-3 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; width: 100%; }
+    
+    /* Prevent layout shifting on horizontal nav */
+    nav .overflow-x-auto {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+}
+
+/* --- FIX: Horizontal Scroll Prevention --- */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
 </style>
 
 
@@ -1564,6 +1656,57 @@ onComplete: () => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+<script>
+/* ==========================================
+   MOBILE & TABLET RESPONSIVE OPTIMIZATION
+   (Safe - Desktop will not be affected)
+========================================== */
+
+(function () {
+
+    function initResponsiveTweaks() {
+
+        if (window.innerWidth <= 1024) {
+
+            // Optimize GSAP for Mobile
+            if (typeof ScrollTrigger !== "undefined") {
+                ScrollTrigger.config({
+                    ignoreMobileResize: true,
+                    limitCallbacks: true
+                });
+
+                ScrollTrigger.refresh();
+            }
+
+            // Reduce floating animation on mobile
+            const portrait = document.querySelector(".portrait-frame");
+            if (portrait) {
+                portrait.style.animationDuration = "8s";
+            }
+
+            // Prevent horizontal scrolling
+            document.documentElement.style.overflowX = "hidden";
+            document.body.style.overflowX = "hidden";
+        }
+    }
+
+    window.addEventListener("load", initResponsiveTweaks);
+
+    window.addEventListener("resize", function () {
+        clearTimeout(window.__mobileResizeTimer);
+
+        window.__mobileResizeTimer = setTimeout(function () {
+
+            if (window.innerWidth <= 1024 && typeof ScrollTrigger !== "undefined") {
+                ScrollTrigger.refresh();
+            }
+
+        }, 300);
+    });
+
+})();
+</script>
 
 </body>
 </html>
