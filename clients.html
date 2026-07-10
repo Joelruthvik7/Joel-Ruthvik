@@ -279,6 +279,76 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* --- CLIENTS PAGE RESPONSIVE OPTIMIZATION --- */
+
+@media (max-width: 1024px) {
+    /* Global Page Tuning */
+    #clients { padding-top: 120px !important; }
+    .px-6.lg\:px-20 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    section { overflow-x: hidden !important; }
+
+    /* Hero Scaling */
+    .client-title { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 1 !important; }
+    .client-subtitle { font-size: 1.1rem !important; line-height: 1.6 !important; }
+
+    /* Enterprise Cards Stacking */
+    #clients .grid.lg\:grid-cols-5 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1.25rem !important; 
+    }
+    .client-reveal-card { padding: 1.5rem !important; border-radius: 2rem !important; }
+    .client-logo-container { width: 50px !important; height: 50px !important; margin-bottom: 1rem !important; }
+
+    /* Industry Domain Grid */
+    #clients .grid.lg\:grid-cols-6 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1rem !important; 
+    }
+    .domain-grid-card { height: 140px !important; padding: 1rem !important; }
+
+    /* Strategic Workforce Section */
+    #clients .glass.p-16 { padding: 2.5rem 1.5rem !important; border-radius: 2.5rem !important; }
+    #clients .grid.lg\:grid-cols-2.gap-20 { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    .client-stat-card { padding: 1.5rem !important; }
+
+    /* Technology Hiring Mastery */
+    #clients .grid.lg\:grid-cols-4 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1rem !important; 
+    }
+    .tech-card { padding: 1.5rem !important; height: auto !important; }
+
+    /* Quote Scaling */
+    .max-w-5xl h2 { font-size: 2.5rem !important; }
+    .not-italic.uppercase.font-light { font-size: 1.2rem !important; letter-spacing: 0.1em !important; }
+
+    /* Navigation Branding */
+    nav .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+    nav img { height: 40px !important; }
+    nav h2 { font-size: 0.7rem !important; }
+}
+
+@media (max-width: 768px) {
+    /* Tablet Specific Tweak */
+    #clients .grid.lg\:grid-cols-5 { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 480px) {
+    /* Small Mobile Tweaks */
+    .client-title { font-size: 2.5rem !important; }
+    #clients .grid.lg\:grid-cols-6 { grid-template-columns: repeat(2, 1fr) !important; }
+    .client-stat-card .text-4xl { font-size: 2rem !important; }
+}
+
+/* Horizontal Scroll & Viewport Jump Prevention */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    touch-action: manipulation; /* Prevents unwanted double-tap zoom */
+}
+
 </style>
 
 
@@ -721,7 +791,36 @@ ScrollTrigger.refresh();
 });
 
 </script>
-	
+
+<script>
+
+(function(){
+
+if(window.innerWidth<=1024){
+
+let resizeTimer;
+
+window.addEventListener("resize",function(){
+
+clearTimeout(resizeTimer);
+
+resizeTimer=setTimeout(function(){
+
+if(typeof ScrollTrigger!=="undefined"){
+
+ScrollTrigger.refresh();
+
+}
+
+},300);
+
+});
+
+}
+
+})();
+
+</script>	
 </body>
 </html>
 
