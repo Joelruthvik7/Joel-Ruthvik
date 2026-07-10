@@ -280,6 +280,79 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* --- CERTIFICATIONS PAGE RESPONSIVE OPTIMIZATION --- */
+
+@media (max-width: 1024px) {
+    /* Global Page Tuning */
+    #certifications { padding-top: 100px !important; }
+    .px-6.lg\:px-20 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    .py-32, .py-40, .py-48 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+    
+    /* Typography Scaling */
+    .cert-hero-title { font-size: clamp(3rem, 12vw, 6rem) !important; line-height: 1 !important; }
+    .cert-learning-text { font-size: 0.6em !important; display: block; margin-top: 0.5rem; }
+    .reveal-cert-sub { font-size: 1.1rem !important; line-height: 1.5 !important; }
+    .cert-quote { font-size: 2.2rem !important; line-height: 1.2 !important; }
+
+    /* Rockstar Award Section */
+    #certifications .relative.glass.p-12.lg\:p-20 { padding: 2.5rem 1.5rem !important; border-radius: 2.5rem !important; }
+    #certifications .lg\:grid-cols-12 { display: flex !important; flex-direction: column !important; gap: 2rem !important; }
+    #certifications .lg\:col-span-8 {
+    border-left: none !important;
+    padding-left: 0 !important;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem !important;
+}
+    #certifications .text-6xl { font-size: 2.5rem !important; }
+
+    /* Certification Cards Grid */
+    #certifications .grid.lg\:grid-cols-3 { 
+        grid-template-columns: repeat(1, 1fr) !important; 
+        gap: 1.5rem !important; 
+    }
+    .cert-card { padding: 2rem 1.5rem !important; border-radius: 2.5rem !important; }
+    .cert-card .text-2xl { font-size: 1.5rem !important; }
+
+    /* Continuous Learning Section */
+    #certifications .grid.lg\:grid-cols-2.gap-20 { 
+        grid-template-columns: 1fr !important; 
+        gap: 3rem !important; 
+    }
+    #certifications .text-6xl.font-black.italic { font-size: 2.5rem !important; }
+    #certifications .glass.p-12.rounded-\[4rem\] { padding: 2rem 1.5rem !important; border-radius: 2.5rem !important; }
+
+    /* Learning Beyond Recruitment Section */
+    #certifications .bg-blue-600\/5.rounded-\[5rem\] { padding: 3rem 1.25rem !important; border-radius: 3rem !important; }
+    #certifications .grid.md\:grid-cols-2 { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+    #certifications .glass.p-12.rounded-\[4rem\].group { padding: 2rem 1.5rem !important; border-radius: 2.5rem !important; }
+
+    /* Professional Strengths Grid */
+    #certifications .grid.grid-cols-2.lg\:grid-cols-4 { gap: 1rem !important; }
+    .stat-card.glass.p-10 { padding: 1.5rem 1rem !important; border-radius: 2rem !important; }
+    .stat-card.glass h5 { font-size: 1.1rem !important; }
+
+    /* Modal Mobile Fix */
+    #certificateModal { padding: 1rem !important; }
+    #certificateModal button { top: 1rem !important; right: 1rem !important; font-size: 3rem !important; }
+    #certificateImage { max-height: 80vh !important; }
+}
+
+@media (max-width: 480px) {
+    /* Tightening for small mobile */
+    .cert-hero-title { font-size: 2.5rem !important; }
+    #certifications .grid.grid-cols-2 { grid-template-columns: 1fr !important; }
+    #certifications .grid.grid-cols-2.md\:grid-cols-3 { grid-template-columns: 1fr !important; }
+}
+
+/* Horizontal Scroll Prevention */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    touch-action: manipulation;
+}
+
 </style>
 
 
@@ -790,6 +863,66 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     };
 </script>
 	
+<script>
+
+/* ==========================================
+   CERTIFICATIONS RESPONSIVE OPTIMIZATION
+========================================== */
+
+(function(){
+
+function optimizeCertificationsMobile(){
+
+if(window.innerWidth<=1024){
+
+if(typeof ScrollTrigger!=="undefined"){
+
+ScrollTrigger.refresh(true);
+
+}
+
+}
+
+}
+
+window.addEventListener("load",function(){
+
+setTimeout(function(){
+
+optimizeCertificationsMobile();
+
+},400);
+
+});
+
+let resizeTimer;
+
+window.addEventListener("resize",function(){
+
+clearTimeout(resizeTimer);
+
+resizeTimer=setTimeout(function(){
+
+optimizeCertificationsMobile();
+
+},300);
+
+});
+
+window.addEventListener("orientationchange",function(){
+
+setTimeout(function(){
+
+optimizeCertificationsMobile();
+
+},400);
+
+});
+
+})();
+
+</script>
+
 </body>
 </html>
 
