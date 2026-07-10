@@ -279,6 +279,90 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* --- SERVICES PAGE RESPONSIVE OPTIMIZATION --- */
+
+@media (max-width: 1024px) {
+    /* Global Section Tuning */
+    #services { padding-top: 120px !important; }
+    .px-6.lg\:px-20 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    .py-32, .py-40, .py-48 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+    
+    /* Typography Scaling */
+    .service-hero-title { font-size: clamp(3rem, 12vw, 5.5rem) !important; line-height: 1 !important; }
+    .reveal-service-sub { font-size: 1.1rem !important; line-height: 1.5 !important; }
+    .service-quote { font-size: 2.5rem !important; line-height: 1.2 !important; }
+    
+    /* Hero Section */
+    #services .flex.flex-wrap.justify-center.gap-6 { gap: 1rem !important; }
+    #services .px-12.py-5 { padding: 1rem 1.5rem !important; width: 100% !important; text-align: center; }
+
+    /* End-to-End Solutions Grid */
+    #services .grid.lg\:grid-cols-5 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1rem !important; 
+    }
+    .service-reveal-card { padding: 1.5rem !important; border-radius: 2rem !important; }
+
+    /* IT Staffing Grid */
+    #services .bg-blue-600\/5 { padding: 3rem 1.25rem !important; border-radius: 2.5rem !important; }
+    #services .grid.md\:grid-cols-2.lg\:grid-cols-5 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1rem !important; 
+    }
+    .staffing-card { padding: 1.5rem !important; }
+
+    /* Technical Hiring Expertise */
+    #services .grid.lg\:grid-cols-6 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1rem !important; 
+    }
+    .animated-skill-border-inner { padding: 1.5rem 1rem !important; }
+    .animated-skill-border-inner i { font-size: 2rem !important; }
+
+    /* Industry Domains */
+    #services .grid.md\:grid-cols-4.gap-8 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 1rem !important; 
+    }
+    .client-reveal-card { padding: 2rem 1rem !important; }
+
+    /* Operations Excellence */
+    #services .glass.p-20 { padding: 2.5rem 1.25rem !important; border-radius: 3rem !important; }
+    #services .grid.lg\:grid-cols-2.gap-24 { grid-template-columns: 1fr !important; gap: 3rem !important; }
+    .stat-card { padding: 2rem 1rem !important; border-radius: 2.5rem !important; }
+    .stat-card h5 { font-size: 2.5rem !important; }
+
+    /* Strategic Workflow */
+    #services .flex.flex-wrap.justify-center.items-center.gap-6 { 
+        flex-direction: column !important; 
+        width: 100%; 
+    }
+    #services .glass.px-10.py-8 { width: 100%; text-align: center; padding: 1.5rem !important; }
+    #services .fa-chevron-right { display: none !important; }
+
+    /* Why Choose Section */
+    #services .grid.md\:grid-cols-2.lg\:grid-cols-4 { 
+        grid-template-columns: 1fr !important; 
+        gap: 1rem !important; 
+    }
+}
+
+@media (max-width: 480px) {
+    /* Mobile Small Specifics */
+    .service-hero-title { font-size: 2.8rem !important; }
+    #services .grid.lg\:grid-cols-5, 
+    #services .grid.lg\:grid-cols-6 { grid-template-columns: 1fr !important; }
+    .stat-card { padding: 1.5rem !important; }
+}
+
+/* Horizontal Scroll Prevention */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    position: relative;
+    touch-action: manipulation;
+}
 </style>
 
 
@@ -760,6 +844,51 @@ gsap.from(".animated-skill-border", {
             });
         }
 				</script>
+
+
+<script>
+
+(function(){
+
+    function optimizeServicesMobile(){
+
+        if(window.innerWidth<=1024){
+
+            if(typeof ScrollTrigger!=="undefined"){
+
+                ScrollTrigger.refresh();
+
+            }
+
+        }
+
+    }
+
+    window.addEventListener("load",function(){
+
+        if(typeof runServicesAnimations==="function"){
+
+            runServicesAnimations();
+
+        }
+
+        setTimeout(optimizeServicesMobile,300);
+
+    });
+
+    let resizeTimer;
+
+    window.addEventListener("resize",function(){
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer=setTimeout(optimizeServicesMobile,300);
+
+    });
+
+})();
+
+</script>
 </body>
 </html>
 
