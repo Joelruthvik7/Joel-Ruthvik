@@ -279,6 +279,82 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+
+/* --- SKILLS PAGE RESPONSIVE OPTIMIZATION --- */
+
+@media (max-width: 1024px) {
+    /* Global Page Tuning */
+    #skills { padding-top: 120px !important; }
+    .px-6.lg\:px-20 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+    section { overflow-x: hidden !important; }
+
+    /* Hero Section Adjustments */
+    .skills-title { 
+        font-size: clamp(2.8rem, 10vw, 5rem) !important; 
+        line-height: 1 !important; 
+        margin-bottom: 1.5rem !important;
+    }
+    .skills-subtitle { font-size: 1rem !important; line-height: 1.6 !important; }
+    .relative.py-32 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+
+    /* Reposition/Hide Floating Elements to prevent overflow */
+    .floating-ui-item { 
+        position: relative !important; 
+        top: auto !important; 
+        bottom: auto !important; 
+        left: auto !important; 
+        right: auto !important;
+        display: inline-flex !important;
+        margin: 0.5rem !important;
+        transform: scale(0.9);
+    }
+    
+    /* Grid Stacking: Expertise & Domains */
+    #skills .grid-cols-1.md\:grid-cols-2.lg\:grid-cols-3 { grid-template-columns: 1fr !important; }
+    #skills .grid.md\:grid-cols-4.lg\:grid-cols-6 { grid-template-columns: repeat(2, 1fr) !important; }
+
+    /* Command Center Stacking */
+    #skills .glass.p-12 { padding: 2rem 1.5rem !important; border-radius: 2rem !important; }
+    #skills .grid.md\:grid-cols-3.lg\:grid-cols-5 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 2rem !important; 
+    }
+
+    /* Leadership Section */
+    #skills .grid.lg\:grid-cols-2.gap-20 { 
+        grid-template-columns: 1fr !important; 
+        gap: 3rem !important; 
+    }
+    #skills .py-32 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+
+    /* Circular Soft Skills Scaling */
+    #skills .grid.grid-cols-2.md\:grid-cols-4 { gap: 2rem 1rem !important; }
+    .skill-circle-container svg { width: 100px !important; height: 100px !important; }
+    
+    /* Technical Edge Card */
+    #skills .bg-blue-600\/5 { padding: 2rem 1.5rem !important; border-radius: 2.5rem !important; }
+    #skills .text-4xl.mb-6 { font-size: 1.75rem !important; }
+
+    /* Navigation Refinement */
+    nav .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+    nav img { height: 40px !important; }
+    nav h2 { font-size: 0.75rem !important; }
+}
+
+@media (max-width: 480px) {
+    /* Tightening for small mobile */
+    .skills-title { font-size: 2.5rem !important; }
+    .domain-card { padding: 1rem !important; }
+    .skill-circle-container svg { width: 85px !important; height: 85px !important; }
+    .skill-circle-container .text-lg { font-size: 0.9rem !important; }
+}
+
+/* Fix for horizontal scroll prevention */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
 </style>
 
 
@@ -744,6 +820,36 @@ window.onload=()=>{
 runSkillsAnimations();
 
 };
+
+</script>
+
+<script>
+
+(function(){
+
+    if(window.innerWidth <= 1024){
+
+        let resizeTimer;
+
+        window.addEventListener("resize",function(){
+
+            clearTimeout(resizeTimer);
+
+            resizeTimer=setTimeout(function(){
+
+                if(typeof ScrollTrigger!=="undefined"){
+
+                    ScrollTrigger.refresh();
+
+                }
+
+            },300);
+
+        });
+
+    }
+
+})();
 
 </script>
 </body>
