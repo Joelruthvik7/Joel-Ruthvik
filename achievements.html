@@ -281,6 +281,258 @@
         .progress-indicator-node.active { background: var(--electric-blue); box-shadow: 0 0 10px var(--electric-blue); transform: scale(1.3); }
 /* END GAMIFIED WEB PORTFOLIO STYLES */
 
+/* ==========================================
+   ACHIEVEMENTS PAGE RESPONSIVE OPTIMIZATION
+   (Desktop Safe)
+========================================== */
+
+@media (max-width:1024px){
+
+    /* Global Section */
+    #projects{
+        padding-top:110px !important;
+        padding-bottom:60px !important;
+    }
+
+    .px-6.lg\:px-20{
+        padding-left:1.25rem !important;
+        padding-right:1.25rem !important;
+    }
+
+    .py-32,
+    .py-40,
+    .py-48{
+        padding-top:4rem !important;
+        padding-bottom:4rem !important;
+    }
+
+    /* Hero */
+    .achievement-hero-title{
+        font-size:clamp(3rem,12vw,6rem)!important;
+        line-height:1!important;
+    }
+
+    .reveal-achievement-sub{
+        font-size:1.05rem!important;
+        line-height:1.6!important;
+    }
+
+    .achievement-quote{
+        font-size:clamp(2rem,8vw,3rem)!important;
+        line-height:1.2!important;
+    }
+
+    /* Major Project */
+    #projects .animated-skill-border{
+        border-radius:2.5rem!important;
+    }
+
+    #projects .animated-skill-border-inner{
+        padding:2.5rem 1.5rem!important;
+    }
+
+    #projects .grid.lg\:grid-cols-2.gap-16{
+        grid-template-columns:1fr!important;
+        gap:3rem!important;
+    }
+
+    #projects .text-4xl.lg\:text-6xl{
+        font-size:2rem!important;
+        line-height:1.2!important;
+    }
+
+    .glow-pulse{
+        max-width:350px;
+        margin:auto;
+    }
+
+    .glow-pulse i.text-\[15rem\]{
+        font-size:10rem!important;
+    }
+
+    /* Achievement Cards */
+
+    #projects .grid.lg\:grid-cols-3{
+        grid-template-columns:repeat(2,1fr)!important;
+        gap:1.25rem!important;
+    }
+
+    #projects .glass.p-12{
+        padding:2rem 1.25rem!important;
+        border-radius:2.5rem!important;
+    }
+
+    #projects .glass.p-12 h4{
+        font-size:1.3rem!important;
+    }
+
+    /* Timeline */
+
+    .timeline-container .connector-line{
+        left:20px!important;
+        transform:none!important;
+    }
+
+    .timeline-container .space-y-24>div{
+
+        display:flex!important;
+        flex-direction:column!important;
+        align-items:flex-start!important;
+        gap:1.5rem!important;
+
+    }
+
+    .timeline-container .lg\:w-1\/2{
+
+        width:100%!important;
+        text-align:left!important;
+
+    }
+
+    .timeline-container .lg\:text-right{
+
+        text-align:left!important;
+
+    }
+
+    .timeline-container .w-8.h-8{
+
+        margin-left:8px!important;
+        margin-bottom:1rem!important;
+        flex-shrink:0;
+
+    }
+
+    .timeline-container .glass.p-10{
+
+        padding:1.5rem!important;
+        border-radius:2rem!important;
+
+    }
+
+    .timeline-container .order-1,
+    .timeline-container .order-2,
+    .timeline-container .order-3{
+
+        order:unset!important;
+
+    }
+
+    /* Innovation Section */
+
+    #projects .glass.p-16.lg\:p-24{
+
+        padding:2.5rem 1.5rem!important;
+        border-radius:3rem!important;
+
+    }
+
+    #projects .grid.lg\:grid-cols-2.gap-20{
+
+        grid-template-columns:1fr!important;
+        gap:3rem!important;
+
+    }
+
+    #projects .text-5xl.lg\:text-7xl{
+
+        font-size:2.5rem!important;
+        line-height:1.1!important;
+
+    }
+
+    /* Stats */
+
+    .stat-card.glass.p-10{
+
+        padding:1.5rem 1rem!important;
+        border-radius:2rem!important;
+
+    }
+
+    .stat-card h4{
+
+        font-size:2.4rem!important;
+        line-height:1;
+
+    }
+
+    /* Navigation */
+
+    nav .px-8{
+
+        padding-left:1rem!important;
+        padding-right:1rem!important;
+
+    }
+
+    nav img{
+
+        height:40px!important;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    #projects .grid.lg\:grid-cols-3{
+
+        grid-template-columns:1fr!important;
+
+    }
+
+    .achievement-hero-title{
+
+        font-size:clamp(2.8rem,11vw,4rem)!important;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .achievement-hero-title{
+
+        font-size:2.6rem!important;
+
+    }
+
+    .achievement-quote{
+
+        font-size:2rem!important;
+
+    }
+
+    #projects .animated-skill-border-inner{
+
+        padding:2rem 1rem!important;
+
+    }
+
+    .glow-pulse{
+
+        max-width:260px;
+
+    }
+
+    .glow-pulse i.text-\[15rem\]{
+
+        font-size:7rem!important;
+
+    }
+
+}
+
+html,
+body{
+
+    max-width:100%;
+    overflow-x:hidden;
+    position:relative;
+    touch-action:manipulation;
+
+}
 </style>
 
 
@@ -567,7 +819,166 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     <p>THUMMALA JOEL RUTHVIK • RECRUITMENT EXCELLENCE</p>
 </footer>
 
+<!-- GSAP ENGINE & PLUGINS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
 <script>
+    // 1. INITIALIZE PLUGINS
+    gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+    // 2. GLOBAL UI UTILITIES
+    function toggleMobileMenu() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // Ambient Light (Cursor Glow)
+    document.addEventListener('mousemove', (e) => {
+        gsap.to('#cursor-light', {
+            x: e.clientX - 400,
+            y: e.clientY - 400,
+            duration: 2,
+            ease: "power2.out"
+        });
+    });
+
+    // 3. ACHIEVEMENTS ANIMATION ENGINE
+    function initAchievements() {
+        // --- HERO ANIMATION ---
+        const heroTL = gsap.timeline();
+        heroTL.from(".achievement-hero-badge", { scale: 0, opacity: 0, duration: 1, ease: "back.out(1.7)" })
+              .from(".achievement-hero-title", { y: 100, opacity: 0, duration: 1.2, ease: "power4.out" }, "-=0.6")
+              .from(".reveal-achievement-sub", { opacity: 0, y: 30, duration: 1, ease: "power3.out" }, "-=0.8");
+
+        // --- MAJOR ACADEMIC PROJECT ---
+        gsap.from(".animated-skill-border", {
+            scrollTrigger: { trigger: ".animated-skill-border", start: "top 85%" },
+            opacity: 0, y: 50, duration: 1, ease: "power2.out"
+        });
+
+        // --- FIX: PROFESSIONAL ACHIEVEMENTS GRID (The Missing Cards) ---
+        // Targeting the cards specifically inside the grid
+        const achievementGrid = document.querySelector('.grid.lg\\:grid-cols-3');
+        const achievementCards = achievementGrid ? achievementGrid.querySelectorAll('.glass') : [];
+
+        if (achievementCards.length > 0) {
+            gsap.from(achievementCards, {
+                scrollTrigger: {
+                    trigger: achievementGrid,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 60,
+                stagger: 0.1,
+                duration: 0.8,
+                ease: "power2.out",
+                clearProps: "all" // Ensures opacity/transform are cleared after animation
+            });
+        }
+
+        // --- CAREER MILESTONES (Left & Right Slides) ---
+        gsap.utils.toArray(".timeline-container > .space-y-24 > div").forEach((milestone, i) => {
+            // Logic: If the first child has 'text-right', it's a left-aligned card.
+            const isLeftCard = milestone.querySelector('.lg\\:text-right');
+            const xVal = isLeftCard ? -100 : 100;
+
+            gsap.from(milestone, {
+                scrollTrigger: {
+                    trigger: milestone,
+                    start: "top 90%",
+                },
+                x: xVal,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power3.out"
+            });
+        });
+
+        // --- INNOVATION DASHBOARD & STATS ---
+        gsap.from(".glass.p-16.lg\:p-24", {
+            scrollTrigger: { trigger: ".glass.p-16.lg\:p-24", start: "top 80%" },
+            y: 80, opacity: 0, duration: 1.2
+        });
+
+        gsap.from(".stat-card", {
+            scrollTrigger: { trigger: ".stat-card", start: "top 90%" },
+            scale: 0.7, opacity: 0, stagger: 0.15, duration: 1, ease: "back.out(1.5)"
+        });
+
+        // --- QUOTE ---
+        gsap.from(".achievement-quote", {
+            scrollTrigger: { trigger: ".achievement-quote", start: "top 95%" },
+            opacity: 0, scale: 0.95, duration: 1.5
+        });
+    }
+
+    // 4. LOAD & REFRESH LOGIC
+    window.addEventListener("load", () => {
+        // We add a small delay to ensure CSS and page height are calculated accurately
+        setTimeout(() => {
+            initAchievements();
+            ScrollTrigger.refresh();
+        }, 300);
+    });
+
+    // Handle Window Resizing (Recalculates trigger points)
+    window.addEventListener("resize", () => {
+        ScrollTrigger.refresh();
+    });
+
+    // 5. MOBILE CLEANUP
+    if (window.innerWidth <= 1024) {
+        const light = document.getElementById("cursor-light");
+        if (light) light.style.display = "none";
+        ScrollTrigger.config({ ignoreMobileResize: true });
+    }
+</script>
+
+<script>
+// --- RESPONSIVE ACHIEVEMENTS OPTIMIZATION ---
+function handleAchievementsResize() {
+    ScrollTrigger.refresh();
+
+    if (window.innerWidth <= 1024) {
+        gsap.set(".timeline-container .space-y-24 > div", {
+            clearProps: "transform"
+        });
+
+        gsap.set(".achievement-hero-title", {
+            clearProps: "transform"
+        });
+    }
+}
+
+let achievementsResizeTimer;
+
+window.addEventListener("resize", () => {
+    clearTimeout(achievementsResizeTimer);
+
+    achievementsResizeTimer = setTimeout(() => {
+        handleAchievementsResize();
+    },250);
+});
+
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        handleAchievementsResize();
+    },500);
+});
+
+if ("ontouchstart" in window) {
+    const cursor = document.getElementById("cursor-light");
+
+    if(cursor){
+        cursor.style.display="none";
+    }
+
+    ScrollTrigger.config({
+        ignoreMobileResize:true
+    });
+}
 </script>
 
 </body>
