@@ -121,7 +121,6 @@
             position: relative;
             z-index: 1;
         }
-
         /* Fast Marquee for Skills */
         .marquee-fast .marquee-content { animation-duration: 25s; }
         /* Reverse Marquee */
@@ -150,7 +149,7 @@
         .light-sweep { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent); transition: 0.8s; pointer-events: none; }
         .premium-glow-card:hover .light-sweep { left: 100%; }
 
-        .career-journey-card{ opacity:1; transform:none; }
+       .career-journey-card { opacity: 0; will-change: transform, opacity; }
 		
         .glass-panel-luxury { background: rgba(255, 255, 255, 0.015); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(40px); }
 
@@ -160,9 +159,9 @@
         #experience .py-40, #experience .mb-40 { padding-top: 5rem; padding-bottom: 5rem; margin-bottom: 2rem; }
         
         /* Entrance animation helpers */
-        .reveal-left { transform: translateX(-50px); }
-        .reveal-right { transform: translateX(50px); }
-        .reveal-bottom { transform: translateY(50px); }
+.reveal-left { transform: translateX(-100px); opacity: 0; will-change: transform, opacity; }
+.reveal-right { transform: translateX(100px); opacity: 0; will-change: transform, opacity; }
+.reveal-bottom { transform: translateY(60px); opacity: 0; will-change: transform, opacity; }
         
         .museum-counter { font-variant-numeric: tabular-nums; }
 /* NEWLY ADDED CODE ENDED HERE 11th June 2026 */
@@ -284,7 +283,7 @@
 
 @media (max-width: 1024px) {
     /* Global Page Tuning */
-    #experience { padding-top: 110px !important; padding-bottom: 60px !important; }
+    #experience { padding-top: 170px !important; padding-bottom: 60px !important; }
     .px-6.lg\:px-20 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
     
     /* Typography Scaling */
@@ -335,7 +334,8 @@
     .exp-left .flex-row-reverse { flex-direction: row !important; }
     .exp-left .text-right { text-align: left !important; }
     .exp-left .justify-end { justify-content: flex-start !important; }
-    .exp-right, .exp-left { transform: none !important; }
+  /* Ensure content is centered and ready to fade in on mobile */
+.exp-right, .exp-left { transform: none; opacity: 0; }
 
     /* Horizontal Scroll Prevention */
     #experience, body, html { overflow-x: hidden !important; width: 100% !important; position: relative !important; }
@@ -533,7 +533,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
          3. PROFESSIONAL EXPERIENCE
          ========================================================= -->
     
-<section id="experience" class="pt-[140px] pb-[100px] min-h-screen px-6 lg:px-20 overflow-visible">
+<section id="experience" class="pt-[180px] lg:pt-[140px] pb-[100px] min-h-screen px-6 lg:px-20 overflow-visible relative">
 	<div class="max-w-7xl mx-auto text-center mb-16">
             <h1 class="experience-title text-6xl md:text-9xl font-black tracking-tighter mb-6">PROFESSIONAL <span class="gradient-text italic">EXPERIENCE</span></h1>
             <p class="experience-subtitle text-gray-400 text-xl max-w-3xl mx-auto">7+ years of delivering top-tier recruitment solutions and technical hiring expertise for enterprise-level clients.</p>
@@ -724,20 +724,24 @@ document.addEventListener('mousemove', (e) => {
 
 function runExperienceMuseumAnimations() {
 
+    // 1. Museum Counters
     gsap.utils.toArray('.museum-counter').forEach(counter => {
         const target = +counter.getAttribute('data-target');
-
-        gsap.to(counter, {
-            innerText: target,
-            duration: 2,
-            snap: { innerText: 1 },
-            scrollTrigger: {
-                trigger: counter,
-                start: "top 95%"
+        gsap.fromTo(counter, 
+            { innerText: 0 },
+            {
+                innerText: target,
+                duration: 2,
+                snap: { innerText: 1 },
+                scrollTrigger: {
+                    trigger: counter,
+                    start: "top 95%",
+                }
             }
-        });
-    });
+        );
+    }); // <--- Loop closed here
 
+    // 2. Journey Timeline
     const journeyTL = gsap.timeline({
         scrollTrigger: {
             trigger: "#journey-1",
@@ -801,39 +805,44 @@ function runExperienceMuseumAnimations() {
         }
     });
 
-    document.addEventListener('mousemove', (e) => {
-
-        const cards = document.querySelectorAll('.proximity-glow');
-
-        cards.forEach(card => {
-
-            const rect = card.getBoundingClientRect();
-
-            const cardX = rect.left + rect.width / 2;
-
-            const cardY = rect.top + rect.height / 2;
-
-            const dist = Math.hypot(e.clientX - cardX, e.clientY - cardY);
-
-            const brightness = Math.max(1, 1.4 - (dist / 600));
-
-            gsap.to(card, {
-                filter: `brightness(${brightness})`,
-                duration: 0.4
-            });
-
-        });
-
+    // Cache elements and positions to prevent layout thrashing
+let proximityCards = [];
+function cacheProximity() {
+    proximityCards = Array.from(document.querySelectorAll('.proximity-glow')).map(card => {
+        const rect = card.getBoundingClientRect();
+        return {
+            el: card,
+            x: rect.left + rect.width / 2 + window.scrollX,
+            y: rect.top + rect.height / 2 + window.scrollY
+        };
     });
-
 }
+window.addEventListener('resize', () => {
+    ScrollTrigger.refresh();
+    cacheProximity();
+});
+cacheProximity();
+
+document.addEventListener('mousemove', (e) => {
+    proximityCards.forEach(card => {
+        const dist = Math.hypot(e.pageX - card.x, e.pageY - card.y);
+        const brightness = Math.max(1, 1.4 - (dist / 600));
+        // Use set for immediate properties to bypass the overhead of full tweening on mousemove
+        gsap.set(card.el, { filter: `brightness(${brightness})` });
+    });
+}, { passive: true });
+
+} // <--- This closes the runExperienceMuseumAnimations function
 
 window.onload = () => {
-
     runExperienceMuseumAnimations();
-
+    
+    // Crucial: Wait for the initial slide-ins to register positions
+    setTimeout(() => {
+        ScrollTrigger.refresh();
+        if(typeof cacheProximity === "function") cacheProximity();
+    }, 800);
 };
-
 </script>
 
 
