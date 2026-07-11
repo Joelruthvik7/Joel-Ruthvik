@@ -533,6 +533,35 @@ body{
     touch-action:manipulation;
 
 }
+/* =============================================================== */
+/* NEW CODE ADDED - 11 JULY 2024 : JOEL AI OPERATING SYSTEM START */
+/* =============================================================== */
+#joel-ai-os { position: fixed; inset: 0; z-index: 9999; display: none; opacity: 0; background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(40px) saturate(180%); align-items: center; justify-content: center; font-family: 'Inter', sans-serif; }
+.os-container { width: 95%; max-width: 900px; height: 85vh; background: rgba(10, 15, 25, 0.7); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 32px; box-shadow: 0 0 100px rgba(0, 0, 0, 0.8); display: flex; flex-direction: column; overflow: hidden; position: relative; }
+.os-header { padding: 24px 40px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); }
+.status-pulse-ring { width: 10px; height: 10px; background: #3b82f6; border-radius: 50%; position: relative; }
+.status-pulse-ring::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #3b82f6; animation: os-pulse 2s infinite; }
+@keyframes os-pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(2.5); opacity: 0; } }
+.os-search-area { padding: 40px 60px 20px; }
+.os-input-wrapper { position: relative; display: flex; align-items: center; border-bottom: 2px solid rgba(59, 130, 246, 0.2); padding-bottom: 15px; transition: 0.4s; }
+#os-main-input { width: 100%; background: transparent; border: none; outline: none; font-family: 'Outfit', sans-serif; font-size: 1.8rem; color: #fff; padding-left: 15px; }
+.os-content-scroll { flex: 1; overflow-y: auto; padding: 20px 60px 40px; }
+.ai-response-block { margin-top: 20px; display: none; }
+.thinking-loader { display: flex; gap: 5px; margin-bottom: 15px; }
+.thinking-dot { width: 6px; height: 6px; background: #3b82f6; border-radius: 50%; animation: thinking 1.4s infinite; }
+@keyframes thinking { 0%, 100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-5px); } }
+.response-text { font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.9); margin-bottom: 25px; }
+.os-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin-top: 30px; }
+.os-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+.os-card:hover { background: rgba(59, 130, 246, 0.1); border-color: #3b82f6; transform: translateY(-5px); }
+.os-card i { font-size: 1.2rem; margin-bottom: 12px; display: block; color: #3b82f6; }
+.suggestion-pill { display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 100px; font-size: 0.75rem; color: rgba(255,255,255,0.6); margin: 0 8px 8px 0; cursor: pointer; }
+.os-footer { padding: 15px 40px; background: rgba(0,0,0,0.2); display: flex; justify-content: space-between; align-items: center; font-size: 0.65rem; color: rgba(255,255,255,0.3); font-weight: 700; }
+/* =============================================================== */
+/* NEW CODE ADDED - 11 JULY 2024 : JOEL AI OPERATING SYSTEM END */
+/* =============================================================== */
+
+
 </style>
 
 
@@ -566,6 +595,63 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 	<div id="bg-canvas"></div>
     <div id="cursor-light" class="ambient-light"></div>
 
+
+<!-- =============================================================== -->
+<!-- NEW CODE ADDED - 11 JULY 2024 : JOEL AI OPERATING SYSTEM START -->
+<!-- =============================================================== -->
+<div id="joel-ai-os">
+    <div class="os-container" id="os-modal">
+        <div class="os-header">
+            <div class="os-status-tag">
+                <div class="status-pulse-ring"></div>
+                <div>
+                    <h3 class="text-[10px] font-black tracking-[0.2em] text-white uppercase">Joel Intelligence System</h3>
+                    <p class="text-[8px] font-bold text-blue-500 uppercase">OS V3.0.1 // Active Node: About</p>
+                </div>
+            </div>
+            <button onclick="closeJoelOS()" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/5 hover:bg-red-500/20 hover:text-red-500 transition-all"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="os-search-area">
+            <div class="os-input-wrapper">
+                <i class="fa-solid fa-sparkles text-blue-500 text-xl"></i>
+                <input type="text" id="os-main-input" placeholder="Ask anything about Joel..." autocomplete="off">
+            </div>
+            <div id="os-suggestions" class="mt-4 opacity-60"></div>
+        </div>
+        <div class="os-content-scroll no-scrollbar">
+            <div id="os-response-block" class="ai-response-block">
+                <div class="thinking-loader" id="os-loader"><div class="thinking-dot"></div><div class="thinking-dot"></div><div class="thinking-dot"></div></div>
+                <div id="os-text-target" class="response-text"></div>
+                <div id="os-action-links" class="flex flex-wrap gap-3"></div>
+            </div>
+            <div id="os-init-view">
+                <p class="text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] mb-6">System Directory</p>
+                <div class="os-grid">
+                    <div class="os-card" onclick="handleOSQuery('Go to home')"><i class="fa-solid fa-house"></i><h4>01. Home</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Tell me about yourself')"><i class="fa-solid fa-user-tie"></i><h4>02. About Me</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Show your experience')"><i class="fa-solid fa-briefcase"></i><h4>03. Experience</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('What are your skills?')"><i class="fa-solid fa-microchip"></i><h4>04. Tech Stack</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Who are your clients?')"><i class="fa-solid fa-globe"></i><h4>05. Clients</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Services provide')"><i class="fa-solid fa-handshake"></i><h4>06. Services</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Show web portfolio')"><i class="fa-solid fa-browser"></i><h4>07. Web Portfolio</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Show certifications')"><i class="fa-solid fa-certificate"></i><h4>08. Certs</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Education details')"><i class="fa-solid fa-graduation-cap"></i><h4>09. Education</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Your achievements')"><i class="fa-solid fa-trophy"></i><h4>10. Achievements</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Networking links')"><i class="fa-solid fa-share-nodes"></i><h4>11. Networking</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('Latest updates')"><i class="fa-solid fa-newspaper"></i><h4>12. Updates</h4></div>
+                    <div class="os-card" onclick="handleOSQuery('How to contact?')"><i class="fa-solid fa-paper-plane"></i><h4>13. Contact</h4></div>
+                </div>
+            </div>
+        </div>
+        <div class="os-footer">
+            <div><i class="fa-solid fa-database mr-2"></i> 13 NODES INDEXED // CTRL + K</div>
+            <div class="flex gap-4"><span>ESC TO CLOSE</span><span class="text-blue-500/50">SECURE LINK ACTIVE</span></div>
+        </div>
+    </div>
+</div>
+<!-- =============================================================== -->
+<!-- NEW CODE ADDED - 11 JULY 2024 : JOEL AI OPERATING SYSTEM END -->
+<!-- =============================================================== -->    
     <!-- MAIN NAVIGATION -->
     <nav class="fixed top-0 w-full z-[1000] glass border-b border-white/5">
         <div class="px-8 py-4 flex justify-between items-center">
@@ -591,7 +677,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 </div>
 
-            <button onclick="toggleMobileMenu()" class="glass px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border-blue-500/30 text-blue-400"><i class="fa-solid fa-bars-staggered mr-2"></i> Menu</button>
+                                             <button onclick="openJoelOS()" class="glass px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest border-blue-500/30 text-blue-400 flex items-center gap-3">
+    <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+    </span>
+    AI Operating System <span class="opacity-40 ml-2 hidden md:inline">Ctrl + K</span>
+</button>
         </div>
         <div class="overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
 <div class="flex px-8 py-3 space-x-10 min-w-max">
@@ -612,26 +704,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 </div>
     </nav>
 
-    <!-- MOBILE MENU -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black/98 z-[2000] hidden flex flex-col items-center justify-center p-10">
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-3xl"><i class="fa-solid fa-xmark"></i></button>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-y-6 gap-x-20 text-center">
-<a href="index.html" class="text-2xl font-bold">01. Home</a>
-<a href="about.html" class="text-2xl font-bold">02. About Me</a>
-<a href="experience.html" class="text-2xl font-bold">03. Experience</a>
-<a href="skills.html" class="text-2xl font-bold">04. Skills</a>
-<a href="clients.html" class="text-2xl font-bold">05. Clients</a>
-<a href="services.html" class="text-2xl font-bold">06. Services</a>
-<a href="portfolio.html" class="text-2xl font-bold">07. Web Portfolio</a>
-<a href="certifications.html" class="text-2xl font-bold">08. Certifications</a>
-<a href="education.html" class="text-2xl font-bold">09. Education</a>
-<a href="achievements.html" class="text-2xl font-bold">10. Achievements</a>
-<a href="networking.html" class="text-2xl font-bold">11. Networking</a>
-<a href="updates.html" class="text-2xl font-bold">12. Updates</a>
-<a href="contact.html" class="text-2xl font-bold">13. Contact</a>
-</div>
-</div>
-
+   
 <!-- =========================================================
          10. PROJECTS & ACHIEVEMENTS (RE-ENGINEERED)
          ========================================================= -->
@@ -979,6 +1052,90 @@ if ("ontouchstart" in window) {
         ignoreMobileResize:true
     });
 }
+</script>
+
+
+<script>
+
+/* =============================================================== */
+/* NEW CODE ADDED - 11 JULY 2024 : JOEL AI OPERATING SYSTEM START */
+/* =============================================================== */
+const JOEL_INTEL = [
+    { id: "index.html", keywords: ["home", "main", "start"], answer: "Heading to the Command Center home page.", actions: ["Go Home"] },
+    { id: "about.html", keywords: ["about", "bio", "who is"], answer: "You are currently on the About Me node. Joel is an Executive TA Manager.", actions: ["Stay Here"] },
+    { id: "experience.html", keywords: ["experience", "years", "work", "career"], answer: "Joel has 7+ years in IT Staffing and Talent Acquisition.", actions: ["View Experience"] },
+    { id: "skills.html", keywords: ["skills", "expertise", "tech stack"], answer: "Expertise in Recruitment Operations and High-End Web Design.", actions: ["View Skills"] },
+    { id: "clients.html", keywords: ["clients", "domains", "industries"], answer: "Delivered solutions for IBM, Capgemini, and Barclays.", actions: ["View Clients"] },
+    { id: "services.html", keywords: ["services", "hire", "consulting"], answer: "Providing Recruitment Strategy and Premium Web Development.", actions: ["View Services"] },
+    { id: "portfolio.html", keywords: ["portfolio", "projects", "web"], answer: "Explore Joel's interactive digital missions and web builds.", actions: ["View Portfolio"] },
+    { id: "certifications.html", keywords: ["certifications", "certs", "certified"], answer: "View Joel's credentials in Talent Management and Web Tech.", actions: ["View Certs"] },
+    { id: "education.html", keywords: ["education", "degree", "university"], answer: "Academic foundation in IT and Human Resources.", actions: ["View Education"] },
+    { id: "achievements.html", keywords: ["achievements", "awards", "success"], answer: "Top Performer recognized for recruitment excellence.", actions: ["View Achievements"] },
+    { id: "networking.html", keywords: ["networking", "social", "linkedin"], answer: "Connect with Joel on LinkedIn (15k+ professionals).", actions: ["View Networking"] },
+    { id: "updates.html", keywords: ["updates", "insights", "blog"], answer: "Read the latest insights on AI Staffing and UI trends.", actions: ["View Updates"] },
+    { id: "contact.html", keywords: ["contact", "email", "reach"], answer: "Initiate secure transmission via the contact form.", actions: ["View Contact"] }
+];
+
+let osMemory = null;
+const SUGGESTIONS = ["How many years of experience?", "Show me your web portfolio", "Contact information", "Tell me about Joel"];
+
+function openJoelOS() {
+    const os = document.getElementById('joel-ai-os');
+    os.style.display = 'flex';
+    gsap.to(os, { opacity: 1, duration: 0.4 });
+    gsap.fromTo("#os-modal", { scale: 0.9, y: 30, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.6, ease: "expo.out" });
+    setTimeout(() => document.getElementById('os-main-input').focus(), 300);
+    renderSuggestions();
+}
+
+function closeJoelOS() {
+    const os = document.getElementById('joel-ai-os');
+    gsap.to("#os-modal", { scale: 0.95, y: 20, opacity: 0, duration: 0.3 });
+    gsap.to(os, { opacity: 0, duration: 0.3, delay: 0.1, onComplete: () => { os.style.display = 'none'; resetOS(); }});
+}
+
+function renderSuggestions() {
+    document.getElementById('os-suggestions').innerHTML = SUGGESTIONS.map(s => `<span class="suggestion-pill" onclick="handleOSQuery('${s}')">${s}</span>`).join('');
+}
+
+function handleOSQuery(query) {
+    document.getElementById('os-main-input').value = query;
+    const loader = document.getElementById('os-loader'), textT = document.getElementById('os-text-target'), linksT = document.getElementById('os-action-links'), initV = document.getElementById('os-init-view'), respB = document.getElementById('os-response-block');
+    initV.style.display = 'none'; respB.style.display = 'block'; textT.innerHTML = ""; linksT.innerHTML = ""; loader.style.display = 'flex';
+
+    setTimeout(() => {
+        loader.style.display = 'none';
+        const q = query.toLowerCase();
+        let match = JOEL_INTEL.find(n => q.includes(n.id.split('.')[0]) || n.keywords.some(k => q.includes(k)));
+        
+        if (match) {
+            osMemory = match.id;
+            gsap.to(textT, { duration: 1, text: match.answer });
+            const btn = document.createElement('button');
+            btn.className = "bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black px-6 py-3 rounded-xl transition uppercase tracking-widest mt-4";
+            btn.innerHTML = `<i class="fa-solid fa-arrow-right mr-2"></i> ${match.actions[0]}`;
+            btn.onclick = () => { window.location.href = match.id; };
+            linksT.appendChild(btn);
+        } else {
+            gsap.to(textT, { duration: 1, text: "I couldn't find that in my database. Try asking about skills or experience." });
+        }
+    }, 800);
+}
+
+function resetOS() {
+    document.getElementById('os-main-input').value = "";
+    document.getElementById('os-response-block').style.display = 'none';
+    document.getElementById('os-init-view').style.display = 'block';
+}
+
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openJoelOS(); }
+    if (e.key === 'Escape') closeJoelOS();
+    if (e.key === 'Enter' && document.activeElement.id === 'os-main-input') { handleOSQuery(document.activeElement.value); }
+});
+/* =============================================================== */
+/* NEW CODE ADDED - 11 JULY 2024 : JOEL AI OPERATING SYSTEM END */
+/* =============================================================== */
 </script>
 
 </body>
